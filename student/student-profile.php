@@ -18,7 +18,7 @@
   <div class="p-3 text-center bg-success border-bottom">
     <div class="row">
       <div class="col">
-        <p class="text-white text-start ms-5 mb-0 lh-1 fs-7"><i class="fa-solid fa-phone me-2"></i>+ 632 8735 6386</p>
+        <p class="text-white text-start ms-5 mb-0 lh-1"><i class="fa-solid fa-phone me-2"></i>+ 632 8735 6386</p>
       </div>
 
       <div class="col">
@@ -119,22 +119,215 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col m-5 p-5 pt-0">
-      <h5 class="text-success fw-bold mb-4">Personal Information</h5>
-      
       <div class="row">
         <div class="col-md-2 col-sm-12">
-          <img src="../assets/img/kobie.jpg" class="img-thumbnail">
+          <img src="../assets/img/kobie.jpg" class="img-thumbnail me-5">
+
+          <div class="row">
+            <button class="btn btn-success mt-3 mb-5"><i class="fa-solid fa-pen fa-sm me-2"></i>Edit Information</button>
+          </div>
         </div>
 
         <div class="col-md-10 col-sm-12">
-          <ul class="list-group"> 
-            <li class="list-group-item">An item</li>
-            <li class="list-group-item">A second item</li>
-            <li class="list-group-item">A third item</li>
-            <li class="list-group-item">A fourth item</li>
-            <li class="list-group-item">And a fifth one</li>
+          <ul class="list-group ms-3 me-3"> 
+            <h5 class="text-success fw-bold ms-1 mb-3">Personal Details</h5>
+            <li class="list-group-item border-start-0 border-end-0 border-top-0 p-4">
+              <div class="row">
+                <div class="col-md-4 col-sm-12">
+                  Full Name:
+                </div>
+
+                <div class="col-md-8 col-sm-12 fw-bold">
+                  Kobie Oracion
+                </div>
+              </div>
+            </li>
+            
+            <li class="list-group-item border-start-0 border-end-0 border-top-0 p-4">
+              <div class="row">
+                <div class="col-md-4 col-sm-12">
+                  Student No.:
+                </div>
+
+                <div class="col-md-8 col-sm-12 fw-bold">
+                  0119-0233
+                </div>
+              </div>
+            </li>
+
+            <li class="list-group-item border-start-0 border-end-0 border-top-0 p-4">
+              <div class="row">
+                <div class="col-md-4 col-sm-12">
+                  Gender:
+                </div>
+
+                <div class="col-md-8 col-sm-12 fw-bold">
+                  Male
+                </div>
+              </div>
+            </li>
+
+            <li class="list-group-item border-start-0 border-end-0 border-top-0 p-4">
+              <div class="row">
+                <div class="col-md-4 col-sm-12">
+                  Civil Status:
+                </div>
+
+                <div class="col-md-8 col-sm-12 fw-bold">
+                  Married
+                </div>
+              </div>
+            </li>
+
+            <li class="list-group-item border-start-0 border-end-0 border-top-0 p-4">
+              <div class="row">
+                <div class="col-md-4 col-sm-12">
+                  Nationality:
+                </div>
+
+                <div class="col-md-8 col-sm-12 fw-bold">
+                  Pilipino
+                </div>
+              </div>
+            </li>
+
+            <li class="list-group-item border-start-0 border-end-0 border-top-0 p-4">
+              <div class="row">
+                <div class="col-md-4 col-sm-12">
+                  Date of Birth:
+                </div>
+
+                <div class="col-md-8 col-sm-12 fw-bold">
+                  July 12, 2000
+                </div>
+              </div>
+            </li>
+
+            <li class="list-group-item border-start-0 border-end-0 border-top-0 p-4">
+              <div class="row">
+                <div class="col-md-4 col-sm-12">
+                  Place of Birth:
+                </div>
+
+                <div class="col-md-8 col-sm-12 fw-bold">
+                  Luisiana, Laguna
+                </div>
+              </div>
+            </li>
+
+            <li class="list-group-item border-start-0 border-end-0 border-top-0 p-4">
+              <div class="row">
+                <div class="col-md-4 col-sm-12">
+                  Religion:
+                </div>
+
+                <div class="col-md-8 col-sm-12 fw-bold">
+                  Aglipayan
+                </div>
+              </div>
+            </li>
+
+            <!-- Contact Details -->
+            <h5 class="text-success fw-bold ms-1 mb-3 mt-5">Contact Details</h5>
+            <li class="list-group-item border-start-0 border-end-0 border-top-0 p-4">
+              <div class="row">
+                <div class="col-md-4 col-sm-12">
+                  Address:
+                </div>
+
+                <div class="col-md-8 col-sm-12 fw-bold">
+                  Barangay Zone IV Luisiana, Laguna
+                </div>
+              </div>
+            </li>
+
+            <li class="list-group-item border-start-0 border-end-0 border-top-0 p-4">
+              <div class="row">
+                <div class="col-md-4 col-sm-12">
+                  Contact No.:
+                </div>
+
+                <div class="col-md-8 col-sm-12 fw-bold">
+                  09760435424
+                </div>
+              </div>
+            </li>
+
+            <li class="list-group-item border-start-0 border-end-0 border-top-0 p-4">
+              <div class="row">
+                <div class="col-md-4 col-sm-12">
+                  Email Address:
+                </div>
+
+                <div class="col-md-8 col-sm-12 fw-bold">
+                  kobie.oracion12@gmail.com
+                </div>
+              </div>
+            </li>
+
+            <!-- Family Details -->
+            <h5 class="text-success fw-bold ms-1 mb-3 mt-5">Family Details</h5>
+            <li class="list-group-item border-start-0 border-end-0 border-top-0 p-4">
+              <div class="row">
+                <div class="col-md-4 col-sm-12">
+                  Father's Name:
+                </div>
+
+                <div class="col-md-8 col-sm-12 fw-bold fst-italic">
+                  N/A
+                </div>
+              </div>
+            </li>
+
+            <li class="list-group-item border-start-0 border-end-0 border-top-0 p-4">
+              <div class="row">
+                <div class="col-md-4 col-sm-12">
+                  Mother's Name:
+                </div>
+
+                <div class="col-md-8 col-sm-12 fw-bold">
+                  Ma. Teresa R. Oracion
+                </div>
+              </div>
+            </li>
+
+            <li class="list-group-item border-start-0 border-end-0 border-top-0 p-4">
+              <div class="row">
+                <div class="col-md-4 col-sm-12">
+                  Guardian's Name:
+                </div>
+
+                <div class="col-md-8 col-sm-12 fw-bold">
+                  Olivia O. Rapsing
+                </div>
+              </div>
+            </li>
+
+            <li class="list-group-item border-start-0 border-end-0 border-top-0 p-4">
+              <div class="row">
+                <div class="col-md-4 col-sm-12">
+                  Guardian's Relation:
+                </div>
+
+                <div class="col-md-8 col-sm-12 fw-bold">
+                  Aunt
+                </div>
+              </div>
+            </li>
+
+            <li class="list-group-item border-start-0 border-end-0 border-top-0 p-4">
+              <div class="row">
+                <div class="col-md-4 col-sm-12">
+                  Guardian's Contact No.:
+                </div>
+
+                <div class="col-md-8 col-sm-12 fw-bold">
+                  09658033142
+                </div>
+              </div>
+            </li>
           </ul>
-        </div>
+        </div>    
       </div>
     </div>
   </div>
