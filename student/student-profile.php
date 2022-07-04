@@ -71,7 +71,7 @@
                     <!-- Profile -->
                     <li class="nav-item dropdown">
                       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="fa-solid fa-user"></i>
+                        <img src="../assets/img/kobie.jpg" class="img-fluid rounded-circle" width="22px">
                       </a>
                       <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
                         <li><a class="dropdown-item" href="#">View Profile</a></li>
@@ -94,6 +94,10 @@
     <div class="container justify-content-center justify-content-md-between">
       <!-- Left links -->
       <ul class="navbar-nav flex-row">
+        <li class="nav-item me-2 me-lg-0 d-2 d-md-inline-block">
+          <a class="nav-link" href="index.php"><i class="fa-solid fa-home fa-sm me-1"></i>Home</a>
+        </li>
+
         <li class="nav-item me-2 me-lg-0 d-2 d-md-inline-block">
           <a class="nav-link text-success" href="student-profile.php"><i class="fa-solid fa-user fa-sm me-1"></i>Profile</a>
         </li>
@@ -118,7 +122,7 @@
 <!-- Main Body -->
 <div class="container-fluid">
   <div class="row">
-    <div class="col m-5 p-5 pt-0">
+    <div class="col mt-4 p-5 pt-0">
       <div class="row">
         <div class="col-md-2 col-sm-12">
           <img src="../assets/img/kobie.jpg" class="img-thumbnail me-5">

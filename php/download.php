@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Pedro Guevarra Memorial National Highschool</title>
+  <title>Downloads - Pedro Guevarra Memorial National Highschool</title>
   <link rel="icon" href="../assets/img/pgmnhs-logo.ico">
   <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="../css/fontawesome.css">
@@ -18,7 +18,7 @@
   <div class="p-3 text-center bg-success border-bottom">
     <div class="row">
       <div class="col">
-        <p class="text-white text-start ms-5 mb-0 lh-1 fs-7"><i class="fa-solid fa-phone me-2"></i>+ 632 8735 6386</p>
+        <p class="text-white text-start ms-5 mb-0 lh-1"><i class="fa-solid fa-phone me-2"></i>+ 632 8735 6386</p>
       </div>
 
       <div class="col">
@@ -34,7 +34,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-4 d-flex justify-content-center justify-content-md-start mb-3 mb-md-0">
-          <a href="index.php" class="ms-md-2">
+          <a href="../student/index.php" class="ms-md-2">
             <img src="../assets/img/pgmnhs-logo.png" height="60px" />
           </a>
         </div>
@@ -95,23 +95,23 @@
       <!-- Left links -->
       <ul class="navbar-nav flex-row">
         <li class="nav-item me-2 me-lg-0 d-2 d-md-inline-block">
-          <a class="nav-link text-success" href="index.php"><i class="fa-solid fa-home fa-sm me-1"></i>Home</a>
+          <a class="nav-link" href="../student/index.php"><i class="fa-solid fa-home fa-sm me-1"></i>Home</a>
         </li>
 
         <li class="nav-item me-2 me-lg-0 d-2 d-md-inline-block">
-          <a class="nav-link" href="student-profile.php"><i class="fa-solid fa-user fa-sm me-1"></i>Profile</a>
+          <a class="nav-link" href="../student/student-profile.php"><i class="fa-solid fa-user fa-sm me-1"></i>Profile</a>
         </li>
         <li class="nav-item me-2 ms-2 me-lg-0 d-2 d-md-inline-block">
-          <a class="nav-link" href="student-grades.php"><i class="fa-solid fa-award me-1"></i>Grades</a>
+          <a class="nav-link" href="../student/student-grades.php"><i class="fa-solid fa-award me-1"></i>Grades</a>
         </li>
         <li class="nav-item me-2 ms-2 me-lg-0 d-2 d-md-inline-block">
-          <a class="nav-link" href="student-schedule.php"><i class="fa-solid fa-calendar fa-sm me-1"></i>Schedule</a>
+          <a class="nav-link" href="../student/student-schedule.php"><i class="fa-solid fa-calendar fa-sm me-1"></i>Schedule</a>
         </li>
         <li class="nav-item me-2 ms-2 me-lg-0 d-2 d-md-inline-block">
-          <a class="nav-link" href="../php/download.php"><i class="fa-solid fa-file-arrow-down me-1"></i>Download</a>
+          <a class="nav-link text-success" href="../php/download.php"><i class="fa-solid fa-file-arrow-down me-1"></i>Download</a>
         </li>
         <li class="nav-item me-2 ms-2 me-lg-0 d-2 d-md-inline-block">
-          <a class="nav-link" href="student-request.php"><i class="fa-solid fa-clock-rotate-left me-1"></i>Requests</a>
+          <a class="nav-link" href="../student/student-request.php"><i class="fa-solid fa-clock-rotate-left me-1"></i>Requests</a>
         </li>
       </ul>
     </div>
@@ -119,27 +119,70 @@
   </nav>
 </header>
 
-<!-- Carousel -->
-<div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="../assets/img/1.jpg" class="d-block w-100" data-bs-interval="500">
-    </div>
-    <div class="carousel-item">
-      <img src="../assets/img/2.jpg" class="d-block w-100" data-bs-interval="500">
-    </div>
-    <div class="carousel-item">
-      <img src="../assets/img/3.jpg" class="d-block w-100" data-bs-interval="500">
+<!-- Main Body -->
+<div class="container-fluid">
+  <div class="row">
+    <div class="col m-5 mt-3 p-5 pt-0">
+      <div class="row">
+        <h5 class="text-success fw-bold ms-1 mb-4">Downloads</h5>
+        <div class="accordion" id="accordionExample">
+
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+              <button class="accordion-button fw-bold bg-success text-white" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                Registration Forms
+              </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse show m-3" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                <a href="#" class="text-decoration-none text-success ms-2">
+                <i class="fa-solid fa-circle-down me-2"></i>Registration Form</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingTwo">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                Passes & Slips
+              </button>
+            </h2>
+            <div id="collapseTwo" class="accordion-collapse collapse m-3" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                <div class="row">
+                  <a href="#" class="text-decoration-none text-success ms-2">
+                    <i class="fa-solid fa-circle-down me-2"></i>Absent Slip
+                  </a>
+
+                  <a href="#" class="text-decoration-none text-success ms-2">
+                    <i class="fa-solid fa-circle-down me-2 mt-4"></i>COVID-19 Tracing Slip
+                  </a>
+
+                  <a href="#" class="text-decoration-none text-success ms-2">
+                    <i class="fa-solid fa-circle-down me-2 mt-4"></i>Visitor's Pass
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingThree">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                Other Documents
+              </button>
+            </h2>
+            <div id="collapseThree" class="accordion-collapse collapse m-3" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                <a href="#" class="text-decoration-none text-success ms-2">
+                <i class="fa-solid fa-circle-down me-2"></i>Student Handbook</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
 </div>
 
 </body>
