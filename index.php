@@ -26,7 +26,7 @@
       <div class="card">
         <div class="card-body shadow-sm">
           <div class="row d-flex align-items-center justify-content-center m-3">
-            <img src="assets/img/pgmnhs-logo.png" class="img-fluid login-logo">
+            <img src="assets/img/pgmnhs-logo.png" class="img-fluid" style="width:120px">
             <h2 class="text-center mt-2">Student Portal</h2>
 
             <form class="d-flex align-items-center justify-content-center m-4" method="post" action="php/auth.php">

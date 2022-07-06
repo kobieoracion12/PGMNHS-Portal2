@@ -4,7 +4,7 @@ include_once "database.php";
 
 $lrn = $_SESSION["student_lrn"];
 
-$sql = mysqli_query($config, "SELECT * FROM student_info WHERE student_lrn = '$lrn'");
+$sql = mysqli_query($config, "SELECT * FROM account_info WHERE student_lrn = '$lrn'");
 
 while($rows = mysqli_fetch_array($sql)) {
 	$_SESSION['first'] = $rows['first_name'];

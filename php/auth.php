@@ -7,7 +7,7 @@ if(isset($_POST['login_btn']))
     $lrn = $_POST['lrn-input']; 
     $pass = $_POST['password-input']; 
 
-    $query = "SELECT * FROM student_account WHERE student_lrn ='$lrn' AND student_password='$pass' LIMIT 1";
+    $query = "SELECT * FROM accounts WHERE student_lrn ='$lrn' AND student_password='$pass' LIMIT 1";
     $query_run = mysqli_query($config, $query);
     $usertypes = mysqli_fetch_array($query_run);
 
@@ -22,6 +22,12 @@ if(isset($_POST['login_btn']))
         $_SESSION['student_lrn'] = $lrn;
         header('Location: ../admin/index.php');
 		exit;
+    }
+    else if($usertypes['account_priv'] == "Faculty")
+    {
+        $_SESSION['student_lrn'] = $lrn;
+        header('Location: ../faculty/index.php');
+        exit;
     }
     else {
 	header("location: ../index.php?Invalid");

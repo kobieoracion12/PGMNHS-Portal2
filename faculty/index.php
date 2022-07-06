@@ -8,12 +8,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Student - Pedro Guevarra Memorial National Highschool</title>
+  <title>Faculty - Pedro Guevarra Memorial National Highschool</title>
   <link rel="icon" href="../assets/img/pgmnhs-logo.ico">
   <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="../css/fontawesome.css">
   <link rel="stylesheet" type="text/css" href="../css/brands.css">
   <link rel="stylesheet" type="text/css" href="../css/solid.css">
+  <link rel="stylesheet" type="text/css" href="../css/regular.css">
 </head>
 <body>
 
@@ -22,17 +23,6 @@
 
   <!-- Top Navigation -->
   <div class="p-3 text-center bg-success border-bottom">
-    <div class="row">
-      <div class="col">
-        <p class="text-white text-start ms-5 mb-0 lh-1"><i class="fa-solid fa-phone me-2"></i>+ (049) 501-1047</p>
-      </div>
-
-      <div class="col">
-        <a href="https://www.facebook.com/DepEdTayoPGMNHS301257" target="_blank" class="text-decoration-none">
-          <i class="fa-brands fa-facebook d-flex justify-content-end text-white me-4 mt-2 fa-xl"></i>
-        </a>
-      </div>
-    </div>
   </div>
 
   <!-- Second Navigation -->
@@ -49,11 +39,10 @@
       <div class="collapse navbar-collapse text-center ms-md-5 ms-sm-0" id="navbarNavAltMarkup">
         <div class="col-md-6 col-sm-12 navbar-nav">
           <a class="nav-link text-success" href="index.php"><i class="fa-solid fa-home fa-sm me-1"></i>Home</a>
-          <a class="nav-link" href="student-profile.php"><i class="fa-solid fa-user me-1"></i>Profile</a>
-          <a class="nav-link" href="student-grades.php"><i class="fa-solid fa-award me-1"></i>Grades</a>
-          <a class="nav-link" href="student-schedule.php"><i class="fa-solid fa-calendar fa-sm me-1"></i>Schedule</a>
-          <a class="nav-link" href="../php/download.php"><i class="fa-solid fa-file-arrow-down me-1"></i>Download</a>
-          <a class="nav-link" href="student-request.php"><i class="fa-solid fa-clock-rotate-left me-1"></i>Requests</a>
+          <a class="nav-link" href="faculty-students.php"><i class="fa-solid fa-users fa-sm me-1"></i>Students</a>
+          <a class="nav-link" href="faculty-class.php"><i class="fa-solid fa-chalkboard fa-sm me-1"></i></i>Classes</a>
+          <a class="nav-link" href="faculty-schedule.php"><i class="fa-solid fa-calendar fa-sm me-1"></i>Schedule</a>
+          <a class="nav-link" href="faculty-schedule.php"><i class="fa-solid fa-book fa-sm me-1"></i>Subjects</a>
         </div>
 
         <div class="col-md-6 col-sm-12 navbar-nav">
@@ -78,34 +67,63 @@
               <li><a class="dropdown-item text-danger" href="../php/logout.php">Logout</a></li>
             </ul>
           </li>
-
         </div>
       </div>
     </div>
   </nav>
+
+  <hr class="text-muted">
 </header>
 
-<!-- Carousel -->
-<div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="../assets/img/1.jpg" class="d-block w-100" data-bs-interval="500">
-    </div>
-    <div class="carousel-item">
-      <img src="../assets/img/2.jpg" class="d-block w-100" data-bs-interval="500">
-    </div>
-    <div class="carousel-item">
-      <img src="../assets/img/3.jpg" class="d-block w-100" data-bs-interval="500">
-    </div>
+<body>
+
+<div class="container m-md-5">
+  <div class="row">
+    <h4 class="m-md-3 mb-md-4 ms-md-1 mt-md-0">Upcoming Classes</h4>
   </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
+
+  <!-- Upcoming Classes -->
+  <div class="row">
+    <div class="col-md-6 col-sm-12">
+      <div class="list-group">
+        <a href="#" class="list-group-item list-group-item-action p-md-5 p-sm-0" aria-current="true">
+          <div class="row">
+            <div class="col-10">
+              <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1 fw-bold">Today 10:00 AM</h5>
+              </div>
+              <p class="mb-1"><i class="fa-regular fa-clipboard fs-sm me-1"></i>PGMNHS-FILIPINO-101</p>
+              <small class="fw-light">Grade 10 - Kamatoy</small>
+            </div>
+
+            <div class="col-2 d-flex justify-content-center align-items-center">
+              <i class="fa-solid fa-angle-right text-muted fa-xl"></i>
+            </div>
+          </div>
+        </a>
+
+        <a href="#" class="list-group-item list-group-item-action p-md-5 p-sm-0" aria-current="true">
+          <div class="row">
+            <div class="col-10">
+              <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1 fw-bold">Today 8:00 AM</h5>
+              </div>
+              <p class="mb-1"><i class="fa-regular fa-clipboard fs-sm me-1"></i>PGMNHS-ENGLISH-101</p>
+              <small class="fw-light">Grade 10 - Caymito</small>
+            </div>
+
+            <div class="col-2 d-flex justify-content-center align-items-center">
+              <i class="fa-solid fa-angle-right text-muted fa-xl"></i>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="col-md-6 col-sm-12">
+
+    </div> 
+  </div>
 </div>
 
 <footer class="d-flex flex-wrap justify-content-md-between align-items-center py-3 my-4 border-top p-5">
@@ -131,5 +149,6 @@
 </footer>
 
 </body>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
 </html>

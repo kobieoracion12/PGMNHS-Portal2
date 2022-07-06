@@ -19,6 +19,7 @@
 
 <!-- Navigation -->
 <header>
+
   <!-- Top Navigation -->
   <div class="p-3 text-center bg-success border-bottom">
     <div class="row">
@@ -35,101 +36,54 @@
   </div>
 
   <!-- Second Navigation -->
-  <div class="p-3 text-center bg-white border-bottom">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-4 d-flex justify-content-center justify-content-md-start mb-3 mb-md-0">
-          <a href="index.php" class="ms-md-2">
-            <img src="../assets/img/pgmnhs-logo.png" height="60px" />
-          </a>
+  <nav class="navbar navbar-expand-lg navbar-light m-3">
+    <div class="container-fluid">
+      <a href="index.php" class="ms-md-5">
+        <img src="../assets/img/pgmnhs-logo.png" height="60px" />
+      </a>
+
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+
+      <div class="collapse navbar-collapse text-center ms-md-5 ms-sm-0" id="navbarNavAltMarkup">
+        <div class="col-md-6 col-sm-12 navbar-nav">
+          <a class="nav-link" href="index.php"><i class="fa-solid fa-home fa-sm me-1"></i>Home</a>
+          <a class="nav-link" href="student-profile.php"><i class="fa-solid fa-user me-1"></i>Profile</a>
+          <a class="nav-link text-success" href="student-grades.php"><i class="fa-solid fa-award me-1"></i>Grades</a>
+          <a class="nav-link" href="student-schedule.php"><i class="fa-solid fa-calendar fa-sm me-1"></i>Schedule</a>
+          <a class="nav-link" href="../php/download.php"><i class="fa-solid fa-file-arrow-down me-1"></i>Download</a>
+          <a class="nav-link" href="student-request.php"><i class="fa-solid fa-clock-rotate-left me-1"></i>Requests</a>
         </div>
 
-        <!-- Search Bar -->
-        <div class="col-md-4">
-          <form class="d-flex input-group w-auto my-auto mb-3 mb-md-0 mt-2">
-            <input autocomplete="off" type="search" class="form-control rounded" placeholder="Search" />
-            <span class="input-group-text border-0 d-none d-lg-flex"><i class="fa-solid fa-magnifying-glass"></i></span>
-          </form>
-        </div>
+        <div class="col-md-6 col-sm-12 navbar-nav">
+          <!-- Profile -->
+          <li class="nav-item dropdown px-4 ms-md-auto ms-sm-0">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <?php
+                $lrn = $_SESSION["student_lrn"];
+                $profile = mysqli_query($config, "SELECT student_picture from account_info WHERE student_lrn = $lrn");
 
-        <div class="col-md-4 d-flex justify-content-center justify-content-md-end align-items-center">
-          <div class="d-flex">
+                while($data = mysqli_fetch_array($profile)) {
+                  echo '<img class="img-fluid rounded-circle" src="data:image/jpg;charset=utf8;base64,'.base64_encode($data['student_picture']).'"  width="22px">';
+                }
+              ?>
 
-            <!-- Right Side -->
-            <nav class="navbar navbar-expand-lg navbar-light">
-              <div class="container-fluid">
-                <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                  <ul class="navbar-nav">
-
-                    <!-- Notification -->
-                    <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="fa-solid fa-bell"></i>
-                      </a>
-                      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                      </ul>
-                    </li>
-
-                    <!-- Profile -->
-                    <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <?php
-                          $lrn = $_SESSION["student_lrn"];
-                          $profile = mysqli_query($config, "SELECT student_picture from student_info WHERE student_lrn = $lrn");
-
-                          while($data = mysqli_fetch_array($profile)) {
-                            echo '<img class="img-fluid rounded-circle" src="data:image/jpg;charset=utf8;base64,'.base64_encode($data['student_picture']).'"  width="22px">';
-                          }
-                        ?>
-
-                      </a>
-                      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
-                        <li><a class="dropdown-item" href="student-profile.php">View Profile</a></li>
-                        <li><a class="dropdown-item" href="../php/change-password.php">Change Password</a></li>
-                        <li><a class="dropdown-item text-danger" href="../php/logout.php">Logout</a></li>
-                      </ul>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </nav>
-          </div>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end p-2" aria-labelledby="navbarDropdownMenuLink">
+              <li><a class="dropdown-item" href="student-profile.php">View Profile</a></li>
+              <li><a class="dropdown-item" href="../php/change-password.php">Change Password</a></li>
+              <li><a class="dropdown-item" href="../php/settings.php">Settings</a></li>
+              <li><hr class="text-muted dropdown-divider"></li>
+              <li><a class="dropdown-item text-danger" href="../php/logout.php">Logout</a></li>
+            </ul>
+          </li>
         </div>
       </div>
     </div>
-  </div>
-
-  <!-- Third Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-white">
-    <div class="container justify-content-center justify-content-md-between">
-      <!-- Left links -->
-      <ul class="navbar-nav flex-row">
-        <li class="nav-item me-2 me-lg-0 d-2 d-md-inline-block">
-          <a class="nav-link" href="index.php"><i class="fa-solid fa-home fa-sm me-1"></i>Home</a>
-        </li>
-
-        <li class="nav-item me-2 me-lg-0 d-2 d-md-inline-block">
-          <a class="nav-link" href="student-profile.php"><i class="fa-solid fa-user fa-sm me-1"></i>Profile</a>
-        </li>
-        <li class="nav-item me-2 ms-2 me-lg-0 d-2 d-md-inline-block">
-          <a class="nav-link text-success" href="student-grades.php"><i class="fa-solid fa-award me-1"></i>Grades</a>
-        </li>
-        <li class="nav-item me-2 ms-2 me-lg-0 d-2 d-md-inline-block">
-          <a class="nav-link" href="student-schedule.php"><i class="fa-solid fa-calendar fa-sm me-1"></i>Schedule</a>
-        </li>
-        <li class="nav-item me-2 ms-2 me-lg-0 d-2 d-md-inline-block">
-          <a class="nav-link" href="../php/download.php"><i class="fa-solid fa-file-arrow-down me-1"></i>Download</a>
-        </li>
-        <li class="nav-item me-2 ms-2 me-lg-0 d-2 d-md-inline-block">
-          <a class="nav-link" href="student-request.php"><i class="fa-solid fa-clock-rotate-left me-1"></i>Requests</a>
-        </li>
-      </ul>
-    </div>
-    <!-- Container wrapper -->
   </nav>
+
+  <hr class="text-muted">
 </header>
 
 <!-- Main Body -->
@@ -137,12 +91,8 @@
   <div class="row">
     <div class="col mt-3 p-5 pt-0 pb-0">
       <div class="row mt-3">
-        <div class="col-md-6 col-sm-6">
-          <h5 class="text-success fw-bold ms-3 mb-4">My Grades</h5>
-        </div>
-
-        <div class="col-md-6 col-sm-6 d-flex justify-content-end">
-          <select class="form-select mb-4" aria-label="Default select example">
+        <div class="col-12 ps-3 pe-3 d-flex justify-content-center">
+          <select class="form-select w-75" aria-label="Default select example">
             <option selected>Select Grading Period</option>
             <option value="1">2022-2023: 1st Semester</option>
             <option value="2">2022-2023: 2nd Semester</option>
@@ -152,57 +102,65 @@
 
       <!-- Grades -->
       <div class="row">
-        <div class="col-12 p-md-5 pt-md-3 p-sm-0 pt-sm-0">
-          <div class="table-responsive">
-            <table class="table align-middle">
-              <thead>
-                <tr class="text-muted">
-                  <th scope="col">Subject</th>
-                  <th class=" text-center" scope="col">Equivalent</th>
-                  <th class=" text-center" scope="col">Completion</th>
-                  <th class=" text-center" scope="col">Remarks</th>
-                </tr>
-              </thead>
-              <tbody>
-                <?php
-                  $sql = mysqli_query($config, "SELECT * FROM student_grades, subjects WHERE (student_grades.subject_id = subjects.subject_id)");
+        <div class="col-12 p-md-5 pt-md-3 pb-md-0 pb-sm-0 p-sm-0 pt-sm-0">
+          <div class="card border-0 m-md-5 mb-md-0 m-sm-0 mt-md-0">
+            <div class="card-body p-md-5 pt-md-0 pb-md-0 m-md-5 m-sm-0">
+              <div class="table-responsive">
+                <table class="table align-middle">
+                  <thead>
+                    <tr class="text-muted">
+                      <th scope="col">Subject</th>
+                      <th class="text-center" scope="col">Equivalent</th>
+                      <th class="text-center" scope="col">Completion</th>
+                      <th class="text-center" scope="col">Remarks</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php
+                      $sql = mysqli_query($config, "SELECT * FROM student_grades, subjects WHERE (student_grades.subject_id = subjects.subject_id)");
 
-                  while($grades = mysqli_fetch_array($sql)) {
+                      while($grades = mysqli_fetch_array($sql)) {
 
-                ?>
-                <tr>
-                  <td class="p-4">
-                    <h5><?php echo $grades["subject_code"]; ?></h5>
-                    <p class="text-muted fw-light lh-1"><?php echo $grades["subject_desc"]; ?></p>
-                  </td>
-                  <td class="p-4 text-center"><?php echo $grades["completion_grade"]; ?></td>
-                  <td class="p-4 text-center">--</td>
-                  
-                  <?php
-                    if($grades["remarks"] == "Passed") {
-                      echo '<td class="p-4 text-center text-success">Passed</td>';
-                    }
-                    else if ($grades["remarks"] == "Failed") {
-                      echo '<td class="p-4 text-center text-danger">Failed</td>';
-                    }
-                    else if ($grades["remarks"] == "INC") {
-                      echo '<td class="p-4 text-center text-warning">INC</td>';
-                    }
-                    else if ($grades["remarks"] == "DRP") {
-                      echo '<td class="p-4 text-center text-dark">DRP</td>';
-                    }
-                    else {
-                      echo '<td class="p-4 text-center">--</td>';
-                    }
+                    ?>
+                    <tr>
+                      <td class="p-4">
+                        <h5><?php echo $grades["subject_code"]; ?></h5>
+                        <p class="text-muted fw-light lh-1"><?php echo $grades["subject_desc"]; ?></p>
+                      </td>
+                      <td class="p-4 text-center"><?php echo $grades["completion_grade"]; ?></td>
+                      <td class="p-4 text-center">--</td>
+                      
+                      <?php
+                        if($grades["remarks"] == "Passed") {
+                          echo '<td class="p-4 text-center text-success">Passed</td>';
+                        }
+                        else if ($grades["remarks"] == "Failed") {
+                          echo '<td class="p-4 text-center text-danger">Failed</td>';
+                        }
+                        else if ($grades["remarks"] == "INC") {
+                          echo '<td class="p-4 text-center text-warning">INC</td>';
+                        }
+                        else if ($grades["remarks"] == "DRP") {
+                          echo '<td class="p-4 text-center text-dark">DRP</td>';
+                        }
+                        else {
+                          echo '<td class="p-4 text-center">--</td>';
+                        }
 
-                  ?>
-                </tr>
-                <?php
-                  }
-                ?>
-              </tbody>
-            </table>
+                      ?>
+                    </tr>
+                    <?php
+                      }
+                    ?>
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </div>
+
+
+
+          
         </div>
       </div>
     </div>
