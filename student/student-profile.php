@@ -1,3 +1,8 @@
+<?php
+  include_once("../php/data.php");
+  include_once("../php/database.php");
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,7 +23,8 @@
   <div class="p-3 text-center bg-success border-bottom">
     <div class="row">
       <div class="col">
-        <p class="text-white text-start ms-5 mb-0 lh-1"><i class="fa-solid fa-phone me-2"></i>+ 632 8735 6386</p>
+        <p class="text-white text-start ms-5 mb-0 lh-1"><i class="fa-solid fa-phone me-2"></i>+ (049) 501-1047
+        </p>
       </div>
 
       <div class="col">
@@ -71,12 +77,20 @@
                     <!-- Profile -->
                     <li class="nav-item dropdown">
                       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="../assets/img/kobie.jpg" class="img-fluid rounded-circle" width="22px">
+                        <?php
+                          $lrn = $_SESSION["student_lrn"];
+                          $profile = mysqli_query($config, "SELECT student_picture from student_info WHERE student_lrn = $lrn");
+
+                          while($data = mysqli_fetch_array($profile)) {
+                            echo '<img class="img-fluid rounded-circle" src="data:image/jpg;charset=utf8;base64,'.base64_encode($data['student_picture']).'"  width="22px">';
+                          }
+                        ?>
+
                       </a>
                       <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
-                        <li><a class="dropdown-item" href="#">View Profile</a></li>
-                        <li><a class="dropdown-item" href="#">Change Password</a></li>
-                        <li><a class="dropdown-item text-danger" href="#">Logout</a></li>
+                        <li><a class="dropdown-item" href="student-profile.php">View Profile</a></li>
+                        <li><a class="dropdown-item" href="../php/change-password.php">Change Password</a></li>
+                        <li><a class="dropdown-item text-danger" href="../php/logout.php">Logout</a></li>
                       </ul>
                     </li>
                   </ul>
@@ -125,7 +139,14 @@
     <div class="col mt-4 p-5 pt-0">
       <div class="row">
         <div class="col-md-2 col-sm-12">
-          <img src="../assets/img/kobie.jpg" class="img-thumbnail me-5">
+          <?php
+            $lrn = $_SESSION["student_lrn"];
+            $profile = mysqli_query($config, "SELECT student_picture from student_info WHERE student_lrn = $lrn");
+
+            while($data = mysqli_fetch_array($profile)) {
+              echo '<img class="img-thumbnail me-5" src="data:image/jpg;charset=utf8;base64,'.base64_encode($data['student_picture']).'">';
+            }
+          ?>
 
           <div class="row">
             <button class="btn btn-success mt-3 mb-5"><i class="fa-solid fa-pen fa-sm me-2"></i>Edit Information</button>
@@ -142,7 +163,13 @@
                 </div>
 
                 <div class="col-md-8 col-sm-12 fw-bold">
-                  Kobie Oracion
+                  <?php
+                    echo $_SESSION['first'];
+                    echo " ";
+                    echo $_SESSION['middle'];
+                    echo " ";
+                    echo $_SESSION['last'];
+                  ?>
                 </div>
               </div>
             </li>
@@ -150,11 +177,11 @@
             <li class="list-group-item border-start-0 border-end-0 border-top-0 p-4">
               <div class="row">
                 <div class="col-md-4 col-sm-12">
-                  Student No.:
+                  LRN:
                 </div>
 
                 <div class="col-md-8 col-sm-12 fw-bold">
-                  0119-0233
+                  <?php echo $_SESSION['student_lrn']; ?>
                 </div>
               </div>
             </li>
@@ -166,7 +193,7 @@
                 </div>
 
                 <div class="col-md-8 col-sm-12 fw-bold">
-                  Male
+                  <?php echo $_SESSION['gender']; ?>
                 </div>
               </div>
             </li>
@@ -178,7 +205,7 @@
                 </div>
 
                 <div class="col-md-8 col-sm-12 fw-bold">
-                  Married
+                  <?php echo $_SESSION['civil']; ?>
                 </div>
               </div>
             </li>
@@ -190,7 +217,7 @@
                 </div>
 
                 <div class="col-md-8 col-sm-12 fw-bold">
-                  Pilipino
+                  <?php echo $_SESSION['nationality']; ?>
                 </div>
               </div>
             </li>
@@ -202,7 +229,7 @@
                 </div>
 
                 <div class="col-md-8 col-sm-12 fw-bold">
-                  July 12, 2000
+                  <?php echo $_SESSION['bday'] = date("F j, Y"); ?>
                 </div>
               </div>
             </li>
@@ -214,7 +241,7 @@
                 </div>
 
                 <div class="col-md-8 col-sm-12 fw-bold">
-                  Luisiana, Laguna
+                  <?php echo $_SESSION['pob']; ?>
                 </div>
               </div>
             </li>
@@ -226,7 +253,7 @@
                 </div>
 
                 <div class="col-md-8 col-sm-12 fw-bold">
-                  Aglipayan
+                  <?php echo $_SESSION['religion']; ?>
                 </div>
               </div>
             </li>
@@ -240,7 +267,7 @@
                 </div>
 
                 <div class="col-md-8 col-sm-12 fw-bold">
-                  Barangay Zone IV Luisiana, Laguna
+                  <?php echo $_SESSION['address']; ?>
                 </div>
               </div>
             </li>
@@ -252,7 +279,7 @@
                 </div>
 
                 <div class="col-md-8 col-sm-12 fw-bold">
-                  09760435424
+                  <?php echo $_SESSION['contact']; ?>
                 </div>
               </div>
             </li>
@@ -264,7 +291,7 @@
                 </div>
 
                 <div class="col-md-8 col-sm-12 fw-bold">
-                  kobie.oracion12@gmail.com
+                  <?php echo $_SESSION['email']; ?>
                 </div>
               </div>
             </li>
@@ -277,8 +304,15 @@
                   Father's Name:
                 </div>
 
-                <div class="col-md-8 col-sm-12 fw-bold fst-italic">
-                  N/A
+                <div class="col-md-8 col-sm-12 fw-bold">
+                  <?php 
+                    if($_SESSION['father'] == null) {
+                      echo "<div class='fst-italic'>N/A</div>";
+                    }
+                    else {
+                      echo $_SESSION['father']; 
+                    }
+                  ?>
                 </div>
               </div>
             </li>
@@ -290,7 +324,14 @@
                 </div>
 
                 <div class="col-md-8 col-sm-12 fw-bold">
-                  Ma. Teresa R. Oracion
+                  <?php 
+                    if($_SESSION['mother'] == null) {
+                      echo "<div class='fst-italic'>N/A</div>";
+                    }
+                    else {
+                      echo $_SESSION['mother']; 
+                    }
+                  ?>
                 </div>
               </div>
             </li>
@@ -302,7 +343,14 @@
                 </div>
 
                 <div class="col-md-8 col-sm-12 fw-bold">
-                  Olivia O. Rapsing
+                  <?php 
+                    if($_SESSION['guardian'] == null) {
+                      echo "<div class='fst-italic'>N/A</div>";
+                    }
+                    else {
+                      echo $_SESSION['guardian']; 
+                    }
+                  ?>
                 </div>
               </div>
             </li>
@@ -314,7 +362,14 @@
                 </div>
 
                 <div class="col-md-8 col-sm-12 fw-bold">
-                  Aunt
+                  <?php 
+                    if($_SESSION['relation'] == null) {
+                      echo "<div class='fst-italic'>N/A</div>";
+                    }
+                    else {
+                      echo $_SESSION['relation']; 
+                    }
+                  ?>
                 </div>
               </div>
             </li>
@@ -326,7 +381,14 @@
                 </div>
 
                 <div class="col-md-8 col-sm-12 fw-bold">
-                  09658033142
+                  <?php 
+                    if($_SESSION['gnumber'] == null) {
+                      echo "<div class='fst-italic'>N/A</div>";
+                    }
+                    else {
+                      echo $_SESSION['gnumber']; 
+                    }
+                  ?>
                 </div>
               </div>
             </li>
@@ -335,6 +397,28 @@
       </div>
     </div>
   </div>
+
+  <footer class="d-flex flex-wrap justify-content-md-between align-items-center py-3 my-4 border-top p-5">
+    <div class="col-4 mt-3">
+      <p class="fw-normal text-muted" style="font-size: 10px;">
+        Pedro Guevarra Memorial National Highschool Portal <br>
+        All Rights Reserved 2022 ©
+      </p>
+    </div>
+
+    <div class="col-4 mt-3 mb-0 text-center">
+      <a href="index.php" class="ms-md-2">
+        <img src="../assets/img/pgmnhs-logo.png" height="60px" />
+      </a>
+    </div>
+
+    <div class="col-4 mt-3 text-end">
+      <p class="fw-normal text-muted" style="font-size: 10px;">
+        Visit us @ P. Guevara St. 4009
+        <br> Santa Cruz, Laguna Philippines
+      </p>
+    </div>
+  </footer>
 </div>
 
 </body>

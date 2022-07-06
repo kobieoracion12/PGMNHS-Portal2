@@ -1,3 +1,7 @@
+<?php
+  session_start();
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,12 +29,26 @@
             <img src="assets/img/pgmnhs-logo.png" class="img-fluid login-logo">
             <h2 class="text-center mt-2">Student Portal</h2>
 
-            <form class="d-flex align-items-center justify-content-center m-4">
+            <form class="d-flex align-items-center justify-content-center m-4" method="post" action="php/auth.php">
               <div class="row m-4">
+
+                <?php
+                  if(isset($_GET['Invalid'])) {
+                    echo '<p class="text-center text-danger">Invalid student number or password.</p>';
+                  }
+                ?>
+
+                <?php
+                  if(isset($_GET['Login'])) {
+                    echo '<p class="text-center text-danger">Please login first.</p>';
+                  }
+                ?>
+
                 <div class="input-group mb-3">
                   <span class="input-group-text bg-white border-end-0 text-success" id="basic-addon1">
                     <i class="fa-solid fa-id-badge"></i>
-                  </span>
+                  </span>                  
+
                   <input class="form-control border-start-0 w-50" type="text" name="lrn-input" placeholder="Student Number">
                 </div>
 
@@ -38,14 +56,14 @@
                   <span class="input-group-text bg-white border-end-0 text-success" id="basic-addon1">
                     <i class="fa-solid fa-lock"></i>
                   </span>
-                  <input class="form-control border-start-0 w-50" type="password" name="lrn-input" placeholder="Password">
+                  <input class="form-control border-start-0 w-50" type="password" name="password-input" placeholder="Password">
                 </div>
 
                 <a href="php/account-recovery.php" class="text-decoration-none text-success">
                   <p class="text-end">Forgot Password?</p>
                 </a>
 
-                <button class="btn btn-success rounded-pill mt-2">Login</button>
+                <button class="btn btn-success rounded-pill mt-2" name="login_btn" value="Submit">Login</button>
               </div>
             </form>
           </div>
@@ -66,7 +84,6 @@
     <div class="col-md-2 col-sm-12">
       
     </div>
-
   </div>
 </div>
 
