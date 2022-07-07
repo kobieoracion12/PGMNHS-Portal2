@@ -22,17 +22,6 @@
 
   <!-- Top Navigation -->
   <div class="p-3 text-center bg-success border-bottom">
-    <div class="row">
-      <div class="col">
-        <p class="text-white text-start ms-5 mb-0 lh-1"><i class="fa-solid fa-phone me-2"></i>+ (049) 501-1047</p>
-      </div>
-
-      <div class="col">
-        <a href="https://www.facebook.com/DepEdTayoPGMNHS301257" target="_blank" class="text-decoration-none">
-          <i class="fa-brands fa-facebook d-flex justify-content-end text-white me-4 mt-2 fa-xl"></i>
-        </a>
-      </div>
-    </div>
   </div>
 
   <!-- Second Navigation -->
@@ -49,11 +38,10 @@
       <div class="collapse navbar-collapse text-center ms-md-5 ms-sm-0" id="navbarNavAltMarkup">
         <div class="col-md-6 col-sm-12 navbar-nav">
           <a class="nav-link" href="index.php"><i class="fa-solid fa-home fa-sm me-1"></i>Home</a>
-          <a class="nav-link" href="student-profile.php"><i class="fa-solid fa-user me-1"></i>Profile</a>
-          <a class="nav-link" href="student-grades.php"><i class="fa-solid fa-award me-1"></i>Grades</a>
-          <a class="nav-link text-success" href="student-schedule.php"><i class="fa-solid fa-calendar fa-sm me-1"></i>Schedule</a>
-          <a class="nav-link" href="../php/download.php"><i class="fa-solid fa-file-arrow-down me-1"></i>Download</a>
-          <a class="nav-link" href="student-request.php"><i class="fa-solid fa-clock-rotate-left me-1"></i>Requests</a>
+          <a class="nav-link" href="faculty-students.php"><i class="fa-solid fa-users fa-sm me-1"></i>Students</a>
+          <a class="nav-link" href="faculty-class.php"><i class="fa-solid fa-chalkboard fa-sm me-1"></i></i>Classes</a>
+          <a class="nav-link text-success" href="faculty-schedule.php"><i class="fa-solid fa-calendar fa-sm me-1"></i>Schedule</a>
+          <a class="nav-link" href="faculty-subjects.php"><i class="fa-solid fa-book fa-sm me-1"></i>Subjects</a>
         </div>
 
         <div class="col-md-6 col-sm-12 navbar-nav">
@@ -62,7 +50,7 @@
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <?php
                 $lrn = $_SESSION["student_lrn"];
-                $profile = mysqli_query($config, "SELECT student_picture from student_info WHERE student_lrn = $lrn");
+                $profile = mysqli_query($config, "SELECT student_picture FROM student_info WHERE student_lrn = $lrn");
 
                 while($data = mysqli_fetch_array($profile)) {
                   echo '<img class="img-fluid rounded-circle" src="data:image/jpg;charset=utf8;base64,'.base64_encode($data['student_picture']).'"  width="22px">';

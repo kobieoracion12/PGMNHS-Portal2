@@ -7,7 +7,7 @@ if(isset($_POST['login_btn']))
     $lrn = $_POST['lrn-input']; 
     $pass = $_POST['password-input']; 
 
-    $query = "SELECT * FROM accounts WHERE student_lrn ='$lrn' AND student_password='$pass' LIMIT 1";
+    $query = "SELECT * FROM accounts WHERE user_number ='$lrn' AND account_password='$pass' LIMIT 1";
     $query_run = mysqli_query($config, $query);
     $usertypes = mysqli_fetch_array($query_run);
 

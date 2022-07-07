@@ -62,7 +62,7 @@
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <?php
                 $lrn = $_SESSION["student_lrn"];
-                $profile = mysqli_query($config, "SELECT student_picture from account_info WHERE student_lrn = $lrn");
+                $profile = mysqli_query($config, "SELECT student_picture from student_info WHERE student_lrn = $lrn");
 
                 while($data = mysqli_fetch_array($profile)) {
                   echo '<img class="img-fluid rounded-circle" src="data:image/jpg;charset=utf8;base64,'.base64_encode($data['student_picture']).'"  width="22px">';
