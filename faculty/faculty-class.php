@@ -1,5 +1,5 @@
 <?php
-  include_once("../php/data.php");
+  include_once("faculty-data.php");
   include_once("../php/database.php");
 ?>
 
@@ -48,22 +48,15 @@
           <!-- Profile -->
           <li class="nav-item dropdown px-4 ms-md-auto ms-sm-0">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              <?php
-                $lrn = $_SESSION["student_lrn"];
-                $profile = mysqli_query($config, "SELECT student_picture FROM student_info WHERE student_lrn = $lrn");
-
-                while($data = mysqli_fetch_array($profile)) {
-                  echo '<img class="img-fluid rounded-circle" src="data:image/jpg;charset=utf8;base64,'.base64_encode($data['student_picture']).'"  width="22px">';
-                }
-              ?>
-
+              <img class="img-fluid rounded-circle" src="../assets/img/profile.jpg"  width="22px">
             </a>
+            
             <ul class="dropdown-menu dropdown-menu-end p-2" aria-labelledby="navbarDropdownMenuLink">
               <li><a class="dropdown-item" href="student-profile.php">View Profile</a></li>
               <li><a class="dropdown-item" href="../php/change-password.php">Change Password</a></li>
               <li><a class="dropdown-item" href="../php/settings.php">Settings</a></li>
               <li><hr class="text-muted dropdown-divider"></li>
-              <li><a class="dropdown-item text-danger" href="../php/logout.php">Logout</a></li>
+              <li><a class="dropdown-item text-danger" href="faculty-logout.php">Logout</a></li>
             </ul>
           </li>
         </div>

@@ -1,6 +1,5 @@
 <?php
-  include_once("../php/data.php");
-  include_once("../php/database.php");
+  session_start();
 ?>
 
 <!DOCTYPE html>
@@ -8,93 +7,88 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Admin - Pedro Guevarra Memorial National Highschool</title>
+  <title>Login - Pedro Guevarra Memorial National Highschool</title>
   <link rel="icon" href="../assets/img/pgmnhs-logo.ico">
   <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="../css/style.css">
   <link rel="stylesheet" type="text/css" href="../css/fontawesome.css">
   <link rel="stylesheet" type="text/css" href="../css/brands.css">
   <link rel="stylesheet" type="text/css" href="../css/solid.css">
 </head>
-<body>
+<body class="bg-image" style="background-image: url('../assets/img/background-image2.jpg'); background-repeat: no-repeat; height: 100%; background-position: center; background-size: cover;">
 
-<!-- Navigation -->
-<header>
+<div class="container-fluid">
+  <div class="d-flex align-items-center justify-content-center" style="height: 710px">
+    <div class="col-md-2 col-sm-12">
+    </div>
 
-  <!-- Top Navigation -->
-  <div class="p-3 text-center bg-success border-bottom">
-  </div>
+    <div class="col-md-6 col-sm-12 m-2">
+      <div class="card">
+        <div class="card-body shadow-sm">
+          <div class="row d-flex align-items-center justify-content-center m-3">
+            <img src="../assets/img/pgmnhs-logo.png" class="img-fluid" style="width:120px">
+            <h2 class="text-center mt-2">Faculty Portal</h2>
 
-  <!-- Second Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-light m-3">
-    <div class="container-fluid">
-      <a href="index.php" class="ms-md-5">
-        <img src="../assets/img/pgmnhs-logo.png" height="60px" />
-      </a>
+            <form class="d-flex align-items-center justify-content-center m-4" method="post" action="../php/admin-auth.php">
+              <div class="row m-4">
 
-      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <i class="fa-solid fa-bars"></i>
-      </button>
+                <?php
+                  if(isset($_GET['Invalid'])) {
+                    echo '<p class="text-center text-danger">Invalid employee number or password.</p>';
+                  }
+                ?>
 
-      <div class="collapse navbar-collapse text-center ms-md-5 ms-sm-0" id="navbarNavAltMarkup">
-        <div class="col-md-6 col-sm-12 navbar-nav">
-          <a class="nav-link text-success" href="index.php"><i class="fa-solid fa-home fa-sm me-1"></i>Home</a>
-          <a class="nav-link" href="student-profile.php"><i class="fa-solid fa-chalkboard me-1"></i></i>Classes</a>
-          
+                <?php
+                  if(isset($_GET['Login'])) {
+                    echo '<p class="text-center text-danger">Please login first.</p>';
+                  }
+                ?>
+
+                <div class="input-group mb-3">
+                  <span class="input-group-text bg-white border-end-0 text-success" id="basic-addon1">
+                    <i class="fa-solid fa-id-badge"></i>
+                  </span>                  
+
+                  <input class="form-control border-start-0 w-50" type="text" name="employee-input" placeholder="Employee Number">
+                </div>
+
+                <div class="input-group mb-3">
+                  <span class="input-group-text bg-white border-end-0 text-success" id="basic-addon1">
+                    <i class="fa-solid fa-lock"></i>
+                  </span>
+                  <input class="form-control border-start-0 w-50" type="password" name="password-input" placeholder="Password">
+                </div>
+
+                <div class="row text-end">
+                  <a class="text-decoration-none text-success" href="#">
+                    <small>Forgot Password?</small>
+                  </a>
+                </div>
+
+                <button class="btn btn-success rounded-pill mt-2" name="login_btn" value="Submit">Login</button>
+              </div>
+            </form>
+          </div>
         </div>
 
-        <div class="col-md-6 col-sm-12 navbar-nav">
-          <!-- Profile -->
-          <li class="nav-item dropdown px-4 ms-md-auto ms-sm-0">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              <?php
-                $lrn = $_SESSION["student_lrn"];
-                $profile = mysqli_query($config, "SELECT student_picture from account_info WHERE student_lrn = $lrn");
+        <div class="card-footer bg-white text-muted text-center">
+          <p class="fw-normal">
+            Pedro Guevarra Memorial National Highschool Portal <br>
+            All Rights Reserved 2022 ©
+          </p>
 
-                while($data = mysqli_fetch_array($profile)) {
-                  echo '<img class="img-fluid rounded-circle" src="data:image/jpg;charset=utf8;base64,'.base64_encode($data['student_picture']).'"  width="22px">';
-                }
-              ?>
+          <p class="mb-2" style="font-size: 10px;">Developed by: Kobie Oracion, Jireh Geleo Ramos & John Lloyd Araza</p>
 
-            </a>
-            <ul class="dropdown-menu dropdown-menu-end p-2" aria-labelledby="navbarDropdownMenuLink">
-              <li><a class="dropdown-item" href="student-profile.php">View Profile</a></li>
-              <li><a class="dropdown-item" href="../php/change-password.php">Change Password</a></li>
-              <li><a class="dropdown-item" href="../php/settings.php">Settings</a></li>
-              <li><hr class="text-muted dropdown-divider"></li>
-              <li><a class="dropdown-item text-danger" href="../php/logout.php">Logout</a></li>
-            </ul>
-          </li>
         </div>
       </div>
     </div>
-  </nav>
 
-  <hr class="text-muted">
-</header>
-
-<footer class="d-flex flex-wrap justify-content-md-between align-items-center py-3 my-4 border-top p-5">
-  <div class="col-4 mt-3">
-    <p class="fw-normal text-muted" style="font-size: 10px;">
-      Pedro Guevarra Memorial National Highschool Portal <br>
-      All Rights Reserved 2022 ©
-    </p>
+    <div class="col-md-2 col-sm-12">
+      
+    </div>
   </div>
-
-  <div class="col-4 mt-3 mb-0 text-center">
-    <a href="index.php" class="ms-md-2">
-      <img src="../assets/img/pgmnhs-logo.png" height="60px" />
-    </a>
-  </div>
-
-  <div class="col-4 mt-3 text-end">
-    <p class="fw-normal text-muted" style="font-size: 10px;">
-      Visit us @ P. Guevara St. 4009
-      <br> Santa Cruz, Laguna Philippines
-    </p>
-  </div>
-</footer>
+</div>
 
 </body>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 </html>

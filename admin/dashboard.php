@@ -1,5 +1,5 @@
 <?php
-  include_once("faculty-data.php");
+  include_once("admin-data.php");
   include_once("../php/database.php");
 ?>
 
@@ -8,7 +8,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Faculty - Pedro Guevarra Memorial National Highschool</title>
+  <title>Admin - Pedro Guevarra Memorial National Highschool</title>
   <link rel="icon" href="../assets/img/pgmnhs-logo.ico">
   <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="../css/fontawesome.css">
@@ -38,11 +38,14 @@
 
       <div class="collapse navbar-collapse text-center ms-md-5 ms-sm-0" id="navbarNavAltMarkup">
         <div class="col-md-6 col-sm-12 navbar-nav">
-          <a class="nav-link text-success" href="index.php"><i class="fa-solid fa-home fa-sm me-1"></i>Home</a>
-          <a class="nav-link" href="faculty-students.php"><i class="fa-solid fa-users fa-sm me-1"></i>Students</a>
-          <a class="nav-link" href="faculty-class.php"><i class="fa-solid fa-chalkboard fa-sm me-1"></i></i>Classes</a>
-          <a class="nav-link" href="faculty-schedule.php"><i class="fa-solid fa-calendar fa-sm me-1"></i>Schedule</a>
-          <a class="nav-link" href="faculty-subjects.php"><i class="fa-solid fa-book fa-sm me-1"></i>Subjects</a>
+          <a class="nav-link text-success" href="dashboard.php"><i class="fa-solid fa-home fa-sm me-1"></i>Home</a>
+
+          <a class="nav-link" href="admin-records.php"><i class="fa-solid fa-book fa-sm me-1"></i></i>Records</a>
+
+          <a class="nav-link" href="admin-forms.php"><i class="fa-solid fa-file-lines fa-sm me-1"></i></i>Form Management</a>
+
+          <a class="nav-link" href="school-calendar.php"><i class="fa-solid fa-calendar fa-sm me-1"></i>School Calendar</a>
+          <a class="nav-link" href="portal-settings.php"><i class="fa-solid fa-gear fa-sm me-1"></i>Portal Settings</a>
         </div>
 
         <div class="col-md-6 col-sm-12 navbar-nav">
@@ -57,7 +60,7 @@
               <li><a class="dropdown-item" href="../php/change-password.php">Change Password</a></li>
               <li><a class="dropdown-item" href="../php/settings.php">Settings</a></li>
               <li><hr class="text-muted dropdown-divider"></li>
-              <li><a class="dropdown-item text-danger" href="faculty-logout.php">Logout</a></li>
+              <li><a class="dropdown-item text-danger" href="admin-logout.php">Logout</a></li>
             </ul>
           </li>
         </div>
@@ -70,47 +73,75 @@
 
 <body>
 
-<div class="container m-md-5">
+<div class="container">
   <div class="row">
-    <h4 class="m-md-3 mb-md-4 ms-md-1 mt-md-0">Upcoming Classes</h4>
+
+    <!-- Student -->
+    <div class="col-md-4 col-sm-6 mb-2">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <div class="row d-flex justify-content-center align-items-center p-4">
+
+            <div class="col-md-6 col-sm-6 text-center text-success">
+              <i class="fa-solid fa-users fa-2xl"></i>
+              <p class="mt-2 my-0">Students</p>
+            </div>
+
+            <div class="col-md-6 col-sm-6 text-center text-muted">
+              <h2 class="my-0">50,000</h2>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Teachers -->
+    <div class="col-md-4 col-sm-6 mb-2">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <div class="row d-flex justify-content-center align-items-center p-4">
+
+            <div class="col-md-6 col-sm-6 text-center text-success">
+              <i class="fa-solid fa-chalkboard-user fa-2xl"></i>
+              <p class="mt-2 my-0">Teachers</p>
+            </div>
+
+            <div class="col-md-6 col-sm-6 text-center text-muted">
+              <h2 class="my-0">10,000</h2>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Staff -->
+    <div class="col-md-4 col-sm-12 mb-2">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <div class="row d-flex justify-content-center align-items-center p-4">
+
+            <div class="col-md-6 col-sm-6 text-center text-success">
+              <i class="fa-solid fa-user-group fa-2xl"></i>
+              <p class="mt-2 my-0">Staffs</p>
+            </div>
+
+            <div class="col-md-6 col-sm-6 text-center text-muted">
+              <h2 class="my-0">10,000</h2>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 
   <!-- Upcoming Classes -->
   <div class="row">
     <div class="col-md-6 col-sm-12">
-      <div class="list-group">
-        <a href="#" class="list-group-item list-group-item-action p-md-5 p-sm-0" aria-current="true">
-          <div class="row">
-            <div class="col-10">
-              <div class="d-flex w-100 justify-content-between">
-                <h5 class="mb-1 fw-bold">Today 10:00 AM</h5>
-              </div>
-              <p class="mb-1"><i class="fa-regular fa-clipboard fs-sm me-1"></i>PGMNHS-FILIPINO-101</p>
-              <small class="fw-light">Grade 10 - Kamatoy</small>
-            </div>
-
-            <div class="col-2 d-flex justify-content-center align-items-center">
-              <i class="fa-solid fa-angle-right text-muted fa-xl"></i>
-            </div>
-          </div>
-        </a>
-
-        <a href="#" class="list-group-item list-group-item-action p-md-5 p-sm-0" aria-current="true">
-          <div class="row">
-            <div class="col-10">
-              <div class="d-flex w-100 justify-content-between">
-                <h5 class="mb-1 fw-bold">Today 8:00 AM</h5>
-              </div>
-              <p class="mb-1"><i class="fa-regular fa-clipboard fs-sm me-1"></i>PGMNHS-ENGLISH-101</p>
-              <small class="fw-light">Grade 10 - Caymito</small>
-            </div>
-
-            <div class="col-2 d-flex justify-content-center align-items-center">
-              <i class="fa-solid fa-angle-right text-muted fa-xl"></i>
-            </div>
-          </div>
-        </a>
-      </div>
+      
     </div>
 
     <div class="col-md-6 col-sm-12">
@@ -118,6 +149,7 @@
     </div> 
   </div>
 </div>
+
 
 <footer class="d-flex flex-wrap justify-content-md-between align-items-center py-3 my-4 border-top p-5">
   <div class="col-4 mt-3">

@@ -1,5 +1,5 @@
 <?php
-  include_once("../php/data.php");
+  include_once("faculty-data.php");
   include_once("../php/database.php");
   include("../php/fetch-section.php");
 ?>
@@ -50,22 +50,15 @@
           <!-- Profile -->
           <li class="nav-item dropdown px-4 ms-md-auto ms-sm-0">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              <?php
-                $lrn = $_SESSION["student_lrn"];
-                $profile = mysqli_query($config, "SELECT student_picture FROM student_info WHERE student_lrn = $lrn");
-
-                while($data = mysqli_fetch_array($profile)) {
-                  echo '<img class="img-fluid rounded-circle" src="data:image/jpg;charset=utf8;base64,'.base64_encode($data['student_picture']).'"  width="22px">';
-                }
-              ?>
-
+              <img class="img-fluid rounded-circle" src="../assets/img/profile.jpg"  width="22px">
             </a>
+
             <ul class="dropdown-menu dropdown-menu-end p-2" aria-labelledby="navbarDropdownMenuLink">
               <li><a class="dropdown-item" href="student-profile.php">View Profile</a></li>
               <li><a class="dropdown-item" href="../php/change-password.php">Change Password</a></li>
               <li><a class="dropdown-item" href="../php/settings.php">Settings</a></li>
               <li><hr class="text-muted dropdown-divider"></li>
-              <li><a class="dropdown-item text-danger" href="../php/logout.php">Logout</a></li>
+              <li><a class="dropdown-item text-danger" href="faculty-logout.php">Logout</a></li>
             </ul>
           </li>
         </div>
@@ -85,6 +78,45 @@
 
     <!-- Create Subject -->
     <div class="col-md-4 col-sm-12 mb-3">
+
+      <?php
+        if(isset($_GET['subject-added'])) {
+          echo '
+            <div class="alert alert-success alert-dismissible fade show text-center mb-3" role="alert">
+              Subject added successfully
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+          ';
+        }
+
+        else if(isset($_GET['insert-failed'])) {
+          echo '
+            <div class="alert alert-danger alert-dismissible fade show text-center mb-3" role="alert">
+              Subject registration failed
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+          ';
+        }
+
+        else if(isset($_GET['delete-success'])) {
+          echo '
+            <div class="alert alert-success alert-dismissible fade show text-center mb-3" role="alert">
+              Subject deleted successfully
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+          ';
+        }
+
+        else if(isset($_GET['delete-failed'])) {
+          echo '
+            <div class="alert alert-danger alert-dismissible fade show text-center mb-3" role="alert">
+              Subject deletion failed
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+          ';
+        }
+      ?>
+
       <div class="card shadow-sm">
         <div class="card-header bg-white m-2">
           <h5>Create a New Subject</h5>
@@ -108,12 +140,12 @@
               </script>
 
               <label>Subject Code</label>
-              <input class="form-control mb-3" id="subject_text" type="text" name="subject-code" value="PGMHS-">
+              <input class="form-control mb-3" id="subject_code" type="text" name="subject-code" value="PGMHS-" required>
 
               <label>Subject Name</label>
-              <input class="form-control mb-4" type="text" name="subject-name">
+              <input class="form-control mb-4" type="text" name="subject_name" required>
 
-              <button class="btn btn-success" type="submit" name="add-subject">Add Subject</button>
+              <button class="btn btn-success" type="submit" name="add_subject">Add Subject</button>
 
             </div>
 
@@ -139,16 +171,14 @@
                 </div>
 
                 <div class="col-md-8 col-sm-12 d-flex justify-content-end align-items-end">
-                  <input class="form-control me-2" type="text" name="search" placeholder="Search...">
-
-                  <button class="btn btn-primary me-2">Search</button>
+                  <input class="form-control me-2" id="search" type="text" placeholder="Search...">
                 </div>
               </div>
 
               <!-- Main Table -->
               <div class="row">
                 <div class="table-responsive">
-                  <table class="table table-striped mt-4">
+                  <table class="table table-striped mt-4" id="subject_table">
                     <thead class="text-muted">
                       <tr>
                         <th scope="col">Subject Code</th>
@@ -179,7 +209,7 @@
                               <i class="fa-solid fa-pen"></i>
                             </a>
 
-                            <a class="text-decoration-none text-danger" href="#">
+                            <a class="text-decoration-none text-danger delete-button" href="#" data-bs-toggle="modal" data-bs-target="#deletemodal">
                               <i class="fa-solid fa-trash"></i>
                             </a>
                           </div>
@@ -194,6 +224,30 @@
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Delete Modal -->
+<div class="modal fade" id="deletemodal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body">
+        <input type="hidden" name="code" id="code">
+        Do you want to delete this subject?
+      </div>
+
+      <div class="modal-footer">
+        <form action="../php/delete-subject.php" method="post">
+          <input type="button" class="btn btn-danger" data-bs-dismiss="modal" value="No">
+          <input type="submit" name="delete" class="btn btn-success" value="Yes">
+        </form>
       </div>
     </div>
   </div>
@@ -223,6 +277,39 @@
 </footer>
 
 </body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('.delete-button').on('click', function(){
+
+      $('#deletemodal').modal('show');
+
+      $tr = $(this).closest('tr');
+
+      var data =  $tr.children("td").map(function(){
+        return $(this).text();
+      }).get();
+
+      console.log(data);
+
+      $('#code').val(data[0]);
+    })
+  });
+</script>
+
+<script>
+$(document).ready(function(){
+  $("#search").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#subject_table tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>

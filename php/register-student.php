@@ -33,7 +33,7 @@ if(isset($_POST['register'])) {
 		$status = "Active";
 		$privilege = "Student";
 
-		$generate_account = mysqli_query($config, "INSERT INTO accounts (user_number, account_password, account_status, account_priv) VALUES ('$student_lrn', '$encrypt', '$status', '$privilege')");
+		$generate_account = mysqli_query($config, "INSERT INTO student_accounts (student_lrn, account_password, account_status) VALUES ('$student_lrn', '$encrypt', '$status')");
 
 		if($generate_account) {
 

@@ -59,9 +59,19 @@
                   <input class="form-control border-start-0 w-50" type="password" name="password-input" placeholder="Password">
                 </div>
 
-                <a href="php/account-recovery.php" class="text-decoration-none text-success">
-                  <p class="text-end">Forgot Password?</p>
-                </a>
+                <div class="row mb-2">
+                  <div class="col-6 text-start ps-3">
+                    <a class="text-decoration-none text-success" href="admin/index.php">
+                      <small>Faculty</small>
+                    </a>
+                  </div>
+
+                  <div class="col-6 text-end ">
+                    <a class="text-decoration-none text-success" href="#">
+                      <small>Forgot Password?</small>
+                    </a>
+                  </div>
+                </div>
 
                 <button class="btn btn-success rounded-pill mt-2" name="login_btn" value="Submit">Login</button>
               </div>

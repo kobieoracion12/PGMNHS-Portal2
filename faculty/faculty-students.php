@@ -1,5 +1,5 @@
 <?php
-  include_once("../php/data.php");
+  include_once("faculty-data.php");
   include_once("../php/database.php");
   include("../php/fetch-section.php");
 ?>
@@ -50,22 +50,15 @@
           <!-- Profile -->
           <li class="nav-item dropdown px-4 ms-md-auto ms-sm-0">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              <?php
-                $lrn = $_SESSION["student_lrn"];
-                $profile = mysqli_query($config, "SELECT student_picture FROM student_info WHERE student_lrn = $lrn");
-
-                while($data = mysqli_fetch_array($profile)) {
-                  echo '<img class="img-fluid rounded-circle" src="data:image/jpg;charset=utf8;base64,'.base64_encode($data['student_picture']).'"  width="22px">';
-                }
-              ?>
-
+              <img class="img-fluid rounded-circle" src="../assets/img/profile.jpg"  width="22px">
             </a>
+            
             <ul class="dropdown-menu dropdown-menu-end p-2" aria-labelledby="navbarDropdownMenuLink">
               <li><a class="dropdown-item" href="student-profile.php">View Profile</a></li>
               <li><a class="dropdown-item" href="../php/change-password.php">Change Password</a></li>
               <li><a class="dropdown-item" href="../php/settings.php">Settings</a></li>
               <li><hr class="text-muted dropdown-divider"></li>
-              <li><a class="dropdown-item text-danger" href="../php/logout.php">Logout</a></li>
+              <li><a class="dropdown-item text-danger" href="faculty-logout.php">Logout</a></li>
             </ul>
           </li>
         </div>
@@ -91,14 +84,12 @@
         </div>
 
         <div class="col-md-8 col-sm-12 d-flex justify-content-end align-items-end">
-          <input class="form-control me-2" type="text" name="search" placeholder="Search...">
+          <input class="form-control me-2" type="text" id="search" placeholder="Search..." onkeyup="myFunction();">
 
           <select class="form-select me-2">
             <option selected>Sort by Section</option>
             <option></option>
           </select>
-
-          <button class="btn btn-primary me-2">Search</button>
 
           <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addUserModal"><i class="fa-solid fa-user-plus"></i></button>
 
@@ -244,10 +235,30 @@
         </div>
       </div>
 
+      <?php
+        if(isset($_GET['success'])) {
+          echo '
+            <div class="alert alert-success alert-dismissible fade show text-center mt-3 mb-0" role="alert">
+              <strong>Student registered successfully</strong>
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+          ';
+        }
+
+        else if(isset($_GET['section-error']) OR isset($_GET['account-error']) OR isset($_GET['info-error']) OR isset($_GET['failed'])) {
+          echo '
+            <div class="alert alert-danger alert-dismissible fade show text-center mt-3 mb-0" role="alert">
+              <strong>Student registration failed</strong>
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+          ';
+        }
+      ?>
+
       <!-- Main Table -->
       <div class="row">
         <div class="table-responsive">
-          <table class="table table-striped mt-4">
+          <table class="table table-striped mt-4" id="student_table">
             <thead class="text-muted">
               <tr>
                 <th class="text-center" scope="col">Photo</th>
@@ -269,8 +280,8 @@
                 $year = mysqli_query($config, "SELECT * FROM year_level, student_sections WHERE (year_level.year_code = student_sections.year_code)");
 
                 while($data = mysqli_fetch_array($students) AND $sec = mysqli_fetch_array($section) AND $yr = mysqli_fetch_array($year)) {
-                  
               ?>
+
               <tr>
                 <td class="text-center p-3"> <?php echo '<img class="img-fluid rounded-circle" src="data:image/jpg;charset=utf8;base64,'.base64_encode($data['student_picture']).'"  width="25px">'; ?> </td>
 
@@ -309,7 +320,7 @@
       </div>
     </div>
   </div>
-
+</div>
 
 <footer class="d-flex flex-wrap justify-content-md-between align-items-center py-3 my-4 border-top p-5">
   <div class="col-4 mt-3">
@@ -334,6 +345,20 @@
 </footer>
 
 </body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<script>
+$(document).ready(function(){
+  $("#search").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#student_table tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
+
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
 </html>

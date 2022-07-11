@@ -1,6 +1,7 @@
 <?php
-include_once "session.php";
-include_once "database.php";
+session_start();
+
+include_once "../php/database.php";
 
 $lrn = $_SESSION["student_lrn"];
 
