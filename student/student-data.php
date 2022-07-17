@@ -27,6 +27,5 @@ while($rows = mysqli_fetch_array($sql)) {
 	$_SESSION['gnumber'] = $rows['student_gnumber'];
 	$_SESSION['profile'] = $rows['student_picture'];
 
-	#
 }
 ?>

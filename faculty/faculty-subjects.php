@@ -209,7 +209,7 @@
                               <i class="fa-solid fa-pen"></i>
                             </a>
 
-                            <a class="text-decoration-none text-danger delete-button" href="#" data-bs-toggle="modal" data-bs-target="#deletemodal">
+                            <a class="text-decoration-none text-danger delete-button" data-bs-toggle="modal" data-bs-target="#deletemodal">
                               <i class="fa-solid fa-trash"></i>
                             </a>
                           </div>

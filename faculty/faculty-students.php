@@ -273,7 +273,8 @@
 
             <tbody>
               <?php
-                $students = mysqli_query($config, "SELECT * FROM student_info");
+                $students = mysqli_query($config, "SELECT * FROM student_info, student_accounts WHERE (student_info.student_lrn = student_accounts.student_lrn)");
+
 
                 $section = mysqli_query($config, "SELECT * FROM sections, student_sections WHERE (sections.section_code = student_sections.section_code)");
 
@@ -306,7 +307,7 @@
                       <i class="fa-solid fa-pen"></i>
                     </a>
 
-                    <a class="text-decoration-none text-danger" href="#">
+                    <a class="text-decoration-none text-danger delete-button" href="#" data-bs-toggle="modal" data-bs-target="#deletemodal">
                       <i class="fa-solid fa-trash"></i>
                     </a>
                   </div>
@@ -318,6 +319,31 @@
           </table>
         </div>
       </div>
+    </div>
+  </div>
+</div>
+
+<!-- Delete Modal -->
+<div class="modal fade" id="deletemodal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <form action="../php/delete-student.php" method="post">
+        <div class="modal-body">
+          <input type="hidden" name="lrn" id="lrn">
+          Do you want to delete this student?
+        </div>
+
+        <div class="modal-footer">
+          <input type="button" class="btn btn-danger" data-bs-dismiss="modal" value="No">
+          <input type="submit" name="delete" class="btn btn-success" value="Yes">
+      </div>
+      
+      </form>
     </div>
   </div>
 </div>
@@ -348,11 +374,30 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('.delete-button').on('click', function(){
+
+      $('#deletemodal').modal('show');
+
+      $tr = $(this).closest('tr');
+
+      var data =  $tr.children("td").map(function(){
+        return $(this).text();
+      }).get();
+
+      console.log(data);
+
+      $('#lrn').val(data[1]);
+    })
+  });
+</script>
+
 <script>
 $(document).ready(function(){
   $("#search").on("keyup", function() {
     var value = $(this).val().toLowerCase();
-    $("#student_table tr").filter(function() {
+    $("#subject_table tr").filter(function() {
       $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
     });
   });

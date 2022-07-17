@@ -80,7 +80,7 @@
               <li><a class="dropdown-item" href="student-profile.php">View Profile</a></li>
               <li><a class="dropdown-item" href="../php/change-password.php">Change Password</a></li>
               <li><a class="dropdown-item" href="../php/settings.php">Settings</a></li>
-              <li><hr class="text-muted dropdown-divider"></li>
+              <li><hr class="dropdown-divider"></li>
               <li><a class="dropdown-item text-danger" href="../php/student-logout.php">Logout</a></li>
             </ul>
           </li>
@@ -94,6 +94,28 @@
 
 <!-- Main Body -->
 <div class="container-fluid">
+
+  <?php
+    if(isset($_GET['update-success'])) {
+      echo '
+        <div class="alert alert-success alert-dismissible fade show mx-5  " role="alert">
+          <p class="text-center mb-0">Information Updated!</p>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      ';
+    }
+    else if(isset($_GET['update-failed'])) {
+      echo '
+        <div class="alert alert-danger alert-dismissible fade show mx-5" role="alert">
+          <p class="text-center mb-0">Update Failed!</p>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      ';
+    }
+  ?>
+  
+
+
   <div class="row">
     <div class="col mt-4 p-5 pt-0">
       <div class="row">
@@ -108,7 +130,7 @@
           ?>
 
           <div class="row">
-            <button class="btn btn-success mt-3 mb-5"><i class="fa-solid fa-pen fa-sm me-2"></i>Edit Information</button>
+            <button type="button" class="btn btn-success mt-3 mb-5" data-bs-toggle="modal" data-bs-target="#editProfile"><i class="fa-solid fa-pen fa-sm me-2"></i>Edit Information</button>
           </div>
         </div>
 
@@ -380,6 +402,126 @@
   </footer>
 </div>
 
+
+<!-- Edit Modal -->
+<form action="../php/update-student.php" method="post">
+  <div class="modal fade" id="editProfile" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addUserModal">Edit Information</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+       
+        <div class="modal-body p-md-4 p-sm-0">
+          <div class="container-fluid">
+            <div class="row">
+              <h5 class="mb-4 text-success fw-bold">Student Information</h5>
+            </div>
+
+            <div class="row">
+              <div class="col-md-4 ps-md-4 pe-md-4 ps-sm-0 pe-md-0">
+                <label class="ms-2 mb-1">First Name</label>
+                <input class="form-control mb-3" type="text" name="first_name" value="<?php echo $_SESSION['first']?>" required>
+
+                <label class="ms-2 mb-1">Gender</label>
+                <select class="form-select mb-3" name="gender">
+                  <option value="<?php echo $_SESSION['gender']?>" selected><?php echo $_SESSION['gender'] ?></option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                </select>
+
+                <label class="ms-2 mb-1">Religion</label>
+                <select class="form-select mb-3" name="religion">
+                  <option value="<?php echo $_SESSION['religion']?>" selected><?php echo $_SESSION['religion'] ?></option>
+
+                  <option value="Catholic">Catholic</option>
+                  <option value="Other Christians">Other Christians (Aglipayan, Born Again, etc.)</option>
+                  <option value="Protestant">Protestant</option>
+                  <option value="Islam">Islam</option>
+                  <option value="Tribal Religion">Tribal Religion</option>
+                  <option value="None">None</option>
+                </select>
+
+                <label class="ms-2 mb-1">Address</label>
+                <input class="form-control mb-3" type="text" name="address" value="<?php echo $_SESSION['address']?>" required>
+
+                <label class="ms-2 mb-1">Student Photo (2x2)</label>
+                <input class="form-control" type="file" id="student_photo">
+              </div>
+
+              <div class="col-md-4">
+                <label class="ms-2 mb-1">Middle Name</label>
+                <input class="form-control mb-3" type="text" name="middle_name" value="<?php echo $_SESSION['middle']?>">
+
+                <label class="ms-2 mb-1">Date of Birth</label>
+                <input class="form-control mb-3" type="date" name="birth_date" value="<?php echo strftime('%Y-%m-%d', strtotime($_SESSION['bday']));?>">
+
+                <label class="ms-2 mb-1">Civil Status</label>
+                <select class="form-select mb-3" name="civil_status">
+                  <option value="<?php echo $_SESSION['civil']?>" selected><?php echo $_SESSION['civil'] ?></option>
+
+                  <option value="Single">Single</option>
+                  <option value="Married">Married</option>
+                </select>
+
+                <label class="ms-2 mb-1">Contact Number</label>
+                <input class="form-control mb-3" type="text" name="contact_no"  value="<?php echo $_SESSION['contact']?>" required>
+              </div>
+
+              <div class="col-md-4">
+                <label class="ms-2 mb-1">Last Name</label>
+                <input class="form-control mb-3" type="text" name="last_name" value="<?php echo $_SESSION['last']?>" required>
+
+                <label class="ms-2 mb-1">Place of Birth</label>
+                <input class="form-control mb-3" type="text" name="birth_place" value="<?php echo $_SESSION['pob']?>" required>
+
+                <label class="ms-2 mb-1">Nationality</label>
+                <input class="form-control mb-3" type="text" name="nationality"  value="<?php echo $_SESSION['nationality']?>" required>
+
+                <label class="ms-2 mb-1">Email Address</label>
+                <input class="form-control mb-3" type="text" name="email_add" value="<?php echo $_SESSION['email']?>" required>
+              </div>
+            </div>
+
+            <div class="row">
+              <h5 class="my-4 mt-5 text-success fw-bold">Parent's Information</h5>
+            </div>
+
+            <div class="row">
+              <div class="col-md-4 ps-md-4 pe-md-4 ps-sm-0 pe-md-0">
+                <label class="ms-2 mb-1">Father's Name</label>
+                <input class="form-control mb-3" type="text" name="father_name" value="<?php echo $_SESSION['father']?>">
+
+                <label class="ms-2 mb-1">Emergency Contact No.</label>
+                <input class="form-control mb-3" type="text" name="eme_contact" value="<?php echo $_SESSION['gnumber']?>">
+              </div>
+
+              <div class="col-md-4">
+                <label class="ms-2 mb-1">Mothers's Name</label>
+                <input class="form-control mb-3" type="text" name="mother_name" value="<?php echo $_SESSION['mother']?>">
+
+                <label class="ms-2 mb-1">Guardian's Relation</label>
+                <input class="form-control mb-3" type="text" name="guardian_relation" value="<?php echo $_SESSION['relation']?>">
+              </div>
+
+              <div class="col-md-4">
+                <label class="ms-2 mb-1">Guardian's Name</label>
+                <input class="form-control mb-3" type="text" name="guardian_name" value="<?php echo $_SESSION['guardian']?>">
+              </div>
+            </div>              
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-success" name="update">Update Information</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 </html>
+

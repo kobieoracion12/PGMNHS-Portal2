@@ -121,6 +121,7 @@
                       <th class="text-center" scope="col">Remarks</th>
                     </tr>
                   </thead>
+                  
                   <tbody>
                     <?php
                       $sql = mysqli_query($config, "SELECT * FROM student_grades, subjects WHERE (student_grades.subject_id = subjects.subject_id)");
@@ -163,10 +164,6 @@
               </div>
             </div>
           </div>
-
-
-
-          
         </div>
       </div>
     </div>
