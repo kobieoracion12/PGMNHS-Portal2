@@ -240,7 +240,7 @@
           echo '
             <div class="alert alert-success alert-dismissible fade show text-center mt-3 mb-0" role="alert">
               <strong>Student registered successfully</strong>
-              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              `
             </div>
           ';
         }
