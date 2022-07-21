@@ -27,7 +27,7 @@
         <div class="card-body shadow-sm">
           <div class="row d-flex align-items-center justify-content-center m-3">
             <img src="assets/img/pgmnhs-logo.png" class="img-fluid" style="width:120px">
-            <h2 class="text-center mt-2">Student Portal</h2>
+            <h2 class="text-center mt-4">PGMNHS Portal</h2>
 
             <form class="d-flex align-items-center justify-content-center m-4" method="post" action="php/auth.php">
               <div class="row m-4">
@@ -49,7 +49,7 @@
                     <i class="fa-solid fa-id-badge"></i>
                   </span>                  
 
-                  <input class="form-control border-start-0 w-50" type="text" name="lrn-input" placeholder="Student Number">
+                  <input class="form-control border-start-0 w-50" type="text" name="control_no" placeholder="Control Number">
                 </div>
 
                 <div class="input-group mb-3">
@@ -61,9 +61,6 @@
 
                 <div class="row mb-2">
                   <div class="col-6 text-start ps-3">
-                    <a class="text-decoration-none text-success" href="admin/index.php">
-                      <small>Faculty</small>
-                    </a>
                   </div>
 
                   <div class="col-6 text-end ">
@@ -80,11 +77,6 @@
         </div>
 
         <div class="card-footer bg-white text-muted text-center">
-          <p class="fw-normal">
-            Pedro Guevarra Memorial National Highschool Portal <br>
-            All Rights Reserved 2022 ©
-          </p>
-
           <p class="mb-2" style="font-size: 10px;">Developed by: Kobie Oracion, Jireh Geleo Ramos & John Lloyd Araza</p>
 
         </div>

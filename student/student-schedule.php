@@ -1,13 +1,8 @@
 <?php
-  include_once("student-data.php");
+  include_once("../php/fetch-data.php");
   include_once("../php/database.php");
-
-  if(isset($_SESSION['student_lrn'])) {
-  }
-  else {
-    header("location: ../index.php?Login");
-  }
 ?>
+
 
 <!DOCTYPE html>
 <html>
@@ -56,10 +51,9 @@
         <div class="col-md-6 col-sm-12 navbar-nav">
           <a class="nav-link" href="index.php"><i class="fa-solid fa-home fa-sm me-1"></i>Home</a>
           <a class="nav-link" href="student-profile.php"><i class="fa-solid fa-user me-1"></i>Profile</a>
-          <a class="nav-link" href="student-grades.php"><i class="fa-solid fa-award me-1"></i>Grades</a>
+          <a class="nav-link" href="student-grades.php?sy=0&gp=0"><i class="fa-solid fa-award me-1"></i>Grades</a>
           <a class="nav-link text-success" href="student-schedule.php"><i class="fa-solid fa-calendar fa-sm me-1"></i>Schedule</a>
           <a class="nav-link" href="student-download.php"><i class="fa-solid fa-file-arrow-down me-1"></i>Download</a>
-          <a class="nav-link" href="student-request.php"><i class="fa-solid fa-clock-rotate-left me-1"></i>Requests</a>
         </div>
 
         <div class="col-md-6 col-sm-12 navbar-nav">
@@ -67,11 +61,11 @@
           <li class="nav-item dropdown px-4 ms-md-auto ms-sm-0">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <?php
-                $lrn = $_SESSION["student_lrn"];
-                $profile = mysqli_query($config, "SELECT student_picture from student_info WHERE student_lrn = $lrn");
+                $no = $_SESSION["control_no"];
+                $profile = mysqli_query($config, "SELECT profile_picture from account_info WHERE control_no = $no");
 
                 while($data = mysqli_fetch_array($profile)) {
-                  echo '<img class="img-fluid rounded-circle" src="data:image/jpg;charset=utf8;base64,'.base64_encode($data['student_picture']).'"  width="22px">';
+                  echo '<img class="img-fluid rounded-circle" src="data:image/jpg;charset=utf8;base64,'.base64_encode($data['profile_picture']).'"  width="22px">';
                 }
               ?>
 

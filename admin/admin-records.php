@@ -1,7 +1,6 @@
 <?php
-  include_once("admin-data.php");
+  include_once("../php/fetch-data.php");
   include_once("../php/database.php");
-  include("../php/fetch-section.php");
 ?>
 
 <!DOCTYPE html>
@@ -39,7 +38,7 @@
 
       <div class="collapse navbar-collapse text-center ms-md-5 ms-sm-0" id="navbarNavAltMarkup">
         <div class="col-md-6 col-sm-12 navbar-nav">
-          <a class="nav-link" href="dashboard.php"><i class="fa-solid fa-home fa-sm me-1"></i>Home</a>
+          <a class="nav-link" href="index.php"><i class="fa-solid fa-home fa-sm me-1"></i>Home</a>
 
           <a class="nav-link text-success" href="admin-records.php"><i class="fa-solid fa-book fa-sm me-1"></i></i>Records</a>
 
@@ -158,64 +157,57 @@
 
                   <tbody>
                     <?php
-                      $admin = mysqli_query($config, "SELECT * FROM faculty_info, faculty_accounts WHERE (faculty_info.employee_no = faculty_accounts.employee_no) AND account_priv = 'Admin'");
+                      $fetch_admin = mysqli_query($config, "SELECT * FROM account_info WHERE acc_priv = 'Admin'");
 
-                      while($data = mysqli_fetch_array($admin)) {
+                      while($admin = mysqli_fetch_array($fetch_admin)) {
                         
                     ?>
                     <tr>
-                      <td class="p-3 ps-2"><?php echo $data['employee_no']; ?></td>
+                      <td class="p-3 ps-2"><?php echo $admin['control_no']; ?></td>
 
                       <td class="p-3 ps-2"><?php 
-                        echo $data['first_name']; 
+                        echo $admin['first_name']; 
                         echo " ";
-                        echo $data['last_name'];
+                        echo $admin['last_name'];
                       ?></td>
 
-                      <td class="p-3 ps-2" hidden><?php echo $data['first_name']; ?></td>
+                      <td class="p-3 ps-2" hidden><?php echo $admin['first_name']; ?></td>
 
-                      <td class="p-3 ps-2" hidden><?php echo $data['middle_name']; ?></td>
+                      <td class="p-3 ps-2" hidden><?php echo $admin['middle_name']; ?></td>
 
-                      <td class="p-3 ps-2" hidden><?php echo $data['last_name']; ?></td>
+                      <td class="p-3 ps-2" hidden><?php echo $admin['last_name']; ?></td>
 
-                      <td class="p-3 ps-2" hidden><?php echo $data['gender']; ?></td>
+                      <td class="p-3 ps-2" hidden><?php echo $admin['gender']; ?></td>
 
-                      <td class="p-3 ps-2" hidden><?php echo $data['civil_status']; ?></td>
+                      <td class="p-3 ps-2" hidden><?php echo $admin['civil_status']; ?></td>
 
-                      <td class="p-3 ps-2" hidden><?php echo $data['nationality']; ?></td>
+                      <td class="p-3 ps-2" hidden><?php echo $admin['nationality']; ?></td>
 
-                      <td class="p-3 ps-2" hidden><?php echo $data['birth_date']; ?></td>
+                      <td class="p-3 ps-2" hidden><?php echo $admin['birth_date']; ?></td>
 
-                      <td class="p-3 ps-2" hidden><?php echo $data['birth_place']; ?></td>
+                      <td class="p-3 ps-2" hidden><?php echo $admin['birth_place']; ?></td>
 
-                      <td class="p-3 ps-2" hidden><?php echo $data['religion']; ?></td>
+                      <td class="p-3 ps-2" hidden><?php echo $admin['religion']; ?></td>
 
-                      <td class="p-3 ps-2" hidden><?php echo $data['address']; ?></td>
+                      <td class="p-3 ps-2" hidden><?php echo $admin['address']; ?></td>
 
-                      <td class="p-3 ps-2" hidden><?php echo $data['contact_no']; ?></td>
+                      <td class="p-3 ps-2" hidden><?php echo $admin['contact_no']; ?></td>
 
-                      <td class="p-3 ps-2" hidden><?php echo $data['email_address']; ?></td>
+                      <td class="p-3 ps-2" hidden><?php echo $admin['email_address']; ?></td>
 
                       <td class="p-3 d-flex justify-content-center align-items-center">
 
                         <?php 
-                          if($data['account_status'] == 'Active') {
+                          if($admin['acc_status'] == 'Active') {
                             echo '
                             <div class="bg-success text-white text-center rounded-pill w-50">
                               Active
                             </div>';
                           }
-                          else if($data['account_status'] == 'Closed') {
+                          else if($admin['acc_status'] == 'Disabled') {
                             echo '
                             <div class="bg-danger text-white text-center rounded-pill w-50">
-                              Closed
-                            </div>';
-                          }
-
-                          else if($data['account_status'] == 'Banned') {
-                            echo '
-                            <div class="bg-danger text-white text-center rounded-pill w-50">
-                              Banned
+                              Disabled
                             </div>';
                           }
                         ?>
@@ -651,7 +643,21 @@
                       <th class="text-center" scope="col">Photo</th>
                       <th scope="col">LRN</th>
                       <th scope="col">Name</th>
-                      <th scope="col" class="text-center">Gender</th>
+                      <th scope="col" hidden>First Name</th>
+                      <th scope="col" hidden>Middle Name</th>
+                      <th scope="col" hidden>Last Name</th>
+                      <th scope="col" hidden>Gender</th>
+                      <th scope="col" hidden>Civil</th>
+                      <th scope="col" hidden>Nationality</th>
+                      <th scope="col" hidden>Birth Date</th>
+                      <th scope="col" hidden>Birth Place</th>
+                      <th scope="col" hidden>Religion</th>
+                      <th scope="col" hidden>Address</th>
+                      <th scope="col" hidden>Contact No.</th>
+                      <th scope="col" hidden>Father</th>
+                      <th scope="col" hidden>Mother</th>
+                      <th scope="col" hidden>Relation</th>
+                      <th scope="col" hidden>Guardian Number</th>
                       <th scope="col" class="text-center">Year Level</th>
                       <th scope="col" class="text-center">Section</th>
                       <th scope="col" class="text-center">Action</th>
@@ -669,6 +675,7 @@
                       while($data = mysqli_fetch_array($students) AND $sec = mysqli_fetch_array($section) AND $yr = mysqli_fetch_array($year)) {
                         
                     ?>
+
                     <tr>
                       <td class="text-center p-3"> <?php echo '<img class="img-fluid rounded-circle" src="data:image/jpg;charset=utf8;base64,'.base64_encode($data['student_picture']).'"  width="25px">'; ?> </td>
 
@@ -677,7 +684,39 @@
                       <td class="p-3 ps-2"><?php echo $data['first_name']; echo " ";
                           echo $data['last_name']; ?> </td>
 
-                      <td class="p-3 text-center"><?php echo $data['student_gender']; ?> </td>
+                      <td class="p-3 ps-2" hidden><?php echo $data['first_name']; ?></td>
+
+                      <td class="p-3 ps-2" hidden><?php echo $data['middle_name']; ?></td>
+
+                      <td class="p-3 ps-2" hidden><?php echo $data['last_name']; ?></td>
+
+                      <td class="p-3 ps-2" hidden><?php echo $data['student_gender']; ?></td>
+
+                      <td class="p-3 ps-2" hidden><?php echo $data['civil_status']; ?></td>
+
+                      <td class="p-3 ps-2" hidden><?php echo $data['student_nationality']; ?></td>
+
+                      <td class="p-3 ps-2" hidden><?php echo $data['student_bday']; ?></td>
+
+                      <td class="p-3 ps-2" hidden><?php echo $data['student_pob']; ?></td>
+
+                      <td class="p-3 ps-2" hidden><?php echo $data['student_religion']; ?></td>
+
+                      <td class="p-3 ps-2" hidden><?php echo $data['student_address']; ?></td>
+
+                      <td class="p-3 ps-2" hidden><?php echo $data['student_contact']; ?></td>
+
+                      <td class="p-3 ps-2" hidden><?php echo $data['student_email']; ?></td>
+
+                      <td class="p-3 text-center" hidden><?php echo $data['student_father']; ?> </td>
+
+                      <td class="p-3 text-center" hidden><?php echo $data['student_mother']; ?> </td>
+
+                      <td class="p-3 text-center" hidden><?php echo $data['student_guardian']; ?> </td>
+
+                      <td class="p-3 text-center"hidden ><?php echo $data['student_relation']; ?> </td>
+
+                      <td class="p-3 text-center" hidden><?php echo $data['student_gnumber']; ?> </td>
 
                       <td class="p-3 text-center"><?php echo $yr['year_name']; ?></td>
 
@@ -910,6 +949,8 @@
             <h5 class="mb-4 text-success fw-bold">Student Information</h5>
           </div>
 
+          <input type="hidden" name="student_id" id="student_id">
+
           <div class="row">
             <div class="col-md-4 ps-md-4 pe-md-4 ps-sm-0 pe-md-0">
               <label class="ms-2 mb-1">First Name</label>
@@ -974,23 +1015,133 @@
           <div class="row">
             <div class="col-md-4 ps-md-4 pe-md-4 ps-sm-0 pe-md-0">
               <label class="ms-2 mb-1">Father's Name</label>
-              <input class="form-control text-muted mb-3" type="text" name="father_name">
+              <input class="form-control text-muted mb-3" type="text" name="student_father" id="student_father">
 
               <label class="ms-2 mb-1">Emergency Contact No.</label>
-              <input class="form-control text-muted mb-3" type="text" name="eme_contact">
+              <input class="form-control text-muted mb-3" type="text" name="student_gnumber" id="student_gnumber">
             </div>
 
             <div class="col-md-4">
               <label class="ms-2 mb-1">Mothers's Name</label>
-              <input class="form-control text-muted mb-3" type="text" name="mother_name">
+              <input class="form-control text-muted mb-3" type="text" name="student_mother" id="student_mother">
 
               <label class="ms-2 mb-1">Guardian's Relation</label>
-              <input class="form-control text-muted mb-3" type="text" name="guardian_relation">
+              <input class="form-control text-muted mb-3" type="text" name="student_relation" id="student_relation">
             </div>
 
             <div class="col-md-4">
               <label class="ms-2 mb-1">Guardian's Name</label>
-              <input class="form-control text-muted mb-3" type="text" name="guardian_name">
+              <input class="form-control text-muted mb-3" type="text" name="student_guardian" id="student_guardian">
+            </div>
+          </div>              
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-success" name="register">Register Student</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Edit Student Modal -->
+<div class="modal fade" id="editStudent" tabindex="-1" aria-labelledby="addUserModal" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addUserModal">Add Student Form</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+     
+      <div class="modal-body p-md-4 p-sm-0">
+        <div class="container-fluid">
+          <div class="row">
+            <h5 class="mb-4 text-success fw-bold">Student Information</h5>
+          </div>
+
+          <input type="hidden" name="student_id" id="student_id">
+
+          <div class="row">
+            <div class="col-md-4 ps-md-4 pe-md-4 ps-sm-0 pe-md-0">
+              <label class="ms-2 mb-1">First Name</label>
+              <input class="form-control text-muted mb-3" type="text" name="student_first" id="student_first" required>
+
+              <label class="ms-2 mb-1">Gender</label>
+              <select class="form-select text-muted mb-3" name="student_gender" id="student_gender">
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+              </select>
+
+              <label class="ms-2 mb-1">Religion</label>
+              <select class="form-select text-muted mb-3" name="student_religion" id="student_religion">
+                <option value="Catholic">Catholic</option>
+                <option value="Other Christians">Other Christians (Aglipayan, Born Again, etc.)</option>
+                <option value="Protestant">Protestant</option>
+                <option value="Islam">Islam</option>
+                <option value="Tribal Religion">Tribal Religion</option>
+                <option value="None">None</option>
+              </select>
+
+              <label class="ms-2 mb-1">Address</label>
+              <input class="form-control text-muted mb-3" type="text" name="student_address" id="student_address" required>
+            </div>
+
+            <div class="col-md-4">
+              <label class="ms-2 mb-1">Middle Name</label>
+              <input class="form-control text-muted mb-3" type="text" name="student_middle" id="student_middle">
+
+              <label class="ms-2 mb-1">Date of Birth</label>
+              <input class="form-control text-muted mb-3" type="date" name="student_bday" id="student_bday">
+
+              <label class="ms-2 mb-1">Civil Status</label>
+              <select class="form-select text-muted mb-3" name="student_civil" id="student_civil">
+                <option value="Single">Single</option>
+                <option value="Married">Married</option>
+              </select>
+
+              <label class="ms-2 mb-1">Contact Number</label>
+              <input class="form-control text-muted mb-3" type="text" name="student_contact" id="student_contact" required>
+            </div>
+
+            <div class="col-md-4">
+              <label class="ms-2 mb-1">Last Name</label>
+              <input class="form-control text-muted mb-3" type="text" name="student_last" id="student_last" required>
+
+              <label class="ms-2 mb-1">Place of Birth</label>
+              <input class="form-control text-muted mb-3" type="text" name="student_pob" id="student_pob" required>
+
+              <label class="ms-2 mb-1">Nationality</label>
+              <input class="form-control text-muted mb-3" type="text" name="student_nationality" id="student_nationality" required>
+
+              <label class="ms-2 mb-1">Email Address</label>
+              <input class="form-control text-muted mb-3" type="text" name="student_email" id="student_email" required>
+            </div>
+          </div>
+
+          <div class="row">
+            <h5 class="my-4 mt-5 text-success fw-bold">Parent's Information</h5>
+          </div>
+
+          <div class="row">
+            <div class="col-md-4 ps-md-4 pe-md-4 ps-sm-0 pe-md-0">
+              <label class="ms-2 mb-1">Father's Name</label>
+              <input class="form-control text-muted mb-3" type="text" name="student_father" id="student_father">
+
+              <label class="ms-2 mb-1">Emergency Contact No.</label>
+              <input class="form-control text-muted mb-3" type="text" name="student_gnumber" id="student_gnumber">
+            </div>
+
+            <div class="col-md-4">
+              <label class="ms-2 mb-1">Mothers's Name</label>
+              <input class="form-control text-muted mb-3" type="text" name="student_mother" id="student_mother">
+
+              <label class="ms-2 mb-1">Guardian's Relation</label>
+              <input class="form-control text-muted mb-3" type="text" name="student_relation" id="student_relation">
+            </div>
+
+            <div class="col-md-4">
+              <label class="ms-2 mb-1">Guardian's Name</label>
+              <input class="form-control text-muted mb-3" type="text" name="student_guardian" id="student_guardian">
             </div>
           </div>              
         </div>
@@ -1129,19 +1280,24 @@
 
       console.log(data);
 
-      $('#student_id').val(data[2]);
+      $('#student_id').val(data[1]);
       $('#student_first').val(data[3]);
       $('#student_middle').val(data[4]);
-      $('#student_last').val(data[4]);
-      $('#student_gender').val(data[5]);
-      $('#student_civil').val(data[6]);
-      $('#student_nationality').val(data[7]);
-      $('#student_bday').val(data[8]);
-      $('#student_pob').val(data[9]);
-      $('#student_religion').val(data[10]);
-      $('#student_address').val(data[11]);
-      $('#student_contact').val(data[12]); 
-      $('#student_email').val(data[13]);
+      $('#student_last').val(data[5]);
+      $('#student_gender').val(data[6]);
+      $('#student_civil').val(data[7]);
+      $('#student_nationality').val(data[8]);
+      $('#student_bday').val(data[9]);
+      $('#student_pob').val(data[10]);
+      $('#student_religion').val(data[11]);
+      $('#student_address').val(data[12]);
+      $('#student_contact').val(data[13]); 
+      $('#student_email').val(data[14]); 
+      $('#student_father').val(data[15]);
+      $('#student_mother').val(data[16]);
+      $('#student_guardian').val(data[17]);
+      $('#student_relation').val(data[18]);
+      $('#student_gnumber').val(data[19]);
     })
   });
 </script>
