@@ -51,7 +51,8 @@
         <div class="col-md-6 col-sm-12 navbar-nav">
           <a class="nav-link" href="index.php"><i class="fa-solid fa-home fa-sm me-1"></i>Home</a>
           <a class="nav-link" href="student-profile.php"><i class="fa-solid fa-user me-1"></i>Profile</a>
-          <a class="nav-link" href="student-grades.php?sy=0&gp=0"><i class="fa-solid fa-award me-1"></i>Grades</a>
+          <a class="nav-link" href="student-subjects.php"><i class="fa-solid fa-book me-1"></i>Subjects</a>
+          <a class="nav-link" href="student-grades.php?sy=0&gp=0"><i class="fa-solid fa-square-poll-vertical me-1"></i>Grades</a>
           <a class="nav-link text-success" href="student-schedule.php"><i class="fa-solid fa-calendar fa-sm me-1"></i>Schedule</a>
           <a class="nav-link" href="student-download.php"><i class="fa-solid fa-file-arrow-down me-1"></i>Download</a>
         </div>

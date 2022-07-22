@@ -40,7 +40,7 @@
         <div class="col-md-6 col-sm-12 navbar-nav">
           <a class="nav-link" href="index.php"><i class="fa-solid fa-home fa-sm me-1"></i>Home</a>
           <a class="nav-link text-success" href="faculty-students.php"><i class="fa-solid fa-users fa-sm me-1"></i>Students</a>
-          <a class="nav-link" href="faculty-grading.php?sy=0&yl=0&sec=0&gp=0"><i class="fa-solid fa-square-poll-vertical me-1"></i>Grading</a>
+          <a class="nav-link" href="faculty-grading.php?cn=0&sn=0&select_sy=0&yl=0&sec=0&select_gp=0"><i class="fa-solid fa-square-poll-vertical me-1"></i>Grading</a>
           <a class="nav-link" href="faculty-class.php"><i class="fa-solid fa-chalkboard fa-sm me-1"></i></i>Classes</a>
           <a class="nav-link" href="faculty-schedule.php"><i class="fa-solid fa-calendar fa-sm me-1"></i>Schedule</a>
           <a class="nav-link" href="faculty-subjects.php"><i class="fa-solid fa-book fa-sm me-1"></i>Subjects</a>
@@ -689,63 +689,63 @@
 
             <div class="row mt-4">
               <div class="table-responsive">
-              <table class="table table-bordered align-middle border-end">
-                <thead>
-                  <tr class="text-muted">
-                    <th scope="col">Learning Areas</th>
-                    <th class="text-center" scope="col">Grade</th>
-                    <th class="text-center" scope="col">Remarks</th>
-                    <th class="text-center" scope="col">Action</th>
-                  </tr>
-                </thead>
+                <table class="table table-bordered align-middle border-end">
+                  <thead>
+                    <tr class="text-muted">
+                      <th scope="col">Learning Areas</th>
+                      <th class="text-center" scope="col">Grade</th>
+                      <th class="text-center" scope="col">Remarks</th>
+                      <th class="text-center" scope="col">Action</th>
+                    </tr>
+                  </thead>
 
-                <?php
-                  $fetch_subjects = mysqli_query($config, "SELECT * FROM student_grades, subjects WHERE (student_grades.subject_code = subjects.subject_code)");
+                  <?php
+                    $fetch_subjects = mysqli_query($config, "SELECT * FROM student_grades, subjects WHERE (student_grades.subject_code = subjects.subject_code)");
 
-                  $fetch_grade = mysqli_query($config, "SELECT * FROM student_grades WHERE grading_code = 'PGMNHS-GP-05'");
+                    $fetch_grade = mysqli_query($config, "SELECT * FROM student_grades WHERE grading_code = 'PGMNHS-GP-05'");
 
-                  $fetch_remarks = mysqli_query($config, "SELECT remarks FROM student_grades");
+                    $fetch_remarks = mysqli_query($config, "SELECT remarks FROM student_grades");
 
-                  while($subject = mysqli_fetch_array($fetch_subjects) AND $grades = mysqli_fetch_array($fetch_grade) AND $remarks = mysqli_fetch_array($fetch_remarks)) {
+                    while($subject = mysqli_fetch_array($fetch_subjects) AND $grades = mysqli_fetch_array($fetch_grade) AND $remarks = mysqli_fetch_array($fetch_remarks)) {
 
-                ?>
+                  ?>
 
-                <tbody>
-                  <tr>
-                    <td class="p-2 ps-3 fw-bold"><?php echo $subject['subject_desc'] ?></td>
+                  <tbody>
+                    <tr>
+                      <td class="p-2 ps-3 fw-bold"><?php echo $subject['subject_desc'] ?></td>
 
-                    <td class="p-2 text-center"><?php echo $grades['completion_grade'] ?></td>
+                      <td class="p-2 text-center"><?php echo $grades['completion_grade'] ?></td>
 
-                    <?php 
-                      $remark = $remarks['remarks'];
+                      <?php 
+                        $remark = $remarks['remarks'];
 
-                      if($remark == 'Passed') {
-                        echo '
-                          <td class="p-2 text-center fw-bold text-success">Passed</td>
-                        ';
-                      }
-                      elseif($remark == 'Failed') {
-                        echo '
-                          <td class="p-2 text-center fw-bold text-danger">Failed</td>
-                        ';
-                      }
-                      elseif($remark == 'Drop') {
-                        echo '
-                          <td class="p-2 text-center fw-bold text-secondary">Drop</td>
-                        ';
-                      }
-                    ?>
+                        if($remark == 'Passed') {
+                          echo '
+                            <td class="p-2 text-center fw-bold text-success">Passed</td>
+                          ';
+                        }
+                        elseif($remark == 'Failed') {
+                          echo '
+                            <td class="p-2 text-center fw-bold text-danger">Failed</td>
+                          ';
+                        }
+                        elseif($remark == 'Drop') {
+                          echo '
+                            <td class="p-2 text-center fw-bold text-secondary">Drop</td>
+                          ';
+                        }
+                      ?>
 
-                    <td class="p-2 text-center">
-                      <a class="text-decoration-none text-success me-2" href="#" data-bs-toggle="modal" data-bs-target="#">
-                        <i class="fa-solid fa-plus"></i>
-                      </a>
-                    </td>
-                  </tr>
-                </tbody>
-              <?php } ?>
-              </table>
-            </div>
+                      <td class="p-2 text-center">
+                        <a class="text-decoration-none text-success me-2" href="#" data-bs-toggle="modal" data-bs-target="#">
+                          <i class="fa-solid fa-plus"></i>
+                        </a>
+                      </td>
+                    </tr>
+                  </tbody>
+                <?php } ?>
+                </table>
+              </div>
             </div>
           </div>
         </form>

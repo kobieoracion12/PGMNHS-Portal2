@@ -40,7 +40,7 @@
         <div class="col-md-6 col-sm-12 navbar-nav">
           <a class="nav-link" href="index.php"><i class="fa-solid fa-home fa-sm me-1"></i>Home</a>
           <a class="nav-link" href="faculty-students.php?sy=0&gp=0"><i class="fa-solid fa-users fa-sm me-1"></i>Students</a>
-          <a class="nav-link text-success" href="faculty-grading.php?sy=0&yl=0&sec=0&gp=0"><i class="fa-solid fa-square-poll-vertical me-1"></i>Grading</a>
+          <a class="nav-link text-success" href="faculty-grading.php?cn=0&sn=0&select_sy=0&yl=0&sec=0&select_gp=0"><i class="fa-solid fa-square-poll-vertical me-1"></i>Grading</a>
           <a class="nav-link" href="faculty-class.php"><i class="fa-solid fa-chalkboard fa-sm me-1"></i></i>Classes</a>
           <a class="nav-link" href="faculty-schedule.php"><i class="fa-solid fa-calendar fa-sm me-1"></i>Schedule</a>
           <a class="nav-link" href="faculty-subjects.php"><i class="fa-solid fa-book fa-sm me-1"></i>Subjects</a>
@@ -93,6 +93,8 @@
         <div class="card-body m-2 mt-0">
           <form action="faculty-grading.php" method="get">
             <div class="row p-3 pt-0">
+              <label>LRN</label>
+              <input class="form-control mb-3" type="text" name="cn" placeholder="Control No">
 
               <label>School Year</label>
               <select class="form-select mb-3" name="select_sy">
@@ -110,46 +112,6 @@
               ?>
 
               <option value=<?php echo $sy['sy_code'] ?>><?php echo $sy['sy_desc'] ?></option>
-
-              <?php } ?>
-              </select>
-
-              <label>Year Level</label>
-              <select class="form-select mb-3" name="select_year">
-                <option value="0" selected>Select Year Level</option>
-                <?php
-                  $sql_year =  "SELECT year_code, year_name FROM year_level";
-                  
-                  $year_results = $config -> query($sql_year);
-
-                  if($year_results -> num_rows > 0) {
-                    $year = mysqli_fetch_all($year_results, MYSQLI_ASSOC);
-                  }
-
-                  foreach ($year as $year) {
-              ?>
-
-              <option value=<?php echo $year['year_code'] ?>><?php echo $year['year_name'] ?></option>
-
-              <?php } ?>
-              </select>
-
-              <label>Section</label>
-              <select class="form-select mb-3" name="select_section">
-                <option value="0" selected>Select Section</option>
-                <?php
-                  $sql_section =  "SELECT section_code, section_name FROM sections";
-                  
-                  $section_results = $config -> query($sql_section);
-
-                  if($section_results -> num_rows > 0) {
-                    $section = mysqli_fetch_all($section_results, MYSQLI_ASSOC);
-                  }
-
-                  foreach ($section as $section) {
-              ?>
-
-              <option value=<?php echo $section['section_code'] ?>><?php echo $section['section_name'] ?></option>
 
               <?php } ?>
               </select>
@@ -186,7 +148,7 @@
       </div>
     </div>
 
-    <!-- All Subject -->
+    <!-- Grading Table -->
     <div class="col-md-8 col-sm-12">
       <div class="card shadow-sm">
         <div class="card-body">
@@ -195,12 +157,29 @@
               
               <!-- Table Header -->
               <div class="row">
-                <div class="col-md-4 col-sm-12">
-                  <h4 class="ms-2">Result(s)</h4>
-                </div>
+                <div class="col-md-12 col-sm-12 d-flex justify-content-start align-items-start ms-3">
+                  <?php
+                    $fetch_name = mysqli_query($config, "SELECT * FROM account_info WHERE control_no = '{$_GET['cn']}'");
 
-                <div class="col-md-8 col-sm-12 d-flex justify-content-end align-items-end">
-                  <input class="form-control me-2" id="search" type="text" placeholder="Search...">
+                    $fetch_grade = mysqli_query($config, "SELECT * FROM grading_period WHERE grading_code = '{$_GET['select_gp']}'");
+
+                    while($fetch_data = mysqli_fetch_array($fetch_name) AND $fetch_period = mysqli_fetch_array($fetch_grade)) {
+
+                  ?>
+
+                  <p><strong>Student Name: </strong>
+                    <?php
+                      echo $fetch_data['first_name'];
+                      echo " ";
+                      echo $fetch_data['last_name'];
+                    ?>
+                  </p>
+
+                  <p class="ms-3"><strong>LRN: </strong><?php echo $fetch_data['control_no']; ?></p>
+
+                  <p class="ms-3"><strong>Grading Period: </strong><?php echo $fetch_period['grading_desc']; ?></p>
+
+                  <?php } ?>
                 </div>
               </div>
 
@@ -212,6 +191,7 @@
                     <table class="table table-bordered align-middle border-end">
                       <thead>
                         <tr class="text-muted">
+                          <th hidden>Encode ID</th>
                           <th scope="col">Learning Areas</th>
                           <th class="text-center" scope="col">Grade</th>
                           <th class="text-center" scope="col">Remarks</th>
@@ -220,24 +200,41 @@
                       </thead>
 
                       <?php
-                        $fetch_subjects = mysqli_query($config, "SELECT * FROM student_grades, subjects WHERE (student_grades.subject_code = subjects.subject_code)");
+                        $fetch_subject = mysqli_query($config, "SELECT * FROM enrolled_subjects, subjects WHERE (enrolled_subjects.subject_code = subjects.subject_code) AND control_no = '{$_GET['cn']}' AND grading_code = '{$_GET['select_gp']}'");
 
-                        $fetch_grade = mysqli_query($config, "SELECT * FROM student_grades WHERE grading_code = 'PGMNHS-GP-05'");
+                        $fetch_grade = mysqli_query($config, "SELECT * FROM student_grades WHERE control_no = '{$_GET['cn']}' AND grading_code = '{$_GET['select_gp']}'");
 
-                        $fetch_remarks = mysqli_query($config, "SELECT remarks FROM student_grades");
-
-                        while($subject = mysqli_fetch_array($fetch_subjects) AND $grades = mysqli_fetch_array($fetch_grade) AND $remarks = mysqli_fetch_array($fetch_remarks)) {
+                        while($subject = mysqli_fetch_array($fetch_subject) AND $grades = mysqli_fetch_array($fetch_grade)) {
 
                       ?>
 
                       <tbody>
                         <tr>
-                          <td class="p-2 ps-3 fw-bold"><?php echo $subject['subject_desc'] ?></td>
+                          <td class="p-2 ps-3 fw-bold" hidden><?php echo $grades['encode_id'] ?></td>
 
-                          <td class="p-2 text-center"><?php echo $grades['completion_grade'] ?></td>
+                          <td class="p-2 ps-3 fw-bold" hidden><?php echo $subject['subject_code'] ?></td>
 
+                          <td class="p-2"><?php echo $subject['subject_desc'] ?></td>
+
+                          <!-- Grades -->
+                          <?php
+                            $myGrades = $grades['completion_grade'];
+                            
+                            if($myGrades != null) {
+                              echo '
+                                <td class="p-2 ps-3 text-center">'.$grades['completion_grade'].'</td>
+                              ';
+                            }
+                            else {
+                              echo '
+                                <td class="p-2 text-center">--</td>
+                              ';
+                            }
+                          ?>
+
+                          <!-- Remarks -->
                           <?php 
-                            $remark = $remarks['remarks'];
+                            $remark = $grades['remarks'];
 
                             if($remark == 'Passed') {
                               echo '
@@ -254,10 +251,15 @@
                                 <td class="p-2 text-center fw-bold text-secondary">Drop</td>
                               ';
                             }
+                            else {
+                              echo '
+                                <td class="p-2 text-center">--</td>
+                              ';
+                            }
                           ?>
 
                           <td class="p-2 text-center">
-                            <a class="text-decoration-none text-success me-2" href="#" data-bs-toggle="modal" data-bs-target="#">
+                            <a class="text-decoration-none text-success me-2 add-grade" href="#" data-bs-toggle="modal" data-bs-target="#addGrade">
                               <i class="fa-solid fa-plus"></i>
                             </a>
                           </td>
@@ -300,11 +302,90 @@
   </div>
 </footer>
 
+<!-- Add Grades -->
+<div class="modal fade" id="addGrade" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+    <form action="../php/submit-grade.php" method="post">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Grading Form</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+       
+        <div class="modal-body p-md-4 p-sm-0">
+          <div class="row p-3 pt-2">
+
+            <input class="form-control w-25" type="hidden" id="subject_id" name="subject_id"> 
+            <input class="form-control w-25" type="hidden" id="current_cn" name="current_cn" value="<?php echo $_GET["cn"]; ?>"> 
+
+            <input class="form-control w-25" type="hidden" id="current_sy" name="subject_sy" value="<?php echo $_GET["select_sy"]; ?>"> 
+
+            <input class="form-control w-25" type="hidden" id="current_gp" name="current_gp" value="<?php echo $_GET["select_gp"]; ?>">
+
+            <div class="col-md-6 col-sm-12">
+              <input class="form-control" type="text" id="subject_name" name="subject_name" readonly>
+            </div>
+
+            <div class="col-md-3 col-sm-12">
+              <input class="form-control" type="text" name="subject_grade" id="subject_grade" placeholder="0">
+            </div>
+
+            <div class="col-md-3 col-sm-12">
+
+              <input class="form-control" type="text" name="subject_remarks" id="subject_remarks" placeholder="Remarks" readonly>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-success" name="submit_grade" id="submit_grade">Submit Grade</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
 </body>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
+<script type="text/javascript">
+  $('#subject_grade').change(function() {
+    var given_grade = $('#subject_grade').val();
 
+    if(given_grade == 0) {
+      $('#subject_remarks').val("Drop");
+    }
+    else if(given_grade >= 1 && given_grade <= 74) {
+      $('#subject_remarks').val("Failed");
+    }
+    else if(given_grade >= 75 && given_grade <= 99) {
+      $('#subject_remarks').val("Passed");
+    }
+  });
+</script>
+
+<!-- View Student -->
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('.add-grade').on('click', function(){
+
+      $('#addGrade').modal('show');
+
+      $tr = $(this).closest('tr');
+
+      var data =  $tr.children("td").map(function(){
+        return $(this).text();
+      }).get();
+
+      console.log(data);
+
+      $('#subject_id').val(data[0]);
+      $('#subject_name').val(data[2]);
+
+    })
+  });
+</script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>

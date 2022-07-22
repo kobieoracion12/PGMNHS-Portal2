@@ -32,6 +32,7 @@ while($rows = mysqli_fetch_array($sql)) {
 	$_SESSION['relation'] = $rows['guardian_relation'];
 	$_SESSION['gnumber'] = $rows['guardian_number'];
 	$_SESSION['profile'] = $rows['profile_picture'];
-
+	$_SESSION['grade'] = $rows['grade_code'];
+	$_SESSION['section'] = $rows['section_code'];
 }
 ?>

@@ -39,8 +39,8 @@
       <div class="collapse navbar-collapse text-center ms-md-5 ms-sm-0" id="navbarNavAltMarkup">
         <div class="col-md-6 col-sm-12 navbar-nav">
           <a class="nav-link" href="index.php"><i class="fa-solid fa-home fa-sm me-1"></i>Home</a>
-          <a class="nav-link" href="faculty-students.php?sy=0&gp=0"><i class="fa-solid fa-users fa-sm me-1"></i>Students</a>
-          <a class="nav-link" href="faculty-grading.php?sy=0&yl=0&sec=0&gp=0"><i class="fa-solid fa-square-poll-vertical me-1"></i>Grading</a>
+          <a class="nav-link" href="faculty-students.php"><i class="fa-solid fa-users fa-sm me-1"></i>Students</a>
+          <a class="nav-link" href="faculty-grading.php?cn=0&sn=0&select_sy=0&yl=0&sec=0&select_gp=0"><i class="fa-solid fa-square-poll-vertical me-1"></i>Grading</a>
           <a class="nav-link" href="faculty-class.php"><i class="fa-solid fa-chalkboard fa-sm me-1"></i></i>Classes</a>
           <a class="nav-link" href="faculty-schedule.php"><i class="fa-solid fa-calendar fa-sm me-1"></i>Schedule</a>
           <a class="nav-link text-success" href="faculty-subjects.php"><i class="fa-solid fa-book fa-sm me-1"></i>Subjects</a>
