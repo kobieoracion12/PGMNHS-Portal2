@@ -19,7 +19,7 @@ if(isset($_POST['login_btn']))
             $privilege = $row['acc_priv'];
 
             if($privilege == 'Admin') {
-                header('Location: ../admin/index.php');
+                header('Location: ../admin/dist/index.php');
             }
             elseif($privilege == 'Faculty') {
                 header('Location: ../faculty/index.php');

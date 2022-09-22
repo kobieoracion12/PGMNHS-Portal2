@@ -290,7 +290,7 @@
                 <th scope="col" class="text-center">Action</th>
               </tr>
             </thead>
-
+ 
             <tbody>
               <?php
                 $no = $_SESSION['control_no'];
