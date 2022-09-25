@@ -370,10 +370,24 @@
                             <li class="menu-title mt-2">Apps</li>
 
                             <li>
-                                <a href="admin-records.php">
+                                <a href="#acc" data-bs-toggle="collapse">
                                     <i class="mdi mdi-account-group-outline"></i>
                                     <span> Accounts </span>
+                                    <span class="menu-arrow"></span>
                                 </a>
+                                <div class="collapse" id="acc">
+                                    <ul class="nav-second-level">
+                                        <li>
+                                            <a href="admin-accounts.php">Admin</a>
+                                        </li>
+                                        <li>
+                                            <a href="faculty-accounts.php">Faculty</a>
+                                        </li>
+                                        <li>
+                                            <a href="student-accounts.php">Students</a>
+                                        </li>
+                                    </ul>
+                                </div>
                             </li>
 
                             <li>
@@ -391,21 +405,24 @@
                             </li>
 
                             <li>
-                                <a href="#email" data-bs-toggle="collapse">
+                                <a href="#manage" data-bs-toggle="collapse">
                                     <i class="mdi mdi-folder-open-outline"></i>
                                     <span> Management </span>
                                     <span class="menu-arrow"></span>
                                 </a>
-                                <div class="collapse" id="email">
-                                    <ul class="nav-second-level">
+                                <div class="collapse" id="manage">
+                                <ul class="nav-second-level">
                                         <li>
-                                            <a href="email-inbox.html">Subjects</a>
+                                            <a href="manage-subjects.php">Subjects</a>
                                         </li>
                                         <li>
-                                            <a href="email-templates.html">Teachers</a>
+                                            <a href="manage-students.php">Students</a>
                                         </li>
                                         <li>
-                                            <a href="email-templates.html">Sections</a>
+                                            <a href="manage-faculty.php">Teachers</a>
+                                        </li>
+                                        <li>
+                                            <a href="manage-sections.php">Sections</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -934,7 +951,7 @@
                                         ?>
 
                                         <div class="row justify-content-end m-1">
-                                            <button type="button" class="btn btn-success waves-effect waves-light mb-3" data-bs-toggle="modal" data-bs-target="#bs-example-modal-lg"><i class="mdi mdi-arrow-collapse-up me-1"></i> Upload File</button>
+                                            <button type="button" class="btn btn-success mb-3" data-bs-toggle="modal" data-bs-target="#bs-example-modal-lg"><i class="mdi mdi-arrow-collapse-up me-1"></i> Upload File</button>
                                         </div>
 
                                         <!--  Upload Modal -->
@@ -980,7 +997,10 @@
 
 
                                             <tbody>
-                                            <?php foreach ($files as $file): ?>
+                                            <?php 
+                                                $query = mysqli_query($config, "SELECT DISTINCT document_no, document_name, dept_origin, document_size FROM school_documents GROUP BY document_name ASC");
+                                                while($file = mysqli_fetch_array($query)) {
+                                            ?>
                                             <tr>
                                                 <td class="text-center p-3"><?php echo $file['document_no']; ?></td>
                                                 <td class="p-3 text-center"><?php echo $file['document_name']; ?></td>
@@ -1059,7 +1079,7 @@
                                                   </td>
                                             </tr>
 
-                                            <?php endforeach; ?>
+                                            <?php } ?>
                                             
                                             </tbody>
                                         </table>

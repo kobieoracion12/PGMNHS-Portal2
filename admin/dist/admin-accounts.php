@@ -367,12 +367,12 @@
                             <li class="menu-title mt-2">Apps</li>
 
                             <li>
-                                <a href="#email" data-bs-toggle="collapse">
+                                <a href="#acc" data-bs-toggle="collapse">
                                     <i class="mdi mdi-account-group-outline"></i>
                                     <span> Accounts </span>
                                     <span class="menu-arrow"></span>
                                 </a>
-                                <div class="collapse" id="email">
+                                <div class="collapse" id="acc">
                                     <ul class="nav-second-level">
                                         <li>
                                             <a href="admin-accounts.php">Admin</a>
@@ -402,12 +402,12 @@
                             </li>
 
                             <li>
-                                <a href="#email" data-bs-toggle="collapse">
+                                <a href="#manage" data-bs-toggle="collapse">
                                     <i class="mdi mdi-folder-open-outline"></i>
                                     <span> Management </span>
                                     <span class="menu-arrow"></span>
                                 </a>
-                                <div class="collapse" id="email">
+                                <div class="collapse" id="manage">
                                     <ul class="nav-second-level">
                                         <li>
                                             <a href="email-inbox.html">Subjects</a>
@@ -970,247 +970,246 @@
                                                     <td class="p-3 text-center"><?php echo $student['acc_status']; ?></td>
 
                                                     <td class="p-3 text-center">
-                                                          <div class="col-12">
-                                                            <a class="text-decoration-none text-primary me-2 edit-button" href="#" data-bs-toggle="modal" data-bs-target="#editinfo">
-                                                              <i class="mdi mdi-pencil-outline"></i>
-                                                            </a>
+                                                        <div class="col-12">
+                                                        <a class="text-decoration-none text-primary me-2 edit-button" href="#" data-bs-toggle="modal" data-bs-target="#editinfo">
+                                                            <i class="mdi mdi-pencil-outline"></i>
+                                                        </a>
 
-                                                            <!--  Edit Modal -->
-                                                            <div class="modal fade" id="editinfo" tabindex="-1" role="dialog" aria-hidden="true">
-                                                                <div class="modal-dialog modal-lg">
-                                                                    <div class="modal-content modal-dialog-scrollable">
-                                                                        <div class="modal-header">
-                                                                            <h4 class="modal-title" id="standard-modalLabel">Edit Profile</h4>
-                                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        <!--  Edit Modal -->
+                                                        <div class="modal fade" id="editinfo" tabindex="-1" role="dialog" aria-hidden="true">
+                                                            <div class="modal-dialog modal-lg">
+                                                                <div class="modal-content modal-dialog-scrollable">
+                                                                    <div class="modal-header">
+                                                                        <h4 class="modal-title" id="standard-modalLabel">Edit Profile</h4>
+                                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                    </div>
+                                                                    
+                                                                    <form action="../../php/update-admin.php" method="post">
+                                                                        <div class="modal-body text-start mx-4">
+
+                                                                            <input type="hidden" class="form-control" name="control_no" id="control_no">
+
+                                                                            <!-- PERSONAL INFORMATION -->
+                                                                            <div>
+                                                                                <p class="fw-bold text-primary mb-0">Personal Information</p>
+                                                                                <hr class="mt-2">
+                                                                                <div class="row">
+                                                                                    <div class="col-md-4 col-sm-12">
+                                                                                        <label class="form-label">First Name</label>
+                                                                                        <input type="text" class="form-control" name="fname" id="fname" placeholder="Not Specified">
+                                                                                    </div>
+
+                                                                                    <div class="col-md-4 col-sm-12">
+                                                                                        <label class="form-label">Middle Name</label>
+                                                                                        <input type="text" class="form-control" name="mname" id="mname" placeholder="Not Specified">
+                                                                                    </div>
+
+                                                                                    <div class="col-md-4 col-sm-12">
+                                                                                        <label class="form-label">Last Name</label>
+                                                                                        <input type="text" class="form-control" name="lname" id="lname" placeholder="Not Specified">
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="row mt-3">
+                                                                                    <div class="col-md-3 col-sm-12">
+                                                                                        <label class="form-label">Gender</label>
+                                                                                        <select class="form-select" name="gender" id="gender" placeholder="Not Specified">
+                                                                                            <option>Male</option>
+                                                                                            <option>Female</option>
+                                                                                        </select>
+                                                                                    </div>
+
+                                                                                    <div class="col-md-3 col-sm-12">
+                                                                                        <label class="form-label">Civil Status</label>
+                                                                                        <select class="form-select" name="civil_stat" id="civil_stat">
+                                                                                            <option>Single</option>
+                                                                                            <option>Married</option>
+                                                                                            <option>Divorced</option>
+                                                                                            <option>Widowed</option>
+                                                                                        </select>
+                                                                                    </div>
+
+                                                                                    <div class="col-md-3 col-sm-12">
+                                                                                        <label class="form-label">Nationality</label>
+                                                                                        <input type="text" class="form-control" name="nationality" id="nationality" placeholder="Not Specified">
+                                                                                    </div>
+
+                                                                                    <div class="col-md-3 col-sm-12">
+                                                                                        <label class="form-label">Birth Date</label>
+                                                                                        <input type="date" class="form-control" name="bday" id="bday" placeholder="Not Specified">
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="row mt-3">
+                                                                                    <div class="col-md-4 col-sm-12">
+                                                                                        <label class="form-label">Birth Place</label>
+                                                                                        <input type="text" class="form-control" name="bplace" id="bplace" placeholder="Not Specified">
+                                                                                    </div>
+
+                                                                                    <div class="col-md-4 col-sm-12">
+                                                                                        <label class="form-label">Religion</label>
+                                                                                        <select class="form-select" name="religion" id="religion">
+                                                                                            <option>Roman Catholic</option>
+                                                                                            <option>Aglipayan</option>
+                                                                                            <option>Evangelicals</option>
+                                                                                            <option>Iglesia ni Cristo</option>
+                                                                                            <option>Protestant</option>
+                                                                                            <option>Others</option>
+                                                                                        </select>
+                                                                                    </div>
+
+                                                                                    <div class="col-md-4 col-sm-12">
+                                                                                        <label class="form-label">Address</label>
+                                                                                        <input type="text" class="form-control" name="address" id="address" placeholder="Not Specified">
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="row mt-3">
+                                                                                    <div class="col-md-4 col-sm-12">
+                                                                                        <label class="form-label">Contact No.</label>
+                                                                                        <input type="text" class="form-control" name="contact" id="contact" placeholder="Not Specified">
+                                                                                    </div>
+
+                                                                                    <div class="col-md-8 col-sm-12">
+                                                                                        <label class="form-label">Email Address</label>
+                                                                                        <input type="email" class="form-control" name="emaiadd" id="emaiadd" placeholder="Not Specified">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <!-- PERSONAL INFORMATION END -->
+
+                                                                            <!-- SCHOOL INFORMATION -->
+                                                                            <div>
+                                                                                <p class="fw-bold text-primary mt-4 mb-0">School Information</p>
+                                                                                <hr class="mt-2">
+
+                                                                                <div class="row">
+                                                                                    <div class="col-md-6 col-sm-12">
+                                                                                        <label class="form-label">Year Level</label>
+                                                                                        <input type="text" class="form-control text-muted" name="grade" id="grade" readonly>
+                                                                                    </div>
+
+                                                                                    <div class="col-md-6 col-sm-12">
+                                                                                        <label class="form-label">Section</label>
+                                                                                        <input type="text" class="form-control text-muted" name="section" id="section" readonly>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <!-- SCHOOL INFORMATION END -->
+
+                                                                            <!-- FAMILY INFORMATION -->
+                                                                            <div>
+                                                                                <p class="fw-bold mt-4 text-primary mb-0">Family Information</p>
+                                                                                <hr class="mt-2">
+
+                                                                                <div class="row">
+                                                                                    <div class="col-md-6 col-sm-12">
+                                                                                        <label class="form-label">Mother Full Name</label>
+                                                                                        <input type="text" class="form-control" name="mother" id="mother" placeholder="Not Specified">
+                                                                                    </div>
+
+                                                                                    <div class="col-md-6 col-sm-12">
+                                                                                        <label class="form-label">Father Full Name</label>
+                                                                                        <input type="text" class="form-control" name="father" id="father" placeholder="Not Specified">
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="row mt-2">
+                                                                                    <div class="col-md-6 col-sm-12">
+                                                                                        <label class="form-label">Guardian Full Name</label>
+                                                                                        <input type="text" class="form-control" name="guardian" id="guardian" placeholder="Not Specified">
+                                                                                    </div>
+
+                                                                                    <div class="col-md-6 col-sm-12">
+                                                                                        <label class="form-label">Emergency Contact No.</label>
+                                                                                        <input type="number" class="form-control" name="emergency" id="emergency" placeholder="Not Specified">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <!-- FAMILY INFORMATION END -->
+
                                                                         </div>
                                                                         
-                                                                        <form action="../../php/update-admin.php" method="post">
-                                                                            <div class="modal-body text-start mx-4">
+                                                                        <div class="modal-footer">
+                                                                            <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                                                                            <button type="submit" name="update" class="btn btn-primary">Save changes</button>
+                                                                        </div>
+                                                                    </form>
 
-                                                                                <input type="hidden" class="form-control" name="control_no" id="control_no">
+                                                                </div><!-- /.modal-content -->
+                                                            </div><!-- /.modal-dialog -->
+                                                        </div><!-- /.modal -->
 
-                                                                                <!-- PERSONAL INFORMATION -->
-                                                                                <div>
-                                                                                    <p class="fw-bold text-primary mb-0">Personal Information</p>
-                                                                                    <hr class="mt-2">
-                                                                                    <div class="row">
-                                                                                        <div class="col-md-4 col-sm-12">
-                                                                                            <label class="form-label">First Name</label>
-                                                                                            <input type="text" class="form-control" name="fname" id="fname" placeholder="Not Specified">
-                                                                                        </div>
+                                                        <a class="text-decoration-none text-danger delete-button me-2" href="#" data-bs-toggle="modal" data-bs-target="#deletemodal">
+                                                            <i class="mdi mdi-delete-outline"></i>
+                                                        </a>
 
-                                                                                        <div class="col-md-4 col-sm-12">
-                                                                                            <label class="form-label">Middle Name</label>
-                                                                                            <input type="text" class="form-control" name="mname" id="mname" placeholder="Not Specified">
-                                                                                        </div>
+                                                        <!-- Delete Modal -->
+                                                        <div class="modal fade" id="deletemodal" tabindex="-1" role="dialog" aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered">
+                                                            <div class="modal-content">
 
-                                                                                        <div class="col-md-4 col-sm-12">
-                                                                                            <label class="form-label">Last Name</label>
-                                                                                            <input type="text" class="form-control" name="lname" id="lname" placeholder="Not Specified">
-                                                                                        </div>
-                                                                                    </div>
+                                                            <div class="modal-header">
+                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
 
-                                                                                    <div class="row mt-3">
-                                                                                        <div class="col-md-3 col-sm-12">
-                                                                                            <label class="form-label">Gender</label>
-                                                                                            <select class="form-select" name="gender" id="gender" placeholder="Not Specified">
-                                                                                                <option>Male</option>
-                                                                                                <option>Female</option>
-                                                                                            </select>
-                                                                                        </div>
+                                                            <form action="../../php/delete-admin.php" method="post">
+                                                                <div class="modal-body">
+                                                                <input type="hidden" name="delete_number" id="delete_number">
+                                                                Do you want to delete this file?
+                                                                </div>
 
-                                                                                        <div class="col-md-3 col-sm-12">
-                                                                                            <label class="form-label">Civil Status</label>
-                                                                                            <select class="form-select" name="civil_stat" id="civil_stat">
-                                                                                                <option>Single</option>
-                                                                                                <option>Married</option>
-                                                                                                <option>Divorced</option>
-                                                                                                <option>Widowed</option>
-                                                                                            </select>
-                                                                                        </div>
+                                                                <div class="modal-footer">
+                                                                <input type="button" class="btn btn-danger" data-bs-dismiss="modal" value="No">
+                                                                <input type="submit" name="delete" class="btn btn-success" value="Yes">
+                                                            </div>
+                                                            
+                                                            </form>
+                                                            </div>
+                                                        </div>
+                                                        </div>
 
-                                                                                        <div class="col-md-3 col-sm-12">
-                                                                                            <label class="form-label">Nationality</label>
-                                                                                            <input type="text" class="form-control" name="nationality" id="nationality" placeholder="Not Specified">
-                                                                                        </div>
+                                                        <a class="text-decoration-none text-success print-button me-2" href="#" data-bs-toggle="modal" data-bs-target="#printmodal" title="Print">
+                                                            <i class="mdi mdi-printer"></i>
+                                                        </a>
 
-                                                                                        <div class="col-md-3 col-sm-12">
-                                                                                            <label class="form-label">Birth Date</label>
-                                                                                            <input type="date" class="form-control" name="bday" id="bday" placeholder="Not Specified">
-                                                                                        </div>
-                                                                                    </div>
+                                                        <!-- Print Modal -->
+                                                        <div class="modal fade" id="printmodal" tabindex="-1" role="dialog" aria-hidden="true">
+                                                            <div class="modal-dialog modal-md modal-dialog-centered">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h4 class="modal-title" id="myLargeModalLabel">Print Document</h4>
+                                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                    </div>
+                                                                    <div class="modal-body text-start px-4">
 
-                                                                                    <div class="row mt-3">
-                                                                                        <div class="col-md-4 col-sm-12">
-                                                                                            <label class="form-label">Birth Place</label>
-                                                                                            <input type="text" class="form-control" name="bplace" id="bplace" placeholder="Not Specified">
-                                                                                        </div>
+                                                                        <form action="../../php/print-document.php" method="post">
 
-                                                                                        <div class="col-md-4 col-sm-12">
-                                                                                            <label class="form-label">Religion</label>
-                                                                                            <select class="form-select" name="religion" id="religion">
-                                                                                                <option>Roman Catholic</option>
-                                                                                                <option>Aglipayan</option>
-                                                                                                <option>Evangelicals</option>
-                                                                                                <option>Iglesia ni Cristo</option>
-                                                                                                <option>Protestant</option>
-                                                                                                <option>Others</option>
-                                                                                            </select>
-                                                                                        </div>
+                                                                            <!-- Hidden Textbox -->
+                                                                            <input type="hidden" name="select-no" id="select-no">
 
-                                                                                        <div class="col-md-4 col-sm-12">
-                                                                                            <label class="form-label">Address</label>
-                                                                                            <input type="text" class="form-control" name="address" id="address" placeholder="Not Specified">
-                                                                                        </div>
-                                                                                    </div>
+                                                                            <label class="form-label">Select Document to Print</label>
+                                                                            <select class="form-select" name="document" id="document">
+                                                                                <option selected>Select Document</option>
 
-                                                                                    <div class="row mt-3">
-                                                                                        <div class="col-md-4 col-sm-12">
-                                                                                            <label class="form-label">Contact No.</label>
-                                                                                            <input type="text" class="form-control" name="contact" id="contact" placeholder="Not Specified">
-                                                                                        </div>
+                                                                                <?php foreach ($document as $document) { ?>
 
-                                                                                        <div class="col-md-8 col-sm-12">
-                                                                                            <label class="form-label">Email Address</label>
-                                                                                            <input type="email" class="form-control" name="emaiadd" id="emaiadd" placeholder="Not Specified">
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <!-- PERSONAL INFORMATION END -->
+                                                                                <option value=<?php echo $document['document_no'] ?>><?php echo $document['document_name'] ?></option>
+                                                                                
+                                                                                <?php } ?>
+                                                                            </select>
 
-                                                                                <!-- SCHOOL INFORMATION -->
-                                                                                <div>
-                                                                                    <p class="fw-bold text-primary mt-4 mb-0">School Information</p>
-                                                                                    <hr class="mt-2">
-
-                                                                                    <div class="row">
-                                                                                        <div class="col-md-6 col-sm-12">
-                                                                                            <label class="form-label">Year Level</label>
-                                                                                            <input type="text" class="form-control text-muted" name="grade" id="grade" readonly>
-                                                                                        </div>
-
-                                                                                        <div class="col-md-6 col-sm-12">
-                                                                                            <label class="form-label">Section</label>
-                                                                                            <input type="text" class="form-control text-muted" name="section" id="section" readonly>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <!-- SCHOOL INFORMATION END -->
-
-                                                                                <!-- FAMILY INFORMATION -->
-                                                                                <div>
-                                                                                    <p class="fw-bold mt-4 text-primary mb-0">Family Information</p>
-                                                                                    <hr class="mt-2">
-
-                                                                                    <div class="row">
-                                                                                        <div class="col-md-6 col-sm-12">
-                                                                                            <label class="form-label">Mother Full Name</label>
-                                                                                            <input type="text" class="form-control" name="mother" id="mother" placeholder="Not Specified">
-                                                                                        </div>
-
-                                                                                        <div class="col-md-6 col-sm-12">
-                                                                                            <label class="form-label">Father Full Name</label>
-                                                                                            <input type="text" class="form-control" name="father" id="father" placeholder="Not Specified">
-                                                                                        </div>
-                                                                                    </div>
-
-                                                                                    <div class="row mt-2">
-                                                                                        <div class="col-md-6 col-sm-12">
-                                                                                            <label class="form-label">Guardian Full Name</label>
-                                                                                            <input type="text" class="form-control" name="guardian" id="guardian" placeholder="Not Specified">
-                                                                                        </div>
-
-                                                                                        <div class="col-md-6 col-sm-12">
-                                                                                            <label class="form-label">Emergency Contact No.</label>
-                                                                                            <input type="number" class="form-control" name="emergency" id="emergency" placeholder="Not Specified">
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <!-- FAMILY INFORMATION END -->
-
-                                                                            </div>
-                                                                            
-                                                                            <div class="modal-footer">
-                                                                                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
-                                                                                <button type="submit" name="update" class="btn btn-primary">Save changes</button>
+                                                                            <div class="text-end">
+                                                                                <button type="button" class="btn btn-primary waves-effect waves-light my-2"><i class="mdi mdi-pencil me-1"></i>Edit</button>
+                                                                                <button type="submit" name="print" id="print" class="btn btn-success waves-effect waves-light my-2"><i class="mdi mdi-printer me-1"></i>Print Document</button>
                                                                             </div>
                                                                         </form>
 
-                                                                    </div><!-- /.modal-content -->
-                                                                </div><!-- /.modal-dialog -->
-                                                            </div><!-- /.modal -->
-
-                                                            <a class="text-decoration-none text-danger delete-button me-2" href="#" data-bs-toggle="modal" data-bs-target="#deletemodal">
-                                                              <i class="mdi mdi-delete-outline"></i>
-                                                            </a>
-
-                                                            <!-- Delete Modal -->
-                                                            <div class="modal fade" id="deletemodal" tabindex="-1" role="dialog" aria-hidden="true">
-                                                            <div class="modal-dialog modal-dialog-centered">
-                                                                <div class="modal-content">
-
-                                                                <div class="modal-header">
-                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                                </div>
-
-                                                                <form action="../../php/delete-admin.php" method="post">
-                                                                    <div class="modal-body">
-                                                                    <input type="hidden" name="delete_number" id="delete_number">
-                                                                    Do you want to delete this file?
                                                                     </div>
-
-                                                                    <div class="modal-footer">
-                                                                    <input type="button" class="btn btn-danger" data-bs-dismiss="modal" value="No">
-                                                                    <input type="submit" name="delete" class="btn btn-success" value="Yes">
-                                                                </div>
-                                                                
-                                                                </form>
-                                                                </div>
-                                                            </div>
-                                                            </div>
-
-                                                            <a class="text-decoration-none text-success print-button me-2" href="#" data-bs-toggle="modal" data-bs-target="#printmodal" title="Print">
-                                                              <i class="mdi mdi-printer"></i>
-                                                            </a>
-
-                                                            <!-- Print Modal -->
-                                                            <div class="modal fade" id="printmodal" tabindex="-1" role="dialog" aria-hidden="true">
-                                                                <div class="modal-dialog modal-md modal-dialog-centered">
-                                                                    <div class="modal-content">
-                                                                        <div class="modal-header">
-                                                                            <h4 class="modal-title" id="myLargeModalLabel">Print Document</h4>
-                                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                                        </div>
-                                                                        <div class="modal-body text-start px-4">
-
-                                                                            <form action="../../php/print-document.php" method="post">
-
-                                                                                <!-- Hidden Textbox -->
-                                                                                <input type="hidden" name="select-no" id="select-no">
-
-                                                                                <label class="form-label">Select Document to Print</label>
-                                                                                <select class="form-select" name="document" id="document">
-                                                                                    <option selected>Select Document</option>
-
-                                                                                    <?php foreach ($document as $document) { ?>
-
-                                                                                    <option value=<?php echo $document['document_no'] ?>><?php echo $document['document_name'] ?></option>
-                                                                                    
-                                                                                    <?php } ?>
-                                                                                </select>
-
-                                                                                <div class="text-end">
-                                                                                    <button type="button" class="btn btn-primary waves-effect waves-light my-2"><i class="mdi mdi-pencil me-1"></i>Edit</button>
-                                                                                    <button type="submit" name="print" id="print" class="btn btn-success waves-effect waves-light my-2"><i class="mdi mdi-printer me-1"></i>Print Document</button>
-                                                                                </div>
-                                                                            </form>
-
-                                                                        </div>
-                                                                    </div><!-- /.modal-content -->
-                                                                </div><!-- /.modal-dialog -->
-                                                            </div><!-- /.modal -->
-                                                          </div>
-                                                      </td>
+                                                                </div><!-- /.modal-content -->
+                                                            </div><!-- /.modal-dialog -->
+                                                        </div><!-- /.modal -->
+                                                    </td>
                                                 </tr>
 
                                                 <?php } ?>
@@ -1509,7 +1508,7 @@
 
               console.log(data);
 
-              $('#control_no').val(data[0]);
+              $('#delete_number').val(data[1]);
             })
           });
         </script>

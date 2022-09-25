@@ -4,7 +4,7 @@ require_once("database.php");
 
 if(isset($_POST['delete'])) {
 
-  $id = $_POST['control_no'];
+  $id = $_POST['delete_number'];
   
   $archive_account = mysqli_query($config, "UPDATE account_info SET acc_status = 'Disabled' WHERE control_no = '$id'");
 

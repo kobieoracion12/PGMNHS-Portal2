@@ -1,23 +1,30 @@
 <?php
   include_once("../../php/fetch-admin.php");
-  include_once("../../php/fetch-document.php");
   include_once("../../php/database.php");
+  include("../../php/fetch-file.php");
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <title>Faculty Accounts - Pedro Guevarra Memorial National Highschool</title>
+        <title>Sections - Pedro Guevarra Memorial National Highschool</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
-        <meta content="Coderthemes" name="author" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <!-- App favicon -->
         <link rel="shortcut icon" href="../../assets/img/pgmnhs-logo.ico">
 
-        <!-- App css -->
-        <link href="assets/css/app.min.css" rel="stylesheet" type="text/css" id="app-style" />
+		<!-- App css -->
+		<link href="assets/css/app.min.css" rel="stylesheet" type="text/css" id="app-style" />
+
+        <!-- Plugins css -->
+        <link href="assets/libs/dropzone/min/dropzone.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/libs/bootstrap-tagsinput/bootstrap-tagsinput.css" rel="stylesheet" />
+
+        <link href="assets/libs/multiselect/css/multi-select.css" rel="stylesheet" type="text/css" />
+        <link href="assets/libs/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/libs/selectize/css/selectize.bootstrap3.css" rel="stylesheet" type="text/css" />
 
         <!-- third party css -->
         <link href="assets/libs/datatables.net-bs5/css/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css" />
@@ -26,8 +33,11 @@
         <link href="assets/libs/datatables.net-select-bs5/css//select.bootstrap5.min.css" rel="stylesheet" type="text/css" />
         <!-- third party css end -->
 
-        <!-- icons -->
-        <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+		<!-- icons -->
+		<link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+
+        <!-- Custom box css -->
+        <link href="./assets/libs/custombox/custombox.min.css" rel="stylesheet">
 
     </head>
 
@@ -213,13 +223,13 @@
                         <li class="dropdown notification-list topbar-dropdown">
                             <a class="nav-link dropdown-toggle nav-user me-0 waves-effect waves-light" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                                 <?php
-                                $no = $_SESSION["control_no"];
-                                $profile = mysqli_query($config, "SELECT profile_picture from account_info WHERE control_no = $no");
+                                    $no = $_SESSION["control_no"];
+                                    $profile = mysqli_query($config, "SELECT profile_picture from account_info WHERE control_no = $no");
 
-                                while($data = mysqli_fetch_array($profile)) {
-                                  echo '<img class="img-fluid rounded-circle" src="data:image/jpg;charset=utf8;base64,'.base64_encode($data['profile_picture']).'"  width="22px">';
-                                }
-                            ?>
+                                    while($data = mysqli_fetch_array($profile)) {
+                                    echo '<img class="img-fluid rounded-circle" src="data:image/jpg;charset=utf8;base64,'.base64_encode($data['profile_picture']).'"  width="22px">';
+                                    }
+                                ?>
 
                             <span class="pro-user-name ms-1">
                                 <?php
@@ -294,7 +304,7 @@
                         </li>
     
                         <li>
-                            <h4 class="page-title-main">Account Management</h4>
+                            <h4 class="page-title-main">Teaching Personnel</h4>
                         </li>
             
                     </ul>
@@ -410,13 +420,13 @@
                                 <div class="collapse" id="manage">
                                     <ul class="nav-second-level">
                                         <li>
-                                            <a href="email-inbox.html">Subjects</a>
+                                            <a href="manage-subjects.php">Subjects</a>
                                         </li>
                                         <li>
-                                            <a href="email-templates.html">Teachers</a>
+                                            <a href="manage-faculty.php">Teachers</a>
                                         </li>
                                         <li>
-                                            <a href="email-templates.html">Sections</a>
+                                            <a href="manage-sections.php">Sections</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -901,232 +911,233 @@
                     <div class="container-fluid">
 
                         <div class="row">
-                            <div class="col-sm-12">
+
+                            <div class="col-md-4 col-sm-12">
                                 <div class="card">
-                                    <div class="card-body">
-                                        <div class="col-12 table-responsive">
-                                            <table class="table table-striped table-hover w-100 p-3">
+                                    <div class="card-body task-detail m-2">
+                                        <form action="manage-sections.php" method="get">
+                                            <label for="example-multiselect" class="form-label">Select Grade Level</label>
+                                            <select id="example-multiselect" multiple class="form-select text-center" size="10" name="grade" id="grade" style="overflow: auto">
+                                                <option class="p-2" value="PGMNHS-YR-G07">Grade 7</option>
+                                                <option class="p-2" value="PGMNHS-YR-G08">Grade 8</option>
+                                                <option class="p-2" value="PGMNHS-YR-G09">Grade 9</option>
+                                                <option class="p-2" value="PGMNHS-YR-G10">Grade 10</option>
+                                            </select>
+
+                                            <input type="submit" class="btn btn-success mt-2 w-100" value="Preview">
+                                        </form>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+
+                            <div class="col-md-8 col-sm-12">
+                                <div class="card">
+                                    <?php
+                                        if(isset($_GET['grade'])) {
+                                            $grade = $_GET['grade'];
+                                    ?>
+
+                                    <div class="card-body task-detail m-2">
+                                        <div class="table-responsive mx-3 mb-2">
+                                            <button class="btn btn-primary d-flex float-end mb-1 add-button" data-bs-toggle="modal" data-bs-target="#addsection"><i class="mdi mdi-plus"></i> Add Section</button>
+
+                                            <!--  Add Section Modal -->
+                                            <div class="modal fade" id="addsection" tabindex="-1" role="dialog" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered">
+                                                    <div class="modal-content modal-dialog-scrollable">
+                                                        <div class="modal-header">
+                                                            <h4 class="modal-title" id="standard-modalLabel">Add Section</h4>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        
+                                                        <form action="../../php/add-section.php" method="post">
+                                                            <div class="modal-body text-start mx-4">
+
+                                                                <div class="row">
+                                                                    <div class="col-md-12 col-sm-12">
+                                                                        <label class="form-label">Section Code</label>
+                                                                        <?php
+                                                                        
+                                                                        $sql = mysqli_query($config, "SELECT MAX(section_code) FROM section");
+                                                                        
+                                                                        while($last = mysqli_fetch_array($sql)) {
+                                                                            $last_code = $last[0];
+                                                                            $new = $last_code + 1;
+                                                                        }
+                                                                        
+                                                                        ?>
+                                                                        <input class="form-control text-muted" name="code" id="code" value="<?php echo $new ?>" readonly>
+                                                                    </div>
+
+                                                                    <div class="col-md-12 col-sm-12 mt-2">
+                                                                        <label class="form-label">Grade Level</label>
+                                                                        <select class="form-select" name="grade_level" id="grade_level">
+                                                                            <option value="PGMNHS-YR-G07">Grade 7</option>
+                                                                            <option value="PGMNHS-YR-G08">Grade 8</option>
+                                                                            <option value="PGMNHS-YR-G09">Grade 9</option>
+                                                                            <option value="PGMNHS-YR-G10">Grade 10</option>
+                                                                        </select>
+                                                                    </div>
+
+                                                                    <div class="col-md-12 col-sm-12 mt-2">
+                                                                        <label class="form-label">Section Name</label>
+                                                                        <input class="form-control" name="section_name" id="section_name">
+                                                                    </div>
+
+                                                                    <div class="col-md-12 col-sm-12 mt-2">
+                                                                        <label class="form-label">Number of Students</label>
+                                                                        <input type="number" class="form-control" name="enrolled_students" id="enrolled_students">
+                                                                    </div>
+
+                                                                    <div class="col-md-12 col-sm-12 my-2">
+                                                                        <label class="form-label">Section Adviser</label>
+                                                                        <select class="form-select" data-toggle="select2" name="section_adviser" id="section_adviser">
+                                                                            <optgroup class="mt-3" label="Available Faculty">
+                                                                                <?php 
+                                                                                    $fcly = mysqli_query($config, "SELECT * FROM account_info WHERE acc_priv = 'Faculty' AND acc_status = 'Active'");
+                                                                                    while($available = mysqli_fetch_array($fcly)) {
+                                                                                ?>
+                                                                                <option value="<?php echo $available['control_no']?>">
+                                                                                    <?php 
+                                                                                        echo $available['first_name']; 
+                                                                                        echo " "; 
+                                                                                        echo $available['last_name']; 
+                                                                                    ?>
+                                                                                </option>
+                                                                                <?php } ?>
+                                                                            </optgroup>
+                                                                            
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                            
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                                                                <button type="submit" name="add-section" class="btn btn-primary">Save changes</button>
+                                                            </div>
+                                                        </form>
+
+                                                    </div><!-- /.modal-content -->
+                                                </div><!-- /.modal-dialog -->
+                                            </div><!-- /.modal -->
+
+                                            <table class="table mb-0">
                                                 <thead>
-                                                <tr>
-                                                    <th class="text-center">Profile</th>
-                                                    <th class="text-center">Control No.</th>
-
-                                                    <th class="text-center" hidden>First Name</th>
-                                                    <th class="text-center" hidden>Middle Name</th>
-                                                    <th class="text-center" hidden>Last Name</th>
-                                                    <th class="text-center" hidden>Gender</th>
-                                                    <th class="text-center" hidden>Civil Status</th>
-                                                    <th class="text-center" hidden>Nationality</th>
-                                                    <th class="text-center" hidden>Birth Date</th>
-                                                    <th class="text-center" hidden>Birth Place</th>
-                                                    <th class="text-center" hidden>Religion</th>
-                                                    <th class="text-center" hidden>Address</th>
-                                                    <th class="text-center" hidden>Contact No.</th>
-                                                    <th class="text-center" hidden>Email</th>
-                                                    <th class="text-center" hidden>Father</th>
-                                                    <th class="text-center" hidden>Mother</th>
-                                                    <th class="text-center" hidden>Guardian</th>
-                                                    <th class="text-center" hidden>Emergency</th>
-                                                    <th class="text-center" hidden>Year Level</th>
-                                                    <th class="text-center" hidden>Section</th>
-
-                                                    <th class="text-center">Name</th>
-                                                    <th class="text-center">Status</th>
+                                                <tr class="bg-success text-white">
+                                                    <th>Section Code</th>
+                                                    <th>Section Name</th>
+                                                    <th class="text-center">Students</th>
+                                                    <th class="text-center">Adviser</th>
                                                     <th class="text-center">Action</th>
                                                 </tr>
                                                 </thead>
-        
-        
+
                                                 <tbody>
                                                 <?php
-                                                    $fetch_student = mysqli_query($config, "SELECT * FROM account_info WHERE acc_priv = 'Faculty' AND acc_status = 'Active'");
-
-                                                    while($student = mysqli_fetch_array($fetch_student)) {
+                                                    $sql = mysqli_query($config, "SELECT * FROM section WHERE year_code = '$grade'");
+                                                    
+                                                    while($section = mysqli_fetch_array($sql)) {
+                                                        $adviser = $section['section_adviser'];
                                                 ?>
+
                                                 <tr>
-                                                    <td class="text-center p-3"><?php echo '<img class="img-fluid rounded-circle" src="data:image/jpg;charset=utf8;base64,'.base64_encode($student['profile_picture']).'"  width="25px">'; ?> </td>
-                                                    <td class="p-3 text-center"><?php echo $student['control_no']; ?></td>
+                                                    <td class="p-3 ps-2"><?php echo $section['section_code'] ?></td>
+                                                    <td class="p-3 ps-2"><?php echo $section['section_name'] ?></td>
+                                                    <td class="p-3 text-center">
+                                                        <?php 
+                                                            if($section['enrolled_students'] == null) {
+                                                                echo "0";
+                                                            }
+                                                            else {
+                                                                echo $section['enrolled_students'];
+                                                            }
+                                                        ?>
+                                                    </td>
 
-                                                    <td class="p-3 text-center" hidden><?php echo $student['first_name']; ?></td>
-                                                    <td class="p-3 text-center" hidden><?php echo $student['middle_name']; ?></td>
-                                                    <td class="p-3 text-center" hidden><?php echo $student['last_name']; ?></td>
-                                                    <td class="p-3 text-center" hidden><?php echo $student['gender']; ?></td>
-                                                    <td class="p-3 text-center" hidden><?php echo $student['civil_status']; ?></td>
-                                                    <td class="p-3 text-center" hidden><?php echo $student['nationality']; ?></td>
-                                                    <td class="p-3 text-center" hidden><?php echo $student['birth_date']; ?></td>
-                                                    <td class="p-3 text-center" hidden><?php echo $student['birth_place']; ?></td>
-                                                    <td class="p-3 text-center" hidden><?php echo $student['religion']; ?></td>
-                                                    <td class="p-3 text-center" hidden><?php echo $student['address']; ?></td>
-                                                    <td class="p-3 text-center" hidden><?php echo $student['contact_no']; ?></td>
-                                                    <td class="p-3 text-center" hidden><?php echo $student['email_address']; ?></td>
-                                                    <td class="p-3 text-center" hidden><?php echo $student['father_name']; ?></td>
-                                                    <td class="p-3 text-center" hidden><?php echo $student['mother_name']; ?></td>
-                                                    <td class="p-3 text-center" hidden><?php echo $student['guardian_name']; ?></td>
-                                                    <td class="p-3 text-center" hidden><?php echo $student['guardian_number']; ?></td>
-                                                    <td class="p-3 text-center" hidden><?php echo $student['year_code']; ?></td>
-                                                    <td class="p-3 text-center" hidden><?php echo $student['section_code']; ?></td>
+                                                    <td class="p-3 text-center"><?php 
 
-                                                    <td class="p-3 text-center"><?php echo $student['first_name']; echo " "; echo $student['last_name']; ?> </td>
-                                                    <td class="p-3 text-center"><?php echo $student['acc_status']; ?></td>
+                                                        $adv = mysqli_query($config, "SELECT * FROM account_info WHERE control_no = '$adviser'");
+                                                        while($advise = mysqli_fetch_array($adv)) {
+                                                            echo $advise['first_name'];
+                                                            echo " ";
+                                                            echo $advise['last_name'];
+                                                        }
+                                                        
+                                                    ?></td>
 
                                                     <td class="p-3 text-center">
-                                                          <div class="col-12">
+                                                        <div class="col-12">
                                                             <a class="text-decoration-none text-primary me-2 edit-button" href="#" data-bs-toggle="modal" data-bs-target="#editinfo">
-                                                              <i class="mdi mdi-pencil-outline"></i>
+                                                                <i class="mdi mdi-pencil-outline"></i>
                                                             </a>
 
                                                             <!--  Edit Modal -->
                                                             <div class="modal fade" id="editinfo" tabindex="-1" role="dialog" aria-hidden="true">
-                                                                <div class="modal-dialog modal-lg">
+                                                                <div class="modal-dialog modal-dialog-centered">
                                                                     <div class="modal-content modal-dialog-scrollable">
                                                                         <div class="modal-header">
-                                                                            <h4 class="modal-title" id="standard-modalLabel">Edit Profile</h4>
+                                                                            <h4 class="modal-title" id="standard-modalLabel">Edit Section</h4>
                                                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                                         </div>
                                                                         
-                                                                        <form action="../../php/update-admin.php" method="post">
+                                                                        <form action="../../php/update-section.php" method="post">
                                                                             <div class="modal-body text-start mx-4">
 
-                                                                                <input type="hidden" class="form-control" name="control_no" id="control_no">
-
-                                                                                <!-- PERSONAL INFORMATION -->
-                                                                                <div>
-                                                                                    <p class="fw-bold text-primary mb-0">Personal Information</p>
-                                                                                    <hr class="mt-2">
-                                                                                    <div class="row">
-                                                                                        <div class="col-md-4 col-sm-12">
-                                                                                            <label class="form-label">First Name</label>
-                                                                                            <input type="text" class="form-control" name="fname" id="fname" placeholder="Not Specified">
-                                                                                        </div>
-
-                                                                                        <div class="col-md-4 col-sm-12">
-                                                                                            <label class="form-label">Middle Name</label>
-                                                                                            <input type="text" class="form-control" name="mname" id="mname" placeholder="Not Specified">
-                                                                                        </div>
-
-                                                                                        <div class="col-md-4 col-sm-12">
-                                                                                            <label class="form-label">Last Name</label>
-                                                                                            <input type="text" class="form-control" name="lname" id="lname" placeholder="Not Specified">
-                                                                                        </div>
+                                                                                <div class="row">
+                                                                                    <div class="col-md-12 col-sm-12">
+                                                                                        <label class="form-label">Section Code</label>
+                                                                                        <input class="form-control text-muted" name="code1" id="code1">
                                                                                     </div>
 
-                                                                                    <div class="row mt-3">
-                                                                                        <div class="col-md-3 col-sm-12">
-                                                                                            <label class="form-label">Gender</label>
-                                                                                            <select class="form-select" name="gender" id="gender" placeholder="Not Specified">
-                                                                                                <option>Male</option>
-                                                                                                <option>Female</option>
-                                                                                            </select>
-                                                                                        </div>
-
-                                                                                        <div class="col-md-3 col-sm-12">
-                                                                                            <label class="form-label">Civil Status</label>
-                                                                                            <select class="form-select" name="civil_stat" id="civil_stat">
-                                                                                                <option>Single</option>
-                                                                                                <option>Married</option>
-                                                                                                <option>Divorced</option>
-                                                                                                <option>Widowed</option>
-                                                                                            </select>
-                                                                                        </div>
-
-                                                                                        <div class="col-md-3 col-sm-12">
-                                                                                            <label class="form-label">Nationality</label>
-                                                                                            <input type="text" class="form-control" name="nationality" id="nationality" placeholder="Not Specified">
-                                                                                        </div>
-
-                                                                                        <div class="col-md-3 col-sm-12">
-                                                                                            <label class="form-label">Birth Date</label>
-                                                                                            <input type="date" class="form-control" name="bday" id="bday" placeholder="Not Specified">
-                                                                                        </div>
+                                                                                    <div class="col-md-12 col-sm-12 mt-2">
+                                                                                        <label class="form-label">Section Name</label>
+                                                                                        <input class="form-control" name="name" id="name">
                                                                                     </div>
 
-                                                                                    <div class="row mt-3">
-                                                                                        <div class="col-md-4 col-sm-12">
-                                                                                            <label class="form-label">Birth Place</label>
-                                                                                            <input type="text" class="form-control" name="bplace" id="bplace" placeholder="Not Specified">
-                                                                                        </div>
-
-                                                                                        <div class="col-md-4 col-sm-12">
-                                                                                            <label class="form-label">Religion</label>
-                                                                                            <select class="form-select" name="religion" id="religion">
-                                                                                                <option>Roman Catholic</option>
-                                                                                                <option>Aglipayan</option>
-                                                                                                <option>Evangelicals</option>
-                                                                                                <option>Iglesia ni Cristo</option>
-                                                                                                <option>Protestant</option>
-                                                                                                <option>Others</option>
-                                                                                            </select>
-                                                                                        </div>
-
-                                                                                        <div class="col-md-4 col-sm-12">
-                                                                                            <label class="form-label">Address</label>
-                                                                                            <input type="text" class="form-control" name="address" id="address" placeholder="Not Specified">
-                                                                                        </div>
+                                                                                    <div class="col-md-12 col-sm-12 mt-2">
+                                                                                        <label class="form-label">Enrolled Students</label>
+                                                                                        <input class="form-control" name="number1" id="number1">
                                                                                     </div>
 
-                                                                                    <div class="row mt-3">
-                                                                                        <div class="col-md-4 col-sm-12">
-                                                                                            <label class="form-label">Contact No.</label>
-                                                                                            <input type="text" class="form-control" name="contact" id="contact" placeholder="Not Specified">
-                                                                                        </div>
+                                                                                    <div class="col-md-12 col-sm-12 my-2">
+                                                                                        <label class="form-label">Section Adviser</label>
+                                                                                        <select class="form-select" data-toggle="select2" name="adviser" id="adviser">
+                                                                                            <optgroup label="Assigned Faculty">
+                                                                                                <?php
+                                                                                                
+                                                                                                $adv = mysqli_query($config, "SELECT * FROM account_info WHERE control_no = '$adviser'");
+                                                                                                while($advise = mysqli_fetch_array($adv)) {
 
-                                                                                        <div class="col-md-8 col-sm-12">
-                                                                                            <label class="form-label">Email Address</label>
-                                                                                            <input type="email" class="form-control" name="emaiadd" id="emaiadd" placeholder="Not Specified">
-                                                                                        </div>
+                                                                                                ?>
+                                                                                                
+                                                                                                <option value="<?php echo $section['section_adviser'] ?>" selected>
+                                                                                                    <?php echo $advise['first_name']; echo " "; echo $advise['last_name']; ?>
+                                                                                                </option>
+
+                                                                                                <?php } ?> 
+                                                                                            </optgroup>
+
+                                                                                            <optgroup class="mt-3" label="Available Faculty">
+                                                                                                <?php 
+                                                                                                    $fcly = mysqli_query($config, "SELECT * FROM account_info WHERE acc_priv = 'Faculty' AND acc_status = 'Active'");
+                                                                                                    while($available = mysqli_fetch_array($fcly)) {
+                                                                                                ?>
+                                                                                                <option value="<?php echo $available['control_no']?>">
+                                                                                                    <?php 
+                                                                                                        echo $available['first_name']; 
+                                                                                                        echo " "; 
+                                                                                                        echo $available['last_name']; 
+                                                                                                    ?>
+                                                                                                </option>
+                                                                                                <?php } ?>
+                                                                                            </optgroup>
+                                                                                            
+                                                                                        </select>
                                                                                     </div>
                                                                                 </div>
-                                                                                <!-- PERSONAL INFORMATION END -->
-
-                                                                                <!-- SCHOOL INFORMATION -->
-                                                                                <div>
-                                                                                    <p class="fw-bold text-primary mt-4 mb-0">School Information</p>
-                                                                                    <hr class="mt-2">
-
-                                                                                    <div class="row">
-                                                                                        <div class="col-md-6 col-sm-12">
-                                                                                            <label class="form-label">Year Level</label>
-                                                                                            <input type="text" class="form-control text-muted" name="grade" id="grade" readonly>
-                                                                                        </div>
-
-                                                                                        <div class="col-md-6 col-sm-12">
-                                                                                            <label class="form-label">Section</label>
-                                                                                            <input type="text" class="form-control text-muted" name="section" id="section" readonly>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <!-- SCHOOL INFORMATION END -->
-
-                                                                                <!-- FAMILY INFORMATION -->
-                                                                                <div>
-                                                                                    <p class="fw-bold mt-4 text-primary mb-0">Family Information</p>
-                                                                                    <hr class="mt-2">
-
-                                                                                    <div class="row">
-                                                                                        <div class="col-md-6 col-sm-12">
-                                                                                            <label class="form-label">Mother Full Name</label>
-                                                                                            <input type="text" class="form-control" name="mother" id="mother" placeholder="Not Specified">
-                                                                                        </div>
-
-                                                                                        <div class="col-md-6 col-sm-12">
-                                                                                            <label class="form-label">Father Full Name</label>
-                                                                                            <input type="text" class="form-control" name="father" id="father" placeholder="Not Specified">
-                                                                                        </div>
-                                                                                    </div>
-
-                                                                                    <div class="row mt-2">
-                                                                                        <div class="col-md-6 col-sm-12">
-                                                                                            <label class="form-label">Guardian Full Name</label>
-                                                                                            <input type="text" class="form-control" name="guardian" id="guardian" placeholder="Not Specified">
-                                                                                        </div>
-
-                                                                                        <div class="col-md-6 col-sm-12">
-                                                                                            <label class="form-label">Emergency Contact No.</label>
-                                                                                            <input type="number" class="form-control" name="emergency" id="emergency" placeholder="Not Specified">
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <!-- FAMILY INFORMATION END -->
 
                                                                             </div>
                                                                             
@@ -1141,84 +1152,102 @@
                                                             </div><!-- /.modal -->
 
                                                             <a class="text-decoration-none text-danger delete-button me-2" href="#" data-bs-toggle="modal" data-bs-target="#deletemodal">
-                                                              <i class="mdi mdi-delete-outline"></i>
+                                                                <i class="mdi mdi-delete-outline"></i>
                                                             </a>
 
                                                             <!-- Delete Modal -->
                                                             <div class="modal fade" id="deletemodal" tabindex="-1" role="dialog" aria-hidden="true">
-                                                            <div class="modal-dialog modal-dialog-centered">
-                                                                <div class="modal-content">
-
-                                                                <div class="modal-header">
-                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                                </div>
-
-                                                                <form action="../../php/delete-admin.php" method="post">
-                                                                    <div class="modal-body">
-                                                                    <input type="hidden" name="delete_number" id="delete_number">
-                                                                    Do you want to delete this file?
-                                                                    </div>
-
-                                                                    <div class="modal-footer">
-                                                                    <input type="button" class="btn btn-danger" data-bs-dismiss="modal" value="No">
-                                                                    <input type="submit" name="delete" class="btn btn-success" value="Yes">
-                                                                </div>
-                                                                
-                                                                </form>
-                                                                </div>
-                                                            </div>
-                                                            </div>
-
-                                                            <a class="text-decoration-none text-success print-button me-2" href="#" data-bs-toggle="modal" data-bs-target="#printmodal" title="Print">
-                                                              <i class="mdi mdi-printer"></i>
-                                                            </a>
-
-                                                            <!-- Print Modal -->
-                                                            <div class="modal fade" id="printmodal" tabindex="-1" role="dialog" aria-hidden="true">
-                                                                <div class="modal-dialog modal-md modal-dialog-centered">
+                                                                <div class="modal-dialog modal-dialog-centered">
                                                                     <div class="modal-content">
+
                                                                         <div class="modal-header">
-                                                                            <h4 class="modal-title" id="myLargeModalLabel">Print Document</h4>
                                                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                                         </div>
-                                                                        <div class="modal-body text-start px-4">
 
-                                                                            <form action="../../php/print-document.php" method="post">
+                                                                        <form action="../../php/delete-section.php" method="post">
+                                                                            <div class="modal-body">
+                                                                                <input type="hidden" name="sec_code" id="sec_code">
+                                                                                Do you want to delete this file?
+                                                                            </div>
 
-                                                                                <!-- Hidden Textbox -->
-                                                                                <input type="hidden" name="select-no" id="select-no">
-
-                                                                                <label class="form-label">Select Document to Print</label>
-                                                                                <select class="form-select" name="document" id="document">
-                                                                                    <option selected>Select Document</option>
-
-                                                                                    <?php foreach ($document as $document) { ?>
-
-                                                                                    <option value=<?php echo $document['document_no'] ?>><?php echo $document['document_name'] ?></option>
-                                                                                    
-                                                                                    <?php } ?>
-                                                                                </select>
-
-                                                                                <div class="text-end">
-                                                                                    <button type="button" class="btn btn-primary waves-effect waves-light my-2"><i class="mdi mdi-pencil me-1"></i>Edit</button>
-                                                                                    <button type="submit" name="print" id="print" class="btn btn-success waves-effect waves-light my-2"><i class="mdi mdi-printer me-1"></i>Print Document</button>
-                                                                                </div>
-                                                                            </form>
-
-                                                                        </div>
-                                                                    </div><!-- /.modal-content -->
-                                                                </div><!-- /.modal-dialog -->
-                                                            </div><!-- /.modal -->
-                                                          </div>
-                                                      </td>
+                                                                            <div class="modal-footer">
+                                                                                <input type="button" class="btn btn-danger" data-bs-dismiss="modal" value="No">
+                                                                                <input type="submit" name="delete" class="btn btn-success" value="Yes">
+                                                                            </div>
+                                                                        
+                                                                        </form>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </td>
                                                 </tr>
 
-                                                <?php } ?>
                                                 
+
+                                                <?php } ?>
+
                                                 </tbody>
                                             </table>
-                                        </div> <!-- end col -->
+                                        </div>
                                     </div>
+
+                                    <?php } else { ?>
+
+                                    <!-- Default -->
+                                    <div class="card-body task-detail m-2">
+                                        <div class="table-responsive mx-3 mb-2">
+                                            <table class="table mb-0">
+                                                <thead>
+                                                <tr class="bg-success text-white">
+                                                    <th>Section Code</th>
+                                                    <th>Section Name</th>
+                                                    <th class="text-center">Students</th>
+                                                    <th class="text-center">Adviser</th>
+                                                </tr>
+                                                </thead>
+
+                                                <tbody>
+                                                <?php
+                                                    $sql = mysqli_query($config, "SELECT * FROM section");
+                                                    
+                                                    while($section = mysqli_fetch_array($sql)) {
+                                                        $adviser = $section['section_adviser'];
+                                                ?>
+
+                                                <tr>
+                                                    <td class="p-3 ps-2"><?php echo $section['section_code'] ?></td>
+                                                    <td class="p-3 ps-2"><?php echo $section['section_name'] ?></td>
+                                                    <td class="p-3 text-center">
+                                                        <?php 
+                                                            if($section['enrolled_students'] == null) {
+                                                                echo "--";
+                                                            }
+                                                            else {
+                                                                echo $section['enrolled_students'];
+                                                            }
+                                                        ?>
+                                                    </td>
+                                                    <td class="p-3 text-center"><?php 
+
+                                                        $adv = mysqli_query($config, "SELECT * FROM account_info WHERE control_no = '$adviser'");
+                                                        while($advise = mysqli_fetch_array($adv)) {
+                                                            echo $advise['first_name'];
+                                                            echo " ";
+                                                            echo $advise['last_name'];
+                                                        }
+                                                        
+                                                    ?></td>
+                                                </tr>
+                                                <?php } ?>
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                    <?php } ?>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -1412,6 +1441,17 @@
         <script src="assets/libs/jquery.counterup/jquery.counterup.min.js"></script>
         <script src="assets/libs/feather-icons/feather.min.js"></script>
 
+        <!-- Plugins js -->
+        <script src="assets/libs/selectize/js/standalone/selectize.min.js"></script>
+        <script src="assets/libs/dropzone/min/dropzone.min.js"></script>
+        <script src="assets/libs/multiselect/js/jquery.multi-select.js"></script>
+        <script src="assets/libs/select2/js/select2.min.js"></script>
+
+        <script src="assets/js/pages/task-detail.init.js"></script>
+
+        <!-- Init js-->
+        <script src="assets/js/pages/form-fileuploads.init.js"></script>
+
         <!-- third party js -->
         <script src="assets/libs/datatables.net/js/jquery.dataTables.min.js"></script>
         <script src="assets/libs/datatables.net-bs5/js/dataTables.bootstrap5.min.js"></script>
@@ -1434,32 +1474,24 @@
         <!-- App js -->
         <script src="assets/js/app.min.js"></script>
 
-        <!-- Print Modal -->
-        <script type="text/javascript">
-          $(document).ready(function(){
-            $('.print-button').on('click', function(){
+        <!-- Tost-->
+        <script src="assets/libs/jquery-toast-plugin/jquery.toast.min.js"></script>
 
-              $('#printmodal').modal('show');
+        <!-- Jquery Ui js -->
+        <script src="assets/libs/jquery-ui/jquery-ui.min.js"></script>
 
-              $tr = $(this).closest('tr');
+        <!-- Modal-Effect -->
+        <script src="assets/libs/custombox/custombox.min.js"></script>
 
-              var data =  $tr.children("td").map(function(){
-                return $(this).text();
-              }).get();
+        <!-- Init -->
+        <script src="assets/js/pages/kanban.init.js"></script>
 
-              console.log(data);
-
-              $('#select-no').val(data[1]);
-            })
-          });
-        </script>
-
-        <!-- Edit Modal -->
+        <!-- Edit -->
         <script type="text/javascript">
           $(document).ready(function(){
             $('.edit-button').on('click', function(){
 
-              $('#editinfo').modal('show');
+              $('#editmodal').modal('show');
 
               $tr = $(this).closest('tr');
 
@@ -1469,27 +1501,9 @@
 
               console.log(data);
 
-              $('#control_no').val(data[1]);
-              $('#fname').val(data[2]);
-              $('#mname').val(data[3]);
-              $('#lname').val(data[4]);
-              $('#gender').val(data[5]);
-              $('#civil_stat').val(data[6]);
-              $('#nationality').val(data[7]);
-              $('#bday').val(data[8]);
-              $('#bplace').val(data[9]);
-              $('#religion').val(data[10]);
-              $('#address').val(data[11]);
-              $('#contact').val(data[12]);
-              $('#emaiadd').val(data[13]);
-
-              $('#grade').val(data[18]);
-              $('#section').val(data[19]);
-
-              $('#mother').val(data[15]);
-              $('#father').val(data[14]);
-              $('#guardian').val(data[16]);
-              $('#emergency').val(data[17]);
+              $('#code1').val(data[0]);
+              $('#name').val(data[1]);
+              $('#number1').val(data[2]);
             })
           });
         </script>
@@ -1509,7 +1523,7 @@
 
               console.log(data);
 
-              $('#delete_number').val(data[1]);
+              $('#sec_code').val(data[0]);
             })
           });
         </script>
