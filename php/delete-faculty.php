@@ -2,21 +2,20 @@
 
 require_once("database.php");
 
-if(isset($_POST['delete'])) {
+if(isset($_POST['delete-faculty'])) {
 
-  $id = $_POST['delete_id'];
+  $no = $_POST['control'];
   
-  $archive_account = mysqli_query($config, "UPDATE faculty_accounts SET account_status = 'Archive' WHERE employee_no = '$id'");
+  $archive_account = mysqli_query($config, "UPDATE account_info SET acc_status = 'Disabled' WHERE control_no = '$no'");
 
   if($archive_account) {
-    header("Location: ../admin/admin-records.php?student-archieved");
+    header("Location: ../admin/dist/faculty-accounts.php?success");
     //echo mysqli_error($config);
   }
   else {
-    header("Location: ../admin/admin-records.php.php?archive-failed");
+    header("Location: ../admin/dist/faculty-accounts.php?failed");
     //echo mysqli_error($config);
   }
-
 }
 
 ?>

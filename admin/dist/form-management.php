@@ -253,7 +253,7 @@
                                 <div class="dropdown-divider"></div>
     
                                 <!-- item-->
-                                <a href="auth-logout.html" class="dropdown-item notify-item">
+                                <a href="../../php/logout.php" class="dropdown-item notify-item">
                                     <i class="fe-log-out"></i>
                                     <span>Logout</span>
                                 </a>
@@ -388,6 +388,27 @@
                                         </li>
                                     </ul>
                                 </div>
+                            </li>                  
+
+                            <li>
+                                <a href="#manage" data-bs-toggle="collapse">
+                                    <i class="mdi mdi-folder-open-outline"></i>
+                                    <span> Management </span>
+                                    <span class="menu-arrow"></span>
+                                </a>
+                                <div class="collapse" id="manage">
+                                    <ul class="nav-second-level">
+                                        <li>
+                                            <a href="manage-subjects.php">Subjects</a>
+                                        </li>
+                                        <li>
+                                            <a href="manage-faculty.php">Teachers</a>
+                                        </li>
+                                        <li>
+                                            <a href="manage-sections.php">Sections</a>
+                                        </li>
+                                    </ul>
+                                </div>
                             </li>
 
                             <li>
@@ -402,30 +423,6 @@
                                     <i class="mdi mdi-calendar-blank-outline"></i>
                                     <span> School Calendar </span>
                                 </a>
-                            </li>
-
-                            <li>
-                                <a href="#manage" data-bs-toggle="collapse">
-                                    <i class="mdi mdi-folder-open-outline"></i>
-                                    <span> Management </span>
-                                    <span class="menu-arrow"></span>
-                                </a>
-                                <div class="collapse" id="manage">
-                                <ul class="nav-second-level">
-                                        <li>
-                                            <a href="manage-subjects.php">Subjects</a>
-                                        </li>
-                                        <li>
-                                            <a href="manage-students.php">Students</a>
-                                        </li>
-                                        <li>
-                                            <a href="manage-faculty.php">Teachers</a>
-                                        </li>
-                                        <li>
-                                            <a href="manage-sections.php">Sections</a>
-                                        </li>
-                                    </ul>
-                                </div>
                             </li>
 
                             <li>

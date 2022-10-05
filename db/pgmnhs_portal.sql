@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 22, 2022 at 04:45 AM
+-- Generation Time: Sep 26, 2022 at 05:13 AM
 -- Server version: 10.4.24-MariaDB
--- PHP Version: 7.4.29
+-- PHP Version: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -182,28 +182,30 @@ INSERT INTO `school_year` (`sy_code`, `sy_desc`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sections`
+-- Table structure for table `section`
 --
 
-CREATE TABLE `sections` (
-  `section_code` varchar(20) NOT NULL,
-  `section_name` varchar(49) NOT NULL,
-  `section_students` int(3) DEFAULT NULL,
-  `section_adviser` varchar(99) DEFAULT NULL
+CREATE TABLE `section` (
+  `year_code` varchar(99) NOT NULL,
+  `section_code` bigint(12) NOT NULL,
+  `section_name` varchar(99) NOT NULL,
+  `enrolled_students` int(4) DEFAULT NULL,
+  `section_adviser` bigint(12) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `sections`
+-- Dumping data for table `section`
 --
 
-INSERT INTO `sections` (`section_code`, `section_name`, `section_students`, `section_adviser`) VALUES
-('PGMNHS-SEC-2022-10-0', 'Pili Sy', NULL, NULL),
-('PGMNHS-SEC-2022-10-1', 'Almaciga', NULL, NULL),
-('PGMNHS-SEC-2022-10-2', 'Cacao', NULL, NULL),
-('PGMNHS-SEC-2022-10-3', 'Chico', NULL, NULL),
-('PGMNHS-SEC-2022-10-4', 'Anonas', NULL, NULL),
-('PGMNHS-SEC-2022-10-5', 'Kamatoy', NULL, NULL),
-('PGMNHS-SEC-2022-10-6', 'Narra', NULL, NULL);
+INSERT INTO `section` (`year_code`, `section_code`, `section_name`, `enrolled_students`, `section_adviser`) VALUES
+('PGMNHS-YR-G07', 167131481900, 'Section 1', NULL, 108446060255),
+('PGMNHS-YR-G07', 167131481901, 'Section 2', NULL, 4360000),
+('PGMNHS-YR-G08', 167131481902, 'Section 3', NULL, 108446060254),
+('PGMNHS-YR-G08', 167131481903, 'Section 4', NULL, 108446060253),
+('PGMNHS-YR-G09', 167131481904, 'Section 5', NULL, 108446060255),
+('PGMNHS-YR-G09', 167131481905, 'Section 6', NULL, 4360000),
+('PGMNHS-YR-G10', 167131481906, 'Section 7', NULL, 108446060254),
+('PGMNHS-YR-G10', 167131481907, 'Section 8', NULL, 108446060253);
 
 -- --------------------------------------------------------
 
@@ -362,10 +364,12 @@ ALTER TABLE `school_year`
   ADD UNIQUE KEY `sy_code` (`sy_code`);
 
 --
--- Indexes for table `sections`
+-- Indexes for table `section`
 --
-ALTER TABLE `sections`
-  ADD UNIQUE KEY `section_code` (`section_code`);
+ALTER TABLE `section`
+  ADD PRIMARY KEY (`section_code`),
+  ADD KEY `year_code` (`year_code`),
+  ADD KEY `section_adviser` (`section_adviser`);
 
 --
 -- Indexes for table `student_grades`
@@ -420,6 +424,12 @@ ALTER TABLE `school_documents`
   MODIFY `document_no` bigint(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
+-- AUTO_INCREMENT for table `section`
+--
+ALTER TABLE `section`
+  MODIFY `section_code` bigint(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=167131481908;
+
+--
 -- AUTO_INCREMENT for table `student_grades`
 --
 ALTER TABLE `student_grades`
@@ -447,6 +457,13 @@ ALTER TABLE `enrolled_subjects`
   ADD CONSTRAINT `enrolled_subjects_ibfk_4` FOREIGN KEY (`subject_code`) REFERENCES `subjects` (`subject_code`);
 
 --
+-- Constraints for table `section`
+--
+ALTER TABLE `section`
+  ADD CONSTRAINT `section_ibfk_1` FOREIGN KEY (`year_code`) REFERENCES `year_level` (`year_code`),
+  ADD CONSTRAINT `section_ibfk_2` FOREIGN KEY (`section_adviser`) REFERENCES `account_info` (`control_no`);
+
+--
 -- Constraints for table `student_grades`
 --
 ALTER TABLE `student_grades`
@@ -454,14 +471,6 @@ ALTER TABLE `student_grades`
   ADD CONSTRAINT `student_grades_ibfk_2` FOREIGN KEY (`subject_code`) REFERENCES `subjects` (`subject_code`),
   ADD CONSTRAINT `student_grades_ibfk_3` FOREIGN KEY (`grading_code`) REFERENCES `grading_period` (`grading_code`),
   ADD CONSTRAINT `student_grades_ibfk_4` FOREIGN KEY (`sy_code`) REFERENCES `school_year` (`sy_code`);
-
---
--- Constraints for table `student_sections`
---
-ALTER TABLE `student_sections`
-  ADD CONSTRAINT `student_sections_ibfk_1` FOREIGN KEY (`student_lrn`) REFERENCES `student_info` (`student_lrn`),
-  ADD CONSTRAINT `student_sections_ibfk_2` FOREIGN KEY (`year_code`) REFERENCES `year_level` (`year_code`),
-  ADD CONSTRAINT `student_sections_ibfk_3` FOREIGN KEY (`section_code`) REFERENCES `sections` (`section_code`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

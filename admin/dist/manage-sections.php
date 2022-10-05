@@ -260,7 +260,7 @@
                                 <div class="dropdown-divider"></div>
     
                                 <!-- item-->
-                                <a href="auth-logout.html" class="dropdown-item notify-item">
+                                <a href="../../php/logout.php" class="dropdown-item notify-item">
                                     <i class="fe-log-out"></i>
                                     <span>Logout</span>
                                 </a>
@@ -395,21 +395,7 @@
                                         </li>
                                     </ul>
                                 </div>
-                            </li>
-
-                            <li>
-                                <a href="form-management.php">
-                                    <i class="mdi mdi-newspaper-variant-multiple"></i>
-                                    <span> Form Management </span>
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="apps-calendar.html">
-                                    <i class="mdi mdi-calendar-blank-outline"></i>
-                                    <span> School Calendar </span>
-                                </a>
-                            </li>
+                            </li>                  
 
                             <li>
                                 <a href="#manage" data-bs-toggle="collapse">
@@ -430,6 +416,20 @@
                                         </li>
                                     </ul>
                                 </div>
+                            </li>
+
+                            <li>
+                                <a href="form-management.php">
+                                    <i class="mdi mdi-newspaper-variant-multiple"></i>
+                                    <span> Form Management </span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="apps-calendar.html">
+                                    <i class="mdi mdi-calendar-blank-outline"></i>
+                                    <span> School Calendar </span>
+                                </a>
                             </li>
 
                             <li>
@@ -912,6 +912,7 @@
 
                         <div class="row">
 
+                            <!-- Left Side -->
                             <div class="col-md-4 col-sm-12">
                                 <div class="card">
                                     <div class="card-body task-detail m-2">
@@ -931,6 +932,7 @@
                                 </div>
                             </div>
 
+                            <!-- Right Side-->
                             <div class="col-md-8 col-sm-12">
                                 <div class="card">
                                     <?php
@@ -1208,38 +1210,38 @@
                                                 </thead>
 
                                                 <tbody>
-                                                <?php
-                                                    $sql = mysqli_query($config, "SELECT * FROM section");
-                                                    
-                                                    while($section = mysqli_fetch_array($sql)) {
-                                                        $adviser = $section['section_adviser'];
-                                                ?>
-
-                                                <tr>
-                                                    <td class="p-3 ps-2"><?php echo $section['section_code'] ?></td>
-                                                    <td class="p-3 ps-2"><?php echo $section['section_name'] ?></td>
-                                                    <td class="p-3 text-center">
-                                                        <?php 
-                                                            if($section['enrolled_students'] == null) {
-                                                                echo "--";
-                                                            }
-                                                            else {
-                                                                echo $section['enrolled_students'];
-                                                            }
-                                                        ?>
-                                                    </td>
-                                                    <td class="p-3 text-center"><?php 
-
-                                                        $adv = mysqli_query($config, "SELECT * FROM account_info WHERE control_no = '$adviser'");
-                                                        while($advise = mysqli_fetch_array($adv)) {
-                                                            echo $advise['first_name'];
-                                                            echo " ";
-                                                            echo $advise['last_name'];
-                                                        }
+                                                    <?php
+                                                        $sql = mysqli_query($config, "SELECT * FROM section");
                                                         
-                                                    ?></td>
-                                                </tr>
-                                                <?php } ?>
+                                                        while($section = mysqli_fetch_array($sql)) {
+                                                            $adviser = $section['section_adviser'];
+                                                    ?>
+
+                                                    <tr>
+                                                        <td class="p-3 ps-2"><?php echo $section['section_code'] ?></td>
+                                                        <td class="p-3 ps-2"><?php echo $section['section_name'] ?></td>
+                                                        <td class="p-3 text-center">
+                                                            <?php 
+                                                                if($section['enrolled_students'] == null) {
+                                                                    echo "--";
+                                                                }
+                                                                else {
+                                                                    echo $section['enrolled_students'];
+                                                                }
+                                                            ?>
+                                                        </td>
+                                                        <td class="p-3 text-center"><?php 
+
+                                                            $adv = mysqli_query($config, "SELECT * FROM account_info WHERE control_no = '$adviser'");
+                                                            while($advise = mysqli_fetch_array($adv)) {
+                                                                echo $advise['first_name'];
+                                                                echo " ";
+                                                                echo $advise['last_name'];
+                                                            }
+                                                            
+                                                        ?></td>
+                                                    </tr>
+                                                    <?php } ?>
 
                                                 </tbody>
                                             </table>

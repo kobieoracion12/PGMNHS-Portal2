@@ -253,7 +253,7 @@
                                 <div class="dropdown-divider"></div>
     
                                 <!-- item-->
-                                <a href="auth-logout.html" class="dropdown-item notify-item">
+                                <a href="../../php/logout.php" class="dropdown-item notify-item">
                                     <i class="fe-log-out"></i>
                                     <span>Logout</span>
                                 </a>
@@ -388,21 +388,7 @@
                                         </li>
                                     </ul>
                                 </div>
-                            </li>
-
-                            <li>
-                                <a href="form-management.php">
-                                    <i class="mdi mdi-newspaper-variant-multiple"></i>
-                                    <span> Form Management </span>
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="apps-calendar.html">
-                                    <i class="mdi mdi-calendar-blank-outline"></i>
-                                    <span> School Calendar </span>
-                                </a>
-                            </li>
+                            </li>                  
 
                             <li>
                                 <a href="#manage" data-bs-toggle="collapse">
@@ -423,6 +409,20 @@
                                         </li>
                                     </ul>
                                 </div>
+                            </li>
+
+                            <li>
+                                <a href="form-management.php">
+                                    <i class="mdi mdi-newspaper-variant-multiple"></i>
+                                    <span> Form Management </span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="apps-calendar.html">
+                                    <i class="mdi mdi-calendar-blank-outline"></i>
+                                    <span> School Calendar </span>
+                                </a>
                             </li>
 
                             <li>

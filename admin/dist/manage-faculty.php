@@ -260,7 +260,7 @@
                                 <div class="dropdown-divider"></div>
     
                                 <!-- item-->
-                                <a href="auth-logout.html" class="dropdown-item notify-item">
+                                <a href="../../php/logout.php" class="dropdown-item notify-item">
                                     <i class="fe-log-out"></i>
                                     <span>Logout</span>
                                 </a>
@@ -395,21 +395,7 @@
                                         </li>
                                     </ul>
                                 </div>
-                            </li>
-
-                            <li>
-                                <a href="form-management.php">
-                                    <i class="mdi mdi-newspaper-variant-multiple"></i>
-                                    <span> Form Management </span>
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="apps-calendar.html">
-                                    <i class="mdi mdi-calendar-blank-outline"></i>
-                                    <span> School Calendar </span>
-                                </a>
-                            </li>
+                            </li>                  
 
                             <li>
                                 <a href="#manage" data-bs-toggle="collapse">
@@ -430,6 +416,20 @@
                                         </li>
                                     </ul>
                                 </div>
+                            </li>
+
+                            <li>
+                                <a href="form-management.php">
+                                    <i class="mdi mdi-newspaper-variant-multiple"></i>
+                                    <span> Form Management </span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="apps-calendar.html">
+                                    <i class="mdi mdi-calendar-blank-outline"></i>
+                                    <span> School Calendar </span>
+                                </a>
                             </li>
 
                             <li>
@@ -943,36 +943,20 @@
                                     <?php
                                         if(isset($_GET['name'])) {
                                             $name = $_GET['name'];
+                                            
+                                            $sql = mysqli_query($config, "SELECT * FROM account_info WHERE first_name = '$name' LIMIT 1");
 
-                                            $sql = mysqli_query($config, "SELECT * FROM account_info WHERE first_name = '$name'");
-                                            while($info = mysqli_fetch_array($sql)) {
-                                                $fullname = $info['first_name'] . " " . $info['last_name'];
-                                                $no = $info['account_no'];
-                                                $status = $info['acc_status'];
-                                                $bday = date("F d, Y", strtotime($info['birth_date']));
-                                                $start = date("F d, Y", strtotime($info['date_registered']));
+                                            while($infos = mysqli_fetch_array($sql)) {
+                                                $fullname = $infos['first_name'] . " " . $info['last_name'];
+                                                $no = $infos['account_no'];
+                                                $status = $infos['acc_status'];
+                                                $bday = date("F d, Y", strtotime($infos['birth_date']));
+                                                $start = date("F d, Y", strtotime($infos['date_registered']));
 
-                                                $img = $info['profile_picture'];
+                                                $img = $infos['profile_picture'];
                                         }
                                     ?>
                                     <div class="card-body task-detail m-2">
-                                        <div class="dropdown float-end">
-                                            <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown" aria-expanded="false">
-                                                <i class="mdi mdi-dots-vertical"></i>
-                                            </a>
-                                            
-                                            <div class="dropdown-menu dropdown-menu-end">
-                                                <!-- item-->
-                                                <a href="javascript:void(0);" class="dropdown-item">Action</a>
-                                                <!-- item-->
-                                                <a href="javascript:void(0);" class="dropdown-item">Another action</a>
-                                                <!-- item-->
-                                                <a href="javascript:void(0);" class="dropdown-item">Something else</a>
-                                                <!-- item-->
-                                                <a href="javascript:void(0);" class="dropdown-item">Separated link</a>
-                                            </div>
-                                        </div>
-                                        
                                         <div class="d-flex mb-3">
                                             <?php echo '<img src="data:image/jpg;charset=utf8;base64,'.base64_encode($img).'" />'; ?>
                                             <div class="flex-grow-1">
@@ -1068,21 +1052,6 @@
 
                                     <!-- Default Card -->
                                     <div class="card-body task-detail m-2">
-                                        <div class="dropdown float-end">
-                                            <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown" aria-expanded="false">
-                                                <i class="mdi mdi-dots-vertical"></i>
-                                            </a>
-                                            <div class="dropdown-menu dropdown-menu-end">
-                                                <!-- item-->
-                                                <a href="javascript:void(0);" class="dropdown-item">Action</a>
-                                                <!-- item-->
-                                                <a href="javascript:void(0);" class="dropdown-item">Another action</a>
-                                                <!-- item-->
-                                                <a href="javascript:void(0);" class="dropdown-item">Something else</a>
-                                                <!-- item-->
-                                                <a href="javascript:void(0);" class="dropdown-item">Separated link</a>
-                                            </div>
-                                        </div>
                                         <div class="d-flex mb-3">
                                             <img class="flex-shrink-0 me-3 rounded-circle avatar-md" alt="64x64" src="../../assets/img/profile.jpg">
                                             <div class="flex-grow-1">

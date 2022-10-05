@@ -3,68 +3,75 @@
 require_once("database.php");
 
 if(isset($_POST['register'])) {
-	$first = $_POST['first_name'];
-	$middle = $_POST['middle_name'];
-	$last = $_POST['last_name'];
+	$first = $_POST['fname'];
+	$middle = $_POST['mname'];
+	$last = $_POST['lname'];
 	$gender = $_POST['gender'];
-	$civil = $_POST['civil_status'];
+	$civil = $_POST['civil_stat'];
 	$nationality = $_POST['nationality'];
-	$bday = $_POST['birth_date'];
-	$pob = $_POST['birth_place'];
+	$bday = $_POST['bday'];
+	$pob = $_POST['bplace'];
 	$religion = $_POST['religion'];
 	$address = $_POST['address'];
-	$contact = $_POST['contact_no'];
-	$email = $_POST['email_add'];
-	$father = $_POST['father_name'];
-	$mother = $_POST['mother_name'];
-	$guardian = $_POST['guardian_name'];
-	$relation = $_POST['guardian_relation'];
-	$gnumber = $_POST['eme_contact'];
+	$contact = $_POST['contact'];
+	$email = $_POST['emaiadd'];
+	$father = $_POST['father'];
+	$mother = $_POST['mother'];
+	$guardian = $_POST['guardian'];
+	$gnumber = $_POST['emergency'];
 
-	$year = $_POST['year'];
-	$section = $_POST['sections'];
+	$year = $_POST['grade_level'];
+	$section = $_POST['section'];
 
-	$insert = mysqli_query($config, "INSERT INTO student_info (first_name, middle_name, last_name, student_gender, civil_status, student_nationality, student_bday, student_pob, student_religion, student_address, student_contact, student_email, student_father, student_mother, student_guardian, student_relation, student_gnumber) VALUES ('$first', '$middle', '$last', '$gender', '$civil', '$nationality', '$bday', '$pob', '$religion', '$address', '$contact', '$email', '$father', '$mother', '$guardian', '$relation', '$gnumber')");
-
+	// Insert Standard Information 
+	$insert = mysqli_query($config, "INSERT INTO account_info (first_name, middle_name, last_name, gender, civil_status, nationality, birth_date, birth_place, religion, my_address, contact_no, email_address, father_name, mother_name, guardian_name, guardian_number) VALUES ('$first', '$middle', '$last', '$gender', '$civil', '$nationality', '$bday', '$pob', '$religion', '$address', '$contact', '$email', '$father', '$mother', '$guardian', '$gnumber')");
+	
 	if($insert) {
 
-		$student_lrn = mysqli_insert_id($config);
-		$encrypt = password_hash($student_lrn, PASSWORD_DEFAULT);
-		$status = "Active";
-		$privilege = "Student";
+		$sql = mysqli_query($config, "SELECT MAX(control_no) FROM account_info");
+                                                                        
+		while($last = mysqli_fetch_array($sql)) {
+			$account = mysqli_insert_id($config);
+			$last_code = $last[0];
 
-		$generate_account = mysqli_query($config, "INSERT INTO student_accounts (student_lrn, account_password, account_status) VALUES ('$student_lrn', '$encrypt', '$status')");
+			$control = $last_code + 1;
+			$password = password_hash($control, PASSWORD_DEFAULT);
+			$status = "Active";
+			$privilege = "Student";
 
-		if($generate_account) {
+			// Generate Account
+			$fk = mysqli_query($config, "SET FOREIGN_KEY_CHECKS = 0");
+			if($fk) {
 
-			$generate_section = mysqli_query($config, "INSERT INTO student_sections (student_lrn, year_code, section_code) VALUES ('$student_lrn', '$year', '$section')");
+				$sql2 = mysqli_query($config, "SELECT MAX(control_no) FROM account_info");
 
-			if($generate_section) {
-				header("Location: ../faculty/faculty-students.php?success");
+				while($last2 = mysqli_fetch_array($sql2)) {
+					$new_control = $last2[0] + 1;
+
+					$generate = mysqli_query($config, "UPDATE account_info SET control_no = '$new_control', acc_password = '$new_control', acc_priv = '$privilege', acc_status = '$status' WHERE control_no = '$account'");
+			
+					if($generate) {
+
+						$section = mysqli_query($config, "UPDATE account_info SET year_code = '$year', section_code = '$section' WHERE control_no = '$account'");
+
+						if($section) {
+							header("Location: ../admin/dist/student-accounts.php?student-added");
+						}
+						else {
+							header("Location: ../admin/dist/student-accounts.php?section-failed");
+						}
+					}
+					else {
+						header("Location: ../admin/dist/student-accounts.php?generate-failed");
+					}
+				}
 			}
-
-			else {
-				header("Location: ../faculty/faculty-students.php?section-error");
-			}
-
 		}
-		else {
-			header("Location: ../faculty/faculty-students.php?account-error");
-			//echo "Caught an error: " . $config -> error;
-		}
-		
 	}
 	else {
-		header("Location: ../faculty/faculty-students.php?info-error");
-		//echo "Caught an error: " . $config -> error;
+		header("Location: ../admin/dist/student-accounts.php?insert-failed");
 	}
+		
 }
-
-else {
-	header("Location: ../faculty/faculty-students.php?failed");
-	exit();
-}
-
-exit();
 
 ?>

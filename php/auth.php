@@ -22,7 +22,7 @@ if(isset($_POST['login_btn']))
                 header('Location: ../admin/dist/index.php');
             }
             elseif($privilege == 'Faculty') {
-                header('Location: ../faculty/index.php');
+                header('Location: ../faculty2/dist/index.php');
             }
             elseif($privilege == 'Student') {
                 header('Location: ../student/index.php');

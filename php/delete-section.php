@@ -10,7 +10,7 @@ if(isset($_POST['delete'])) {
 
   if($fk) {
     
-    $delete = mysqli_query($config, "DELETE FROM sections WHERE section_code = '$code'");
+    $delete = mysqli_query($config, "DELETE FROM section WHERE section_code = '$code'");
     if($delete) {
         $fk2 = mysqli_query($config, "SET FOREIGN_KEY_CHECKS = 0");
 

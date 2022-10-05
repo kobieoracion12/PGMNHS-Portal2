@@ -250,7 +250,7 @@
                                 <div class="dropdown-divider"></div>
     
                                 <!-- item-->
-                                <a href="auth-logout.html" class="dropdown-item notify-item">
+                                <a href="../../php/logout.php" class="dropdown-item notify-item">
                                     <i class="fe-log-out"></i>
                                     <span>Logout</span>
                                 </a>
@@ -385,6 +385,27 @@
                                         </li>
                                     </ul>
                                 </div>
+                            </li>                  
+
+                            <li>
+                                <a href="#manage" data-bs-toggle="collapse">
+                                    <i class="mdi mdi-folder-open-outline"></i>
+                                    <span> Management </span>
+                                    <span class="menu-arrow"></span>
+                                </a>
+                                <div class="collapse" id="manage">
+                                    <ul class="nav-second-level">
+                                        <li>
+                                            <a href="manage-subjects.php">Subjects</a>
+                                        </li>
+                                        <li>
+                                            <a href="manage-faculty.php">Teachers</a>
+                                        </li>
+                                        <li>
+                                            <a href="manage-sections.php">Sections</a>
+                                        </li>
+                                    </ul>
+                                </div>
                             </li>
 
                             <li>
@@ -399,27 +420,6 @@
                                     <i class="mdi mdi-calendar-blank-outline"></i>
                                     <span> School Calendar </span>
                                 </a>
-                            </li>
-
-                            <li>
-                                <a href="#manage" data-bs-toggle="collapse">
-                                    <i class="mdi mdi-folder-open-outline"></i>
-                                    <span> Management </span>
-                                    <span class="menu-arrow"></span>
-                                </a>
-                                <div class="collapse" id="manage">
-                                    <ul class="nav-second-level">
-                                        <li>
-                                            <a href="email-inbox.html">Subjects</a>
-                                        </li>
-                                        <li>
-                                            <a href="email-templates.html">Teachers</a>
-                                        </li>
-                                        <li>
-                                            <a href="email-templates.html">Sections</a>
-                                        </li>
-                                    </ul>
-                                </div>
                             </li>
 
                             <li>
@@ -905,9 +905,190 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="col-12 table-responsive">
-                                            <table class="table table-striped table-hover w-100 p-3">
+                                            <button class="btn btn-primary d-flex float-end mb-1" data-bs-toggle="modal" data-bs-target="#addstudent"><i class="mdi mdi-plus"></i> Add Student</button>
+                                            
+                                            <!--  Add Modal -->
+                                            <div class="modal fade" id="addstudent" tabindex="-1" role="dialog" aria-hidden="true">
+                                                <div class="modal-dialog modal-lg">
+                                                    <div class="modal-content modal-dialog-scrollable">
+                                                        <div class="modal-header">
+                                                            <h4 class="modal-title" id="standard-modalLabel">Add Student</h4>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        
+                                                        <form action="../../php/register-student.php" method="post">
+                                                            <div class="modal-body text-start mx-4">
+
+                                                                <input type="hidden" class="form-control" name="control_no" id="control_no">
+
+                                                                <!-- PERSONAL INFORMATION -->
+                                                                <div>
+                                                                    <p class="fw-bold text-primary mb-0">Personal Information</p>
+                                                                    <hr class="mt-2">
+                                                                    <div class="row">
+                                                                        <div class="col-md-4 col-sm-12">
+                                                                            <label class="form-label">First Name</label>
+                                                                            <input type="text" class="form-control" name="fname" id="fname" placeholder="Not Specified" required>
+                                                                        </div>
+
+                                                                        <div class="col-md-4 col-sm-12">
+                                                                            <label class="form-label">Middle Name</label>
+                                                                            <input type="text" class="form-control" name="mname" id="mname" placeholder="Not Specified">
+                                                                        </div>
+
+                                                                        <div class="col-md-4 col-sm-12">
+                                                                            <label class="form-label">Last Name</label>
+                                                                            <input type="text" class="form-control" name="lname" id="lname" placeholder="Not Specified" required>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="row mt-3">
+                                                                        <div class="col-md-3 col-sm-12">
+                                                                            <label class="form-label">Gender</label>
+                                                                            <select class="form-select" name="gender" id="gender" placeholder="Not Specified">
+                                                                                <option>Male</option>
+                                                                                <option>Female</option>
+                                                                            </select>
+                                                                        </div>
+
+                                                                        <div class="col-md-3 col-sm-12">
+                                                                            <label class="form-label">Civil Status</label>
+                                                                            <select class="form-select" name="civil_stat" id="civil_stat">
+                                                                                <option>Single</option>
+                                                                                <option>Married</option>
+                                                                                <option>Divorced</option>
+                                                                                <option>Widowed</option>
+                                                                            </select>
+                                                                        </div>
+
+                                                                        <div class="col-md-3 col-sm-12">
+                                                                            <label class="form-label">Nationality</label>
+                                                                            <input type="text" class="form-control" name="nationality" id="nationality" placeholder="Not Specified" required>
+                                                                        </div>
+
+                                                                        <div class="col-md-3 col-sm-12">
+                                                                            <label class="form-label">Birth Date</label>
+                                                                            <input type="date" class="form-control" name="bday" id="bday" placeholder="Not Specified" required>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="row mt-3">
+                                                                        <div class="col-md-4 col-sm-12">
+                                                                            <label class="form-label">Birth Place</label>
+                                                                            <input type="text" class="form-control" name="bplace" id="bplace" placeholder="Not Specified">
+                                                                        </div>
+
+                                                                        <div class="col-md-4 col-sm-12">
+                                                                            <label class="form-label">Religion</label>
+                                                                            <select class="form-select" name="religion" id="religion">
+                                                                                <option selected>Roman Catholic</option>
+                                                                                <option>Aglipayan</option>
+                                                                                <option>Evangelicals</option>
+                                                                                <option>Iglesia ni Cristo</option>
+                                                                                <option>Protestant</option>
+                                                                                <option>Others</option>
+                                                                            </select>
+                                                                        </div>
+
+                                                                        <div class="col-md-4 col-sm-12">
+                                                                            <label class="form-label">Address</label>
+                                                                            <input type="text" class="form-control" name="address" id="address" placeholder="Not Specified">
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="row mt-3">
+                                                                        <div class="col-md-4 col-sm-12">
+                                                                            <label class="form-label">Contact No.</label>
+                                                                            <input type="text" class="form-control" name="contact" id="contact" placeholder="Not Specified">
+                                                                        </div>
+
+                                                                        <div class="col-md-8 col-sm-12">
+                                                                            <label class="form-label">Email Address</label>
+                                                                            <input type="email" class="form-control" name="emaiadd" id="emaiadd" placeholder="Not Specified">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <!-- PERSONAL INFORMATION END -->
+
+                                                                <!-- SCHOOL INFORMATION -->
+                                                                <div>
+                                                                    <p class="fw-bold text-primary mt-4 mb-0">School Information</p>
+                                                                    <hr class="mt-2">
+
+                                                                    <div class="row">
+                                                                        <div class="col-md-6 col-sm-12">
+                                                                            <label class="form-label">Year Level</label>
+                                                                            <select class="form-select" name="grade_level">
+                                                                                <?php 
+                                                                                    $sql = mysqli_query($config, "SELECT * FROM year_level");
+                                                                                    while($grade = mysqli_fetch_array($sql)) {
+                                                                                ?>
+                                                                                <option value="<?php echo $grade['year_code'] ?>"><?php echo $grade['year_name'] ?></option>
+                                                                                <?php } ?>
+                                                                            </select>
+                                                                        </div>
+
+                                                                        <div class="col-md-6 col-sm-12">
+                                                                            <label class="form-label">Section</label>
+                                                                            <select class="form-select" name="section">
+                                                                                <?php 
+                                                                                    $sql = mysqli_query($config, "SELECT * FROM section");
+                                                                                    while($section = mysqli_fetch_array($sql)) {
+                                                                                ?>
+                                                                                <option value="<?php echo $section['section_code'] ?>"><?php echo $section['section_name'] ?></option>
+                                                                                <?php } ?>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <!-- SCHOOL INFORMATION END -->
+
+                                                                <!-- FAMILY INFORMATION -->
+                                                                <div>
+                                                                    <p class="fw-bold mt-4 text-primary mb-0">Family Information</p>
+                                                                    <hr class="mt-2">
+
+                                                                    <div class="row">
+                                                                        <div class="col-md-6 col-sm-12">
+                                                                            <label class="form-label">Mother Full Name</label>
+                                                                            <input type="text" class="form-control" name="mother" id="mother" placeholder="Not Specified">
+                                                                        </div>
+
+                                                                        <div class="col-md-6 col-sm-12">
+                                                                            <label class="form-label">Father Full Name</label>
+                                                                            <input type="text" class="form-control" name="father" id="father" placeholder="Not Specified">
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="row mt-2">
+                                                                        <div class="col-md-6 col-sm-12">
+                                                                            <label class="form-label">Guardian Full Name</label>
+                                                                            <input type="text" class="form-control" name="guardian" id="guardian" placeholder="Not Specified">
+                                                                        </div>
+
+                                                                        <div class="col-md-6 col-sm-12">
+                                                                            <label class="form-label">Emergency Contact No.</label>
+                                                                            <input type="number" class="form-control" name="emergency" id="emergency" placeholder="Not Specified">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <!-- FAMILY INFORMATION END -->
+
+                                                            </div>
+                                                            
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                                                                <button type="submit" name="register" class="btn btn-primary">Submit</button>
+                                                            </div>
+                                                        </form>
+
+                                                    </div><!-- /.modal-content -->
+                                                </div><!-- /.modal-dialog -->
+                                            </div><!-- /.modal -->
+                                            
+                                            <table class="table table-striped w-100 p-3">
                                                 <thead>
-                                                <tr>
+                                                <tr class="bg-success text-white">
                                                     <th class="text-center">Profile</th>
                                                     <th class="text-center">Control No.</th>
 
@@ -1049,7 +1230,7 @@
                                                                                         <div class="col-md-4 col-sm-12">
                                                                                             <label class="form-label">Religion</label>
                                                                                             <select class="form-select" name="religion" id="religion">
-                                                                                                <option>Roman Catholic</option>
+                                                                                                <option selected>Roman Catholic</option>
                                                                                                 <option>Aglipayan</option>
                                                                                                 <option>Evangelicals</option>
                                                                                                 <option>Iglesia ni Cristo</option>
