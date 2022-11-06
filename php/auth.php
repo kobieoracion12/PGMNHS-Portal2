@@ -21,6 +21,9 @@ if(isset($_POST['login_btn']))
             if($privilege == 'Admin') {
                 header('Location: ../admin/dist/index.php');
             }
+            elseif($privilege == 'Registrar') {
+                header('Location: ../registrar/dist/index.php');
+            }
             elseif($privilege == 'Faculty') {
                 header('Location: ../faculty/dist/index.php');
             }
