@@ -354,16 +354,11 @@
                                                 <h5 class="font-600 m-b-5">Start Date</h5>
                                                 <p> 22 March 2016 <small class="text-muted">1:00 PM</small></p>
                                             </div>
-    
-                                            <div class="col-lg-6">
-                                                <h5 class="font-600 m-b-5">Due Date</h5>
-                                                <p> 17 April 2016 <small class="text-muted">12:00 PM</small></p>
-                                            </div>
                                         </div>
                                         <div class="clearfix"></div>
     
                                         <div class="assign-team mt-3">
-                                            <h5>Assign to</h5>
+                                            <h5>Subject Teacher(s)</h5>
                                             <div>
                                                 <a href="#"> <img class="rounded-circle avatar-sm" alt="64x64" src="assets/images/users/user-2.jpg"> </a>
                                                 <a href="#"> <img class="rounded-circle avatar-sm" alt="64x64" src="assets/images/users/user-3.jpg"> </a>
@@ -433,7 +428,7 @@
                                             </div>
                                         </div>
     
-                                        <h4 class="header-title mt-0 mb-3">Comments (6)</h4>
+                                        <h4 class="header-title mt-0 mb-3">Upcoming Classes</h4>
     
                                         <div>
     

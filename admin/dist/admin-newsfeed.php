@@ -8,7 +8,7 @@
     <head>
 
         <meta charset="utf-8" />
-        <title>Dashboard - Pedro Guevarra Memorial National Highschool</title>
+        <title>Newsfeed - Pedro Guevarra Memorial National Highschool</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <!-- App favicon -->
@@ -288,7 +288,7 @@
                     </li>
 
                     <li>
-                        <h4 class="page-title-main">Dashboard</h4>
+                        <h4 class="page-title-main">Newsfeed</h4>
                     </li>
         
                 </ul>
@@ -449,310 +449,225 @@
 
                         <div class="row">
 
-                            <div class="col-xl-3 col-md-6">
+                            <!-- Navigation/Left Side -->
+                            <div class="col-lg-3 col-sm-12" >
                                 <div class="card">
-                                    <div class="card-body">
-                                        <h4 class="header-title mt-0 mb-4">Enrolled Students</h4>
-    
-                                        <div class="widget-chart-1">
-                                            <div class="widget-chart-box-1 float-start" dir="ltr">
-                                                <input data-plugin="knob" data-width="70" data-height="70" data-fgColor="#f05050 "
-                                                       data-bgColor="#F9B9B9" value="58"
-                                                       data-skin="tron" data-angleOffset="180" data-readOnly=true
-                                                       data-thickness=".15"/>
-                                            </div>
-    
-                                            <div class="widget-detail-1 text-end">
-                                                <h2 class="fw-normal pt-2 mb-1"> 256 </h2>
-                                                <p class="text-muted mb-1">Student</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div><!-- end col -->
+                                    <ul class="list-group list-group-flush rounded">
+                                        <a href="#" class="text-decoration-none text-secondary" data-bs-toggle="modal" data-bs-target="#annonucement">
+                                            <li class="list-group-item p-3"><i class="mdi mdi-newspaper-variant-multiple me-1"></i>Create Announcement</li>
+                                        </a>
+                                        
+                                        <a href="admin-newsfeed.php?sort-newest" class="text-decoration-none text-secondary">
+                                            <li class="list-group-item p-3"><i class="mdi mdi-sort-clock-descending-outline me-1"></i>Newest Activity</li>
+                                        </a>
 
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h4 class="header-title mt-0 mb-4">Employeed Faculty</h4>
-    
-                                        <div class="widget-chart-1">
-                                            <div class="widget-chart-box-1 float-start" dir="ltr">
-                                                <input data-plugin="knob" data-width="70" data-height="70" data-fgColor="#10C469"
-                                                        data-bgColor="#AFEBCD" value="58"
-                                                       data-skin="tron" data-angleOffset="180" data-readOnly=true
-                                                       data-thickness=".15"/>
-                                            </div>
-    
-                                            <div class="widget-detail-1 text-end">
-                                                <h2 class="fw-normal pt-2 mb-1"> 256 </h2>
-                                                <p class="text-muted mb-1">Faculty</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div><!-- end col -->
-
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h4 class="header-title mt-0 mb-4">Employeed Personels</h4>
-    
-                                        <div class="widget-chart-1">
-                                            <div class="widget-chart-box-1 float-start" dir="ltr">
-                                                <input data-plugin="knob" data-width="70" data-height="70" data-fgColor="#ffbd4a"
-                                                        data-bgColor="#FFE6BA" value="80"
-                                                        data-skin="tron" data-angleOffset="180" data-readOnly=true
-                                                        data-thickness=".15"/>
-                                            </div>
-                                            <div class="widget-detail-1 text-end">
-                                                <h2 class="fw-normal pt-2 mb-1"> 4569 </h2>
-                                                <p class="text-muted mb-1">Personels</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div><!-- end col -->
-
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h4 class="header-title mt-0 mb-4">Registered Accounts</h4>
-    
-                                        <div class="widget-chart-1">
-                                            <div class="widget-chart-box-1 float-start" dir="ltr">
-                                                <input data-plugin="knob" data-width="70" data-height="70" data-fgColor="#FF8ACC"
-                                                        data-bgColor="#FEE7F4" value="80"
-                                                        data-skin="tron" data-angleOffset="180" data-readOnly=true
-                                                        data-thickness=".15"/>
-                                            </div>
-                                            <div class="widget-detail-1 text-end">
-                                                <h2 class="fw-normal pt-2 mb-1"> 4569 </h2>
-                                                <p class="text-muted mb-1">Accounts</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div><!-- end col -->
-
-                        </div>
-                        <!-- end row -->
-
-                        <div class="row">
-                            <div class="col-xl-4">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="dropdown float-end">
-                                            <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown" aria-expanded="false">
-                                                <i class="mdi mdi-dots-vertical"></i>
-                                            </a>
-                                            <div class="dropdown-menu dropdown-menu-end">
-                                                <!-- item-->
-                                                <a href="javascript:void(0);" class="dropdown-item">Action</a>
-                                                <!-- item-->
-                                                <a href="javascript:void(0);" class="dropdown-item">Another action</a>
-                                                <!-- item-->
-                                                <a href="javascript:void(0);" class="dropdown-item">Something else</a>
-                                                <!-- item-->
-                                                <a href="javascript:void(0);" class="dropdown-item">Separated link</a>
-                                            </div>
-                                        </div>
-
-                                        <h4 class="header-title mt-0">Enrolled Students</h4>
-
-                                        <div class="widget-chart text-center">
-                                            <div id="morris-donut-example" dir="ltr" style="height: 245px;" class="morris-chart"></div>
-                                            <ul class="list-inline chart-detail-list mb-0">
-                                                <li class="list-inline-item">
-                                                    <h5 style="color: #ff8acc;"><i class="fa fa-circle me-1"></i>JHS</h5>
-                                                </li>
-                                                <li class="list-inline-item">
-                                                    <h5 style="color: #5b69bc;"><i class="fa fa-circle me-1"></i>SHS</h5>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div><!-- end col -->
-
-                            <div class="col-xl-4">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="dropdown float-end">
-                                            <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown" aria-expanded="false">
-                                                <i class="mdi mdi-dots-vertical"></i>
-                                            </a>
-                                            <div class="dropdown-menu dropdown-menu-end">
-                                                <!-- item-->
-                                                <a href="javascript:void(0);" class="dropdown-item">Action</a>
-                                                <!-- item-->
-                                                <a href="javascript:void(0);" class="dropdown-item">Another action</a>
-                                                <!-- item-->
-                                                <a href="javascript:void(0);" class="dropdown-item">Something else</a>
-                                                <!-- item-->
-                                                <a href="javascript:void(0);" class="dropdown-item">Separated link</a>
-                                            </div>
-                                        </div>
-                                        <h4 class="header-title mt-0">Graduated Students</h4>
-                                        <div id="morris-bar-example" dir="ltr" style="height: 280px;" class="morris-chart"></div>
-                                    </div>
-                                </div>
-                            </div><!-- end col -->
-
-                            <div class="col-xl-4">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="dropdown float-end">
-                                            <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown" aria-expanded="false">
-                                                <i class="mdi mdi-dots-vertical"></i>
-                                            </a>
-                                            <div class="dropdown-menu dropdown-menu-end">
-                                                <!-- item-->
-                                                <a href="javascript:void(0);" class="dropdown-item">Action</a>
-                                                <!-- item-->
-                                                <a href="javascript:void(0);" class="dropdown-item">Another action</a>
-                                                <!-- item-->
-                                                <a href="javascript:void(0);" class="dropdown-item">Something else</a>
-                                                <!-- item-->
-                                                <a href="javascript:void(0);" class="dropdown-item">Separated link</a>
-                                            </div>
-                                        </div>
-                                        <h4 class="header-title mt-0">School Revenue</h4>
-                                        <div id="morris-line-example" dir="ltr" style="height: 280px;" class="morris-chart"></div>
-                                    </div>
-                                </div>
-                            </div><!-- end col -->
-                        </div>
-                        <!-- end row -->
-
-                        <div class="row">
-                            <div class="col-xl-4">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="dropdown float-end">
-                                            <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown" aria-expanded="false">
-                                                <i class="mdi mdi-dots-vertical"></i>
-                                            </a>
-                                            <div class="dropdown-menu dropdown-menu-end">
-                                                <!-- item-->
-                                                <a href="javascript:void(0);" class="dropdown-item">Action</a>
-                                                <!-- item-->
-                                                <a href="javascript:void(0);" class="dropdown-item">Another action</a>
-                                                <!-- item-->
-                                                <a href="javascript:void(0);" class="dropdown-item">Something else</a>
-                                                <!-- item-->
-                                                <a href="javascript:void(0);" class="dropdown-item">Separated link</a>
-                                            </div>
-                                        </div>
-    
-                                        <h4 class="header-title mb-3">Notifications</h4>
-    
-                                        <div class="inbox-widget">
-                                            
-                                            <div class="inbox-item">
-                                                <a href="#">
-                                                    <div class="inbox-item-img"><img src="assets/images/users/user-1.jpg" class="rounded-circle" alt=""></div>
-                                                    <h5 class="inbox-item-author mt-0 mb-1">Chadengle</h5>
-                                                    <p class="inbox-item-text">Hey! there I'm available...</p>
-                                                    <p class="inbox-item-date">13:40 PM</p>
-                                                </a>
-                                            </div>
-                                            
-                                            <div class="inbox-item">
-                                                <a href="#">
-                                                    <div class="inbox-item-img"><img src="assets/images/users/user-2.jpg" class="rounded-circle" alt=""></div>
-                                                    <h5 class="inbox-item-author mt-0 mb-1">Tomaslau</h5>
-                                                    <p class="inbox-item-text">I've finished it! See you so...</p>
-                                                    <p class="inbox-item-date">13:34 PM</p>
-                                                </a>
-                                            </div>
-    
-                                            <div class="inbox-item">
-                                                    <a href="#">
-                                                    <div class="inbox-item-img"><img src="assets/images/users/user-3.jpg" class="rounded-circle" alt=""></div>
-                                                    <h5 class="inbox-item-author mt-0 mb-1">Stillnotdavid</h5>
-                                                    <p class="inbox-item-text">This theme is awesome!</p>
-                                                    <p class="inbox-item-date">13:17 PM</p>
-                                                </a>
-                                            </div>
-    
-                                            <div class="inbox-item">
-                                                <a href="#">
-                                                    <div class="inbox-item-img"><img src="assets/images/users/user-4.jpg" class="rounded-circle" alt=""></div>
-                                                    <h5 class="inbox-item-author mt-0 mb-1">Kurafire</h5>
-                                                    <p class="inbox-item-text">Nice to meet you</p>
-                                                    <p class="inbox-item-date">12:20 PM</p>
-                                                </a>
-                                            </div>
-    
-                                            <div class="inbox-item">
-                                                <a href="#">
-                                                    <div class="inbox-item-img"><img src="assets/images/users/user-5.jpg" class="rounded-circle" alt=""></div>
-                                                    <h5 class="inbox-item-author mt-0 mb-1">Shahedk</h5>
-                                                    <p class="inbox-item-text">Hey! there I'm available...</p>
-                                                    <p class="inbox-item-date">10:15 AM</p>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
+                                        <a href="#" class="text-decoration-none text-secondary">
+                                            <li class="list-group-item p-3"><i class="mdi mdi-sort-variant me-1"></i>Most Relevant</li>
+                                        </a>
+                                    </ul>
                                 </div>
                                 
-                            </div><!-- end col -->
-
-                            <div class="col-xl-8">
+                                <h5>Shortcuts</h5>
                                 <div class="card">
-                                    <div class="card-body">
-                                        <div class="dropdown float-end">
-                                            <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown" aria-expanded="false">
-                                                <i class="mdi mdi-dots-vertical"></i>
-                                            </a>
-                                            <div class="dropdown-menu dropdown-menu-end">
-                                                <!-- item-->
-                                                <a href="javascript:void(0);" class="dropdown-item">Action</a>
-                                                <!-- item-->
-                                                <a href="javascript:void(0);" class="dropdown-item">Another action</a>
-                                                <!-- item-->
-                                                <a href="javascript:void(0);" class="dropdown-item">Something else</a>
-                                                <!-- item-->
-                                                <a href="javascript:void(0);" class="dropdown-item">Separated link</a>
-                                            </div>
-                                        </div>
-    
-                                        <h4 class="header-title mt-0 mb-3">Incoming Events</h4>
-    
-                                        <div class="table-responsive">
-                                            <table class="table table-hover mb-0">
-                                                <thead>
-                                                <tr>
-                                                    <th>#</th>
-                                                    <th>Event Name</th>
-                                                    <th>Start Date</th>
-                                                    <th>Status</th>
-                                                    <th>Assign</th>
-                                                </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>1</td>
-                                                        <td>Midterm Exams</td>
-                                                        <td>01/01/2017</td>
-                                                        <td><span class="badge bg-success">Incoming</span></td>
-                                                        <td>Highschool Department</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div> 
+                                    <ul class="list-group list-group-flush rounded">
+                                        <a href="#" class="text-decoration-none text-secondary">
+                                            <li class="list-group-item p-3">
+                                                <img src="../../assets/img/pgmnhs-logo.png" alt="user-img" class="rounded-circle avatar-sm me-2 float-start">
+                                                PGMNHS Administrative Office
+                                            </li>
+                                        </a>
+                                        
+                                        <a href="#" class="text-decoration-none text-secondary">
+                                            <li class="list-group-item p-3">
+                                                <img src="../../assets/img/pgmnhs-logo.png" alt="user-img" class="rounded-circle avatar-sm me-2 float-start">
+                                                Mr. Santiago F. Fajilago, Jr. Ed. D.
+                                            </li>
+                                        </a>
+
+                                        <a href="#" class="text-decoration-none text-secondary">
+                                            <li class="list-group-item p-3">
+                                                <img src="../../assets/img/pgmnhs-logo.png" alt="user-img" class="rounded-circle avatar-sm me-2 float-start">
+                                                PGMNHS Registrar's Office
+                                            </li>
+                                        </a>
+
+                                        <a href="#" class="text-decoration-none text-secondary">
+                                            <li class="list-group-item p-3">
+                                                <img src="../../assets/img/pgmnhs-logo.png" alt="user-img" class="rounded-circle avatar-sm me-2 float-start">
+                                                Mrs. Marcedes N. Coronado
+                                            </li>
+                                        </a>
+                                    </ul>
                                 </div>
-                               
-                            </div><!-- end col -->
+                            </div> <!-- End -->
+
+                            <!-- Main Newsfeed -->
+                            <div class="col-lg-6 offset-sm-12 two">
+
+                                <?php
+                                
+                                $sql = mysqli_query($config, "SELECT * FROM announcements ORDER BY post_id DESC");
+
+                                while($announce = mysqli_fetch_array($sql)) {
+
+                                ?>
+
+                                <!-- Newsfeed Card -->
+                                <div class="card">
+                                    <div class="card-header">
+                                        Important Updates
+                                    </div>
+
+                                    <div class="card-body">
+                                        <!-- Uploader Info -->
+                                        <div class="row">
+                                            <div class="col-auto g-0">
+                                                <img src="../../assets/img/pgmnhs-logo.png" alt="user-img" class="rounded-circle avatar-sm ms-3 me-2 float-end">
+                                            </div>
+
+                                            <div class="col-10 g-0">
+                                                <h4 class="text-start m-0">
+                                                    <?php
+                                                    
+                                                        $no = $announce['post_uploader'];
+
+                                                        $sql2 = mysqli_query($config, "SELECT acc_priv FROM account_info WHERE control_no = '$no'");
+                                                        $result2 = mysqli_fetch_array($sql2);
+
+                                                        $privilege = $result2[0];
+
+                                                        switch($privilege) {
+                                                            case "Admin":
+                                                                echo 'PGMNHS Administrative Office';
+                                                                break;
+                                                            case "Faculty":
+                                                                echo 'Mr. Santiago F. Fajilago, Jr. Ed. D.';
+                                                                break;
+                                                            case "Registrar":
+                                                                echo 'PGMNHS Registrar Office';
+                                                                break;
+                                                        }
+
+                                                    ?>
+                                                
+                                                </h4>
+
+                                                <small class="g-0 m-0"><i class="mdi mdi-clock-time-two-outline me-0"></i>
+                                                
+                                                <?php
+                                                
+                                                $time = date("h:i:s");
+                                                $uploaded = $announce['date_uploaded']
+
+                                                ?>
+                                                
+                                                10h ago</small>
+                                            </div>
+                                        </div> <!-- Uploader Info End -->
+
+                                        <div class="row">
+                                            <p class="mt-2"><?php echo $announce['post_content'] ?></p>
+
+                                            <?php
+                                            
+                                            $pubmat = $announce['post_pubmat'];
+
+                                            switch($pubmat) {
+                                                case "Announcement":
+                                                    echo '<img class="card-img-bottom img-fluid rounded" src="../../assets/img/announcement.jpg" alt="Card image cap">';
+                                                    break;
+                                                case "Breaking News":
+                                                    echo '<img class="card-img-bottom img-fluid rounded" src="../../assets/img/breaking-news.jpg" alt="Card image cap">';
+                                                    break;
+                                                case "Walang Pasok":
+                                                    echo '<img class="card-img-bottom img-fluid rounded" src="../../assets/img/walang-pasok.jpg" alt="Card image cap">';
+                                                    break;
+                                            }
+                                            
+                                            ?>
+
+                                        </div>
+                                    </div>
+                                </div> <!-- Newsfeed Card End -->
+
+                                <?php } ?>
+                                
+                            </div> <!-- End -->
+
+                            <!-- Incoming Events/Right Side -->
+                            <div class="col-lg-3 col-sm-12" >
+                                <h5>Incoming Events</h5>
+                                <div class="card p-3">
+                                    <div class="table-responsive">
+                                        <table class="table table-hover mb-2">
+                                            <thead>
+                                            <tr>
+                                                <th>Event Name</th>
+                                                <th>Start Date</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Midterm Exams</td>
+                                                    <td>01/01/2017</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <small class="fst-italic">These schedules are tend to change without prior notice.</small>
+                                    </div>
+                                </div>
+                            </div> <!-- End -->
 
                         </div>
-                        <!-- end row -->       
-                        
-                    </div> <!-- container-fluid -->
 
-                </div> <!-- content -->
+                        <!--  Announcement Modal -->
+                        <div class="modal fade" id="annonucement" tabindex="-1" role="dialog" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-md">
+                                <div class="modal-content modal-dialog-scrollable">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title" id="standard-modalLabel">Create Post</h4>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    
+                                    <form action="../../php/create-announcement.php" method="post">
+                                        <div class="modal-body">
+                                            <!-- Uploader Info -->
+                                            <div class="row">
+                                                <div class="col-auto g-0">
+                                                    <img src="../../assets/img/pgmnhs-logo.png" alt="user-img" class="rounded-circle avatar-sm ms-3 me-2 float-end">
+                                                </div>
+
+                                                <div class="col-10 g-0">
+                                                    <h4 class="text-start m-0">PGMNHS Administrative Office</h4>
+                                                    <small class="g-0 m-0"><i class="mdi mdi-earth"></i> Public</small>
+                                                </div>
+                                            </div> <!-- Uploader Info End -->
+
+                                            <div class="row p-2">
+                                                <input type="hidden" class="form-control" name="number" value="<?php echo $_SESSION['control_no'] ?>">
+
+                                                <textarea class="form-control border-0 mb-3" name="description" rows="5" placeholder="Create announcement here...."></textarea>
+                                            
+                                                <select class="form-select" name="pubmat">
+                                                    <option value="Announcement">Announcement</option>
+                                                    <option value="Breaking News">Breaking News</option>
+                                                    <option value="Walang Pasok">Walang Pasok</option>
+                                                </select>
+                                            </div>
+
+                                        </div>
+                                        
+                                        <div class="modal-footer">
+                                            <button type="submit" name="post-announcemenet" class="btn btn-success w-100">Post</button>
+                                        </div>
+                                    </form>
+
+                                </div><!-- /.modal-content -->
+                            </div><!-- /.modal-dialog -->
+                        </div><!-- /.modal -->
+
+                    </div> <!-- content -->
+                </div>
 
                 <!-- Footer Start -->
                 <footer class="footer">
