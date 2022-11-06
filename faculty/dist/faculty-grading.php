@@ -1,0 +1,739 @@
+<?php
+  include_once("../../php/fetch-admin.php");
+  include_once("../../php/database.php");
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+
+        <meta charset="utf-8" />
+        <title>Student Grading - Pedro Guevarra Memorial National Highschool</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <!-- App favicon -->
+        <link rel="shortcut icon" href="../../assets/img/pgmnhs-logo.ico">
+
+        <!-- App css -->
+        <link href="../../css/custom.css" rel="stylesheet" type="text/css">
+        <link href="assets/css/app.min.css" rel="stylesheet" type="text/css" id="app-style" />
+
+        <!-- icons -->
+        <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+
+    </head>
+
+    <body class="loading" data-layout-mode="horizontal" data-layout-color="light" data-layout-size="fluid" data-leftbar-position="fixed">
+
+        <!-- Begin page -->
+        <div id="wrapper">
+
+            <!-- Topbar Start -->
+            <div class="navbar-custom">
+                <div class="container-fluid">
+                     <ul class="list-unstyled topnav-menu float-end mb-0">
+
+                        <li class="d-none d-lg-block">
+                            <form class="app-search">
+                                <div class="app-search-box">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search..." id="top-search">
+                                        <button class="btn input-group-text" type="submit">
+                                            <i class="fe-search"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </li>
+    
+                        <li class="dropdown d-inline-block d-lg-none">
+                            <a class="nav-link dropdown-toggle arrow-none waves-effect waves-light" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                                <i class="fe-search noti-icon"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-lg dropdown-menu-end p-0">
+                                <form class="p-3">
+                                    <input type="text" class="form-control" placeholder="Search ..." aria-label="Recipient's username">
+                                </form>
+                            </div>
+                        </li>
+            
+                        <li class="dropdown notification-list topbar-dropdown">
+                            <a class="nav-link dropdown-toggle waves-effect waves-light" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                                <i class="fe-bell noti-icon"></i>
+                                <span class="badge bg-danger rounded-circle noti-icon-badge">9</span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end dropdown-lg">
+    
+                                <!-- item-->
+                                <div class="dropdown-item noti-title">
+                                    <h5 class="m-0">
+                                        <span class="float-end">
+                                            <a href="" class="text-dark">
+                                                <small>Clear All</small>
+                                            </a>
+                                        </span>Notification
+                                    </h5>
+                                </div>
+    
+                                <div class="noti-scroll" data-simplebar>
+    
+                                    <!-- item-->
+                                    <a href="javascript:void(0);" class="dropdown-item notify-item active">
+                                        <div class="notify-icon">
+                                            <img src="assets/images/users/user-1.jpg" class="img-fluid rounded-circle" alt="" /> </div>
+                                        <p class="notify-details">Cristina Pride</p>
+                                        <p class="text-muted mb-0 user-msg">
+                                            <small>Hi, How are you? What about our next meeting</small>
+                                        </p>
+                                    </a>
+    
+                                    <!-- item-->
+                                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                        <div class="notify-icon bg-primary">
+                                            <i class="mdi mdi-comment-account-outline"></i>
+                                        </div>
+                                        <p class="notify-details">Caleb Flakelar commented on Admin
+                                            <small class="text-muted">1 min ago</small>
+                                        </p>
+                                    </a>
+    
+                                    <!-- item-->
+                                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                        <div class="notify-icon">
+                                            <img src="assets/images/users/user-4.jpg" class="img-fluid rounded-circle" alt="" /> </div>
+                                        <p class="notify-details">Karen Robinson</p>
+                                        <p class="text-muted mb-0 user-msg">
+                                            <small>Wow ! this admin looks good and awesome design</small>
+                                        </p>
+                                    </a>
+    
+                                    <!-- item-->
+                                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                        <div class="notify-icon bg-warning">
+                                            <i class="mdi mdi-account-plus"></i>
+                                        </div>
+                                        <p class="notify-details">New user registered.
+                                            <small class="text-muted">5 hours ago</small>
+                                        </p>
+                                    </a>
+    
+                                    <!-- item-->
+                                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                        <div class="notify-icon bg-info">
+                                            <i class="mdi mdi-comment-account-outline"></i>
+                                        </div>
+                                        <p class="notify-details">Caleb Flakelar commented on Admin
+                                            <small class="text-muted">4 days ago</small>
+                                        </p>
+                                    </a>
+    
+                                    <!-- item-->
+                                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                        <div class="notify-icon bg-secondary">
+                                            <i class="mdi mdi-heart"></i>
+                                        </div>
+                                        <p class="notify-details">Carlos Crouch liked
+                                            <b>Admin</b>
+                                            <small class="text-muted">13 days ago</small>
+                                        </p>
+                                    </a>
+                                </div>
+    
+                                <!-- All-->
+                                <a href="javascript:void(0);" class="dropdown-item text-center text-primary notify-item notify-all">
+                                    View all
+                                    <i class="fe-arrow-right"></i>
+                                </a>
+    
+                            </div>
+                        </li>
+    
+                        <li class="dropdown notification-list topbar-dropdown">
+                            <a class="nav-link dropdown-toggle nav-user me-0 waves-effect waves-light" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                            <?php
+                                $no = $_SESSION["control_no"];
+                                $profile = mysqli_query($config, "SELECT profile_picture from account_info WHERE control_no = $no");
+
+                                while($data = mysqli_fetch_array($profile)) {
+                                  echo '<img class="img-fluid rounded-circle" src="data:image/jpg;charset=utf8;base64,'.base64_encode($data['profile_picture']).'"  width="22px">';
+                                }
+                            ?>
+                                <span class="pro-user-name ms-1">
+                                    <?php echo $_SESSION['first'] ?> <i class="mdi mdi-chevron-down"></i> 
+                                </span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end profile-dropdown ">
+                                <!-- item-->
+                                <div class="dropdown-header noti-title">
+                                    <h6 class="text-overflow m-0">Welcome !</h6>
+                                </div>
+    
+                                <!-- item-->
+                                <a href="contacts-profile.html" class="dropdown-item notify-item">
+                                    <i class="fe-user"></i>
+                                    <span>My Account</span>
+                                </a>
+    
+                                <!-- item-->
+                                <a href="auth-lock-screen.html" class="dropdown-item notify-item">
+                                    <i class="fe-lock"></i>
+                                    <span>Lock Screen</span>
+                                </a>
+    
+                                <div class="dropdown-divider"></div>
+    
+                                <!-- item-->
+                                <a href="../../php/logout.php" class="dropdown-item notify-item">
+                                    <i class="fe-log-out"></i>
+                                    <span>Logout</span>
+                                </a>
+    
+                            </div>
+                        </li>
+    
+                        <li class="dropdown notification-list">
+                            <a href="javascript:void(0);" class="nav-link right-bar-toggle waves-effect waves-light">
+                                <i class="fe-settings noti-icon"></i>
+                            </a>
+                        </li>
+    
+                    </ul>
+    
+                    <!-- LOGO -->
+                    <div class="logo-box">
+                        <a href="index.php" class="logo logo-light text-center">
+                            <span class="logo-sm">
+                                <img src="../../assets/img/pgmnhs-logo.png" alt="" height="40" width="auto">
+                            </span>
+                            <span class="logo-lg">
+                                <img src="../../assets/img/pgmnhs-logo.png" alt="" height="40" width="auto">
+                            </span>
+                        </a>
+                        <a href="index.php" class="logo logo-dark text-center">
+                            <span class="logo-sm">
+                                <img src="../../assets/img/pgmnhs-logo.png" alt="" height="40" width="auto">
+                            </span>
+                            <span class="logo-lg">
+                                <img src="../../assets/img/pgmnhs-logo.png" alt="" height="40" width="auto">
+                            </span>
+                        </a>
+                    </div>
+
+                    <ul class="list-unstyled topnav-menu topnav-menu-left mb-0">
+
+                        <li>
+                            <!-- Mobile menu toggle (Horizontal Layout)-->
+                            <a class="navbar-toggle nav-link" data-bs-toggle="collapse" data-bs-target="#topnav-menu-content">
+                                <div class="lines">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                </div>
+                            </a>
+                            <!-- End mobile menu toggle-->
+                        </li>
+             
+                    </ul>
+
+                    <div class="clearfix"></div> 
+        
+                </div>
+              
+            </div>
+            <!-- end Topbar -->
+
+            <!-- Navigation -->
+            <div class="topnav">
+                <div class="container-fluid">
+                    <nav class="navbar navbar-dark navbar-expand-lg topnav-menu">
+
+                        <div class="collapse navbar-collapse" id="topnav-menu-content">
+                            <ul class="navbar-nav">
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link arrow-none" href="index.php" id="topnav-dashboard" role="button"
+                                        aria-haspopup="true" aria-expanded="false">
+                                        <i class="mdi mdi-home me-1"></i> Home
+                                    </a>
+                                </li>
+
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link arrow-none" href="faculty-students.php" id="topnav-dashboard" role="button"
+                                        aria-haspopup="true" aria-expanded="false">
+                                        <i class="mdi mdi-account-group-outline me-1"></i> Students
+                                    </a>
+                                </li>
+
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link arrow-none" href="faculty-grading.php" id="topnav-dashboard" role="button"
+                                        aria-haspopup="true" aria-expanded="false">
+                                        <i class="mdi mdi-license me-1"></i> Grading
+                                    </a>
+                                </li>
+
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link arrow-none" href="faculty-class.php" id="topnav-dashboard" role="button"
+                                        aria-haspopup="true" aria-expanded="false">
+                                        <i class="mdi mdi-book-clock-outline me-1"></i> Classes
+                                    </a>
+                                </li>
+
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link arrow-none" href="faculty-subjects.php" id="topnav-dashboard" role="button"
+                                        aria-haspopup="true" aria-expanded="false">
+                                        <i class="mdi mdi-bookshelf me-1"></i> Subjects
+                                    </a>
+                                </li>
+
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link arrow-none" href="faculty-calendar.php" id="topnav-dashboard" role="button"
+                                        aria-haspopup="true" aria-expanded="false">
+                                        <i class="mdi mdi-calendar-outline me-1"></i> Calendar
+                                    </a>
+                                </li>
+
+                            </ul> <!-- end navbar-->
+                        </div> <!-- end .collapsed-->
+                    </nav>
+                </div> <!-- end container-fluid -->
+            </div> <!-- end topnav-->
+            
+            <!-- ============================================================== -->
+            <!-- Start Page Content here -->
+            <!-- ============================================================== -->
+
+            <div class="content-page">
+                <div class="content">
+
+                     <!-- Start Content-->
+                     <div class="container-fluid">
+                          
+                          <!-- start page title -->
+                          <div class="row">
+                              <div class="col-12">
+                                  <div class="page-title-box">
+                                      <h4 class="page-title">Grade Management</h4>
+                                  </div>
+                              </div>
+                          </div>     
+                          <!-- end page title --> 
+  
+                          <div class="row">
+                                <div class="col-lg-4 col-sm-12">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <form method="get">
+                                                <label class="form-label">School Year</label>
+                                                <select class="form-select mb-2" name="sy">
+                                                    <?php 
+                                                        $sql = mysqli_query($config, "SELECT * FROM school_year");
+
+                                                        while($sy = mysqli_fetch_array($sql)) {
+                                                    ?>
+
+                                                    <option value="<?php echo $sy['sy_code'] ?>">SY <?php echo $sy['sy_desc'] ?></option>
+
+                                                    <?php } ?>
+                                                </select>
+
+                                                <label class="form-label">Grading Period</label>
+                                                <select class="form-select mb-2" name="gp">
+                                                    <?php 
+                                                        $sql = mysqli_query($config, "SELECT * FROM grading_period");
+
+                                                        while($gp = mysqli_fetch_array($sql)) {
+                                                    ?>
+
+                                                    <option value="<?php echo $gp['grading_code'] ?>"><?php echo $gp['grading_desc'] ?></option>
+
+                                                    <?php } ?>
+                                                </select>
+
+                                                <label class="form-label">Select Subject</label>
+                                                <select class="form-select mb-3" name="grade">
+                                                    <?php 
+                                                        $id = $_SESSION['control_no'];
+
+                                                        $sql = mysqli_query($config, "SELECT * FROM subjects WHERE assigned_faculty = '$id'");
+
+                                                        while($subj = mysqli_fetch_array($sql)) {
+                                                    ?>
+
+                                                    <option value="<?php echo $subj['subject_code'] ?>"><?php echo $subj['subject_desc'] ?></option>
+
+                                                    <?php } ?>
+                                                </select>
+
+                                                
+
+                                                <button type="submit" class="btn btn-success w-100">Sort</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            <div class="col-lg-8 col-sm-12 table-responsive">
+                                <table class="table table-striped w-100 p-3">
+                                    <thead>
+                                    <tr class="bg-success text-white">
+                                        <th class="text-center">Profile</th>
+                                        <th class="text-center">Control No.</th>
+                                        <th class="text-center">Name</th>
+                                        <th class="text-center">Grade Level</th>
+                                        <th class="text-center">Section</th>
+                                        <th class="text-center">Subject</th>
+                                        <th class="text-center">Grade</th>
+                                        <th class="text-center">Action</th>
+                                    </tr>
+                                    </thead>
+
+
+                                    <tbody>
+
+                                    <?php
+
+                                        if(isset($_GET['grade'])) {
+                                            $subject = $_GET['grade'];
+                                            $sy = $_GET['sy'];
+                                            $gp = $_GET['gp'];
+
+                                            $fetch_student = mysqli_query($config, "SELECT * FROM student_grades, account_info WHERE (student_grades.control_no = account_info.control_no) AND subject_code = '$subject' AND sy_code = '$sy' AND grading_code = '$gp'");
+
+                                            while($student = mysqli_fetch_array($fetch_student)) {
+                                    ?>
+
+                                    <tr>
+                                        <td class="text-center p-3"><?php echo '<img class="img-fluid rounded-circle" src="data:image/jpg;charset=utf8;base64,'.base64_encode($student['profile_picture']).'"  width="25px">'; ?> </td>
+                                        <td class="p-3 text-center"><?php echo $student['control_no']; ?></td>
+
+                                        <td class="p-3 text-center"><?php echo $student['first_name']; echo " "; echo $student['last_name']; ?> </td>
+                                        
+                                        <!-- Grade Level -->
+                                        <td class="p-3 text-center">
+                                            <?php
+                                            
+                                                echo $student['year_code']; 
+                                            
+                                                //$year =  $student['year_code']; 
+
+                                                //$sql = mysqli_query($config, "SELECT year_name FROM year_level WHERE year_code = '$year'");
+
+                                                //while($result = mysqli_fetch_array($sql)) {
+                                                    //echo $result['year_name'];
+                                                //}
+                                            
+                                            ?>
+                                        </td>
+
+                                        <!-- Section -->
+                                        <td class="p-3 text-center">
+                                            <?php 
+
+                                                echo $student['section_code'];
+
+                                                //$section = $student['section_code']; 
+
+                                                //$sql2 = mysqli_query($config, "SELECT section_name FROM section WHERE section_code = '$section'");
+
+                                                //while($result2 = mysqli_fetch_array($sql2)) {
+                                                    //echo $result2['section_name'];
+                                                //}
+
+                                            ?>
+                                        </td>
+
+                                        <!-- Subject -->
+                                        <td class="p-3 text-center"><?php echo $_GET['grade'] ?></td>
+
+                                        <!-- Subject -->
+                                        <td class="p-3 text-center">--</td>
+
+                                        <!-- Action -->
+                                        <td class="p-3 text-center">
+                                            <div class="col-12">
+                                                <a class="text-decoration-none text-success me-2 edit-button" href="#" data-bs-toggle="modal" data-bs-target="#editinfo">
+                                                    <i class="mdi mdi-medal-outline"></i>
+                                                </a>
+
+                                                <!-- Standard modal content -->
+                                                <div class="modal fade" id="editinfo" tabindex="-1" role="dialog" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h4 class="modal-title" id="standard-modalLabel">Modal Heading</h4>
+                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+
+                                                            <form action="../../php/upload-grade.php" method="post">
+                                                                <div class="modal-body mx-3">
+                                                                    <input type="hidden" class="form-control" name="control_no" id="control_no">
+                                                                    <input type="hidden" class="form-control" name="sc" id="sc">
+                                                                    <input type="hidden" class="form-control" name="gp" id="gp">
+                                                                    <input type="hidden" class="form-control" name="subj" id="subj">
+
+                                                                    <input type="text" class="form-control" name="grade" placeholder="Input Grade">
+                                                                </div>
+
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                                                                    <button type="submit" class="btn btn-primary" name="submit_grade">Upload Grade</button>
+                                                                </div>
+                                                            </form>
+                                                            
+                                                        </div><!-- /.modal-content -->
+                                                    </div><!-- /.modal-dialog -->
+                                                </div><!-- /.modal -->
+
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <?php } } else { ?>
+
+                                    <tr>
+                                        <td class="text-center p-3">--</td>
+                                        <td class="p-3 text-center">--</td>
+
+                                        <td class="p-3 text-center">--</td>
+                                        <td class="p-3 text-center">-- </td>
+
+                                        <td class="p-3 text-center">-- </td>
+
+                                        <td class="p-3 text-center">--</td>
+                                        <td class="p-3 text-center">--</td>
+                                        <td class="p-3 text-center">--</td>
+                                    </tr>
+
+                                    <?php } ?>
+                                    
+                                    </tbody>
+                                </table>
+                            </div> <!-- end col -->
+                          </div>
+                          <!-- end row -->
+                          
+                      </div> <!-- container -->
+
+                </div> <!-- content -->
+
+                <!-- Footer Start -->
+                <footer class="footer">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-6 text-muted">
+                                <script>document.write(new Date().getFullYear())</script> &copy; Pedro Guevara Memorial National Highschool</a> 
+                            </div>
+                            <div class="col-md-6">
+                                <div class="text-md-end footer-links d-none d-sm-block">
+                                    <a href="javascript:void(0);">About Us</a>
+                                    <a href="javascript:void(0);">Help</a>
+                                    <a href="javascript:void(0);">Contact Us</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+                <!-- end Footer -->
+
+            </div>
+
+            <!-- ============================================================== -->
+            <!-- End Page content -->
+            <!-- ============================================================== -->
+
+
+        </div>
+        <!-- END wrapper -->
+
+        <!-- Right Sidebar -->
+        <div class="right-bar">
+
+            <div data-simplebar class="h-100">
+
+                <div class="rightbar-title">
+                    <a href="javascript:void(0);" class="right-bar-toggle float-end">
+                        <i class="mdi mdi-close"></i>
+                    </a>
+                    <h4 class="font-16 m-0 text-white">Theme Customizer</h4>
+                </div>
+        
+                <!-- Tab panes -->
+                <div class="tab-content pt-0">  
+
+                    <div class="tab-pane active" id="settings-tab" role="tabpanel">
+
+                        <div class="p-3">
+                            <div class="alert alert-warning" role="alert">
+                                <strong>Customize </strong> the overall color scheme, Layout, etc.
+                            </div>
+
+                            <h6 class="fw-medium font-14 mt-4 mb-2 pb-1">Color Scheme</h6>
+                            <div class="form-check form-switch mb-1">
+                                <input type="checkbox" class="form-check-input" name="layout-color" value="light"
+                                    id="light-mode-check" checked />
+                                <label class="form-check-label" for="light-mode-check">Light Mode</label>
+                            </div>
+
+                            <div class="form-check form-switch mb-1">
+                                <input type="checkbox" class="form-check-input" name="layout-color" value="dark"
+                                    id="dark-mode-check" />
+                                <label class="form-check-label" for="dark-mode-check">Dark Mode</label>
+                            </div>
+
+                            <!-- Width -->
+                            <h6 class="fw-medium font-14 mt-4 mb-2 pb-1">Width</h6>
+                            <div class="form-check form-switch mb-1">
+                                <input type="checkbox" class="form-check-input" name="layout-size" value="fluid" id="fluid" checked />
+                                <label class="form-check-label" for="fluid-check">Fluid</label>
+                            </div>
+                            <div class="form-check form-switch mb-1">
+                                <input type="checkbox" class="form-check-input" name="layout-size" value="boxed" id="boxed" />
+                                <label class="form-check-label" for="boxed-check">Boxed</label>
+                            </div>
+
+                            <!-- Menu positions -->
+                            <h6 class="fw-medium font-14 mt-4 mb-2 pb-1">Menus (Leftsidebar and Topbar) Positon</h6>
+
+                            <div class="form-check form-switch mb-1">
+                                <input type="checkbox" class="form-check-input" name="leftbar-position" value="fixed" id="fixed-check"
+                                    checked />
+                                <label class="form-check-label" for="fixed-check">Fixed</label>
+                            </div>
+
+                            <div class="form-check form-switch mb-1">
+                                <input type="checkbox" class="form-check-input" name="leftbar-position" value="scrollable"
+                                    id="scrollable-check" />
+                                <label class="form-check-label" for="scrollable-check">Scrollable</label>
+                            </div>
+
+                            <!-- Left Sidebar-->
+                            <h6 class="fw-medium font-14 mt-4 mb-2 pb-1">Left Sidebar Color</h6>
+
+                            <div class="form-check form-switch mb-1">
+                                <input type="checkbox" class="form-check-input" name="leftbar-color" value="light" id="light" />
+                                <label class="form-check-label" for="light-check">Light</label>
+                            </div>
+
+                            <div class="form-check form-switch mb-1">
+                                <input type="checkbox" class="form-check-input" name="leftbar-color" value="dark" id="dark" checked/>
+                                <label class="form-check-label" for="dark-check">Dark</label>
+                            </div>
+
+                            <div class="form-check form-switch mb-1">
+                                <input type="checkbox" class="form-check-input" name="leftbar-color" value="brand" id="brand" />
+                                <label class="form-check-label" for="brand-check">Brand</label>
+                            </div>
+
+                            <div class="form-check form-switch mb-3">
+                                <input type="checkbox" class="form-check-input" name="leftbar-color" value="gradient" id="gradient" />
+                                <label class="form-check-label" for="gradient-check">Gradient</label>
+                            </div>
+
+                            <!-- size -->
+                            <h6 class="fw-medium font-14 mt-4 mb-2 pb-1">Left Sidebar Size</h6>
+
+                            <div class="form-check form-switch mb-1">
+                                <input type="checkbox" class="form-check-input" name="leftbar-size" value="default"
+                                    id="default-size-check" checked />
+                                <label class="form-check-label" for="default-size-check">Default</label>
+                            </div>
+
+                            <div class="form-check form-switch mb-1">
+                                <input type="checkbox" class="form-check-input" name="leftbar-size" value="condensed"
+                                    id="condensed-check" />
+                                <label class="form-check-label" for="condensed-check">Condensed <small>(Extra Small size)</small></label>
+                            </div>
+
+                            <div class="form-check form-switch mb-1">
+                                <input type="checkbox" class="form-check-input" name="leftbar-size" value="compact"
+                                    id="compact-check" />
+                                <label class="form-check-label" for="compact-check">Compact <small>(Small size)</small></label>
+                            </div>
+
+                            <!-- User info -->
+                            <h6 class="fw-medium font-14 mt-4 mb-2 pb-1">Sidebar User Info</h6>
+
+                            <div class="form-check form-switch mb-1">
+                                <input type="checkbox" class="form-check-input" name="sidebar-user" value="true" id="sidebaruser-check" />
+                                <label class="form-check-label" for="sidebaruser-check">Enable</label>
+                            </div>
+
+
+                            <!-- Topbar -->
+                            <h6 class="fw-medium font-14 mt-4 mb-2 pb-1">Topbar</h6>
+
+                            <div class="form-check form-switch mb-1">
+                                <input type="checkbox" class="form-check-input" name="topbar-color" value="dark" id="darktopbar-check"
+                                    checked />
+                                <label class="form-check-label" for="darktopbar-check">Dark</label>
+                            </div>
+
+                            <div class="form-check form-switch mb-1">
+                                <input type="checkbox" class="form-check-input" name="topbar-color" value="light" id="lighttopbar-check" />
+                                <label class="form-check-label" for="lighttopbar-check">Light</label>
+                            </div>
+
+                            <div class="d-grid mt-4">
+                                <button class="btn btn-primary" id="resetBtn">Reset to Default</button>
+                                <a href="https://1.envato.market/admintoadmin" class="btn btn-danger mt-3" target="_blank"><i class="mdi mdi-basket me-1"></i> Purchase Now</a>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div> <!-- end slimscroll-menu-->
+        </div>
+        <!-- /Right-bar -->
+
+        <!-- Right bar overlay-->
+        <div class="rightbar-overlay"></div>
+
+        <!-- Vendor -->
+        <script src="assets/libs/jquery/jquery.min.js"></script>
+        <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="assets/libs/simplebar/simplebar.min.js"></script>
+        <script src="assets/libs/node-waves/waves.min.js"></script>
+        <script src="assets/libs/waypoints/lib/jquery.waypoints.min.js"></script>
+        <script src="assets/libs/jquery.counterup/jquery.counterup.min.js"></script>
+        <script src="assets/libs/feather-icons/feather.min.js"></script>
+
+          <!-- knob plugin -->
+        <script src="assets/libs/jquery-knob/jquery.knob.min.js"></script>
+
+          <!--Morris Chart-->
+        <script src="assets/libs/morris.js06/morris.min.js"></script>
+        <script src="assets/libs/raphael/raphael.min.js"></script>
+  
+        <!-- Dashboar init js-->
+        <script src="assets/js/pages/dashboard.init.js"></script>
+
+        <!-- App js-->
+        <script src="assets/js/app.min.js"></script>
+
+        <!-- Grading Modal -->
+        <script type="text/javascript">
+          $(document).ready(function(){
+            $('.edit-button').on('click', function(){
+
+              $('#editinfo').modal('show');
+
+              $tr = $(this).closest('tr');
+
+              var data =  $tr.children("td").map(function(){
+                return $(this).text();
+              }).get();
+
+              console.log(data);
+
+              $('#control_no').val(data[1]);
+              $('#gp').val(data[3]);
+              $('#sc').val(data[4]);
+              $('#subj').val(data[5]);
+            })
+          });
+        </script>
+        
+    </body>
+</html>

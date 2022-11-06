@@ -29,4 +29,34 @@ if(isset($_POST['update'])) {
 	}
 }
 
+if(isset($_POST['update-faculty'])) {
+	$no = $_POST['control_no2'];
+	$first = $_POST['fname2'];
+	$middle = $_POST['mname2'];
+	$last = $_POST['lname2'];
+	$gender = $_POST['gender2'];
+	$civil = $_POST['civil_stat2'];
+	$nationality = $_POST['nationality2'];
+	$bday = $_POST['bday2'];
+	$pob = $_POST['bplace2'];
+	$address = $_POST['address2'];
+	$contact = $_POST['contact2'];
+	$email = $_POST['emaiadd2'];
+	$father = $_POST['father2'];
+	$mother = $_POST['mother2'];
+	$guardian = $_POST['guardian2'];
+	$gnumber = $_POST['emergency2'];
+
+	$update = mysqli_query($config, "UPDATE account_info SET first_name = '$first', middle_name = '$middle', last_name = '$last', gender = '$gender', civil_status = '$civil', nationality = '$nationality', birth_date = '$bday', birth_place = '$pob', my_address = '$address', contact_no = '$contact', email_address = '$email', father_name = '$father', mother_name = '$mother', guardian_name = '$guardian', guardian_number = '$gnumber' WHERE control_no = '$no'");
+
+	if($update) {
+		header("Location: ../admin/dist/faculty-accounts.php?update-success");
+		//echo mysqli_error($config);
+	}
+	else {
+		header("Location: ../admin/dist/faculty-accounts.php?update-failed");
+		//echo mysqli_error($config);
+	}
+}
+
 ?>                

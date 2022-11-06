@@ -1,5 +1,7 @@
 <?php
 
+include_once("database.php");
+
 if(isset($_GET['document_no'])) {
 	$id = mysqli_real_escape_string($config, $_GET['document_no']);
 

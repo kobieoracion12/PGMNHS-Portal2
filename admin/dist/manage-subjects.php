@@ -952,7 +952,7 @@
                                                     <tbody>
 
                                                     <?php
-                                                        $sql_subject = mysqli_query($config, "SELECT * FROM subjects");
+                                                        $sql_subject = mysqli_query($config, "SELECT * FROM subjects ORDER BY insert_id DESC");
 
                                                         while($subject = mysqli_fetch_array($sql_subject)) {
                                                         
