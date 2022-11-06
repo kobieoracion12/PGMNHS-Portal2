@@ -266,7 +266,7 @@
                                 <li class="nav-item dropdown">
                                     <a class="nav-link arrow-none" href="registrar-forms.php" id="topnav-dashboard" role="button"
                                         aria-haspopup="true" aria-expanded="false">
-                                        <i class="mdi mdi-file-document-outline me-1"></i> Forms
+                                        <i class="mdi mdi-file-cabinet me-1"></i> Form Management
                                     </a>
                                 </li>
 
