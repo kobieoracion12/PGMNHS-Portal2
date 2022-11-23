@@ -794,48 +794,6 @@
                                                         </div>
                                                     </div>
                                                 </div>
-
-                                                <a class="text-decoration-none text-success print-button me-2" href="#" data-bs-toggle="modal" data-bs-target="#printmodal" title="Print">
-                                                    <i class="mdi mdi-printer"></i>
-                                                </a>
-
-                                                <!-- Print Modal -->
-                                                <div class="modal fade" id="printmodal" tabindex="-1" role="dialog" aria-hidden="true">
-                                                    <div class="modal-dialog modal-md modal-dialog-centered">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h4 class="modal-title" id="myLargeModalLabel">Print Document</h4>
-                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                            </div>
-                                                            <div class="modal-body text-start px-4">
-
-                                                                <form action="../../php/print-document.php" method="post">
-
-                                                                    <!-- Hidden Textbox -->
-                                                                    <input type="hidden" name="select-no" id="select-no">
-
-                                                                    <label class="form-label">Select Document to Print</label>
-                                                                    <select class="form-select" name="document" id="document">
-                                                                        <option selected>Select Document</option>
-
-                                                                        <?php foreach ($document as $document) { ?>
-
-                                                                        <option value=<?php echo $document['document_no'] ?>><?php echo $document['document_name'] ?></option>
-                                                                        
-                                                                        <?php } ?>
-                                                                    </select>
-
-                                                                    <div class="text-end">
-                                                                        <button type="button" class="btn btn-primary waves-effect waves-light my-2"><i class="mdi mdi-pencil me-1"></i>Edit</button>
-                                                                        <button type="submit" name="print" id="print" class="btn btn-success waves-effect waves-light my-2"><i class="mdi mdi-printer me-1"></i>Print Document</button>
-                                                                    </div>
-                                                                </form>
-
-                                                            </div>
-                                                        </div><!-- /.modal-content -->
-                                                    </div><!-- /.modal-dialog -->
-                                                </div><!-- /.modal -->
-                                                </div>
                                             </td>
                                     </tr>
 

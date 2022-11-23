@@ -374,6 +374,14 @@
                                 </a>
                             </li>
 
+                            <li>
+                                <a href="admin-newsfeed.php">
+                                    <i class="mdi mdi-newspaper-variant-outline"></i>
+                                    <!--<span class="badge bg-success rounded-pill float-end">9+</span>-->
+                                    <span> Newsfeed </span>
+                                </a>
+                            </li>
+
                             <li class="menu-title mt-2">Managing</li>
 
                             <li>
