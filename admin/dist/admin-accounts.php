@@ -455,11 +455,125 @@
                                                 <div class="modal-dialog modal-lg">
                                                     <div class="modal-content modal-dialog-scrollable">
                                                         <div class="modal-header">
-                                                            <h4 class="modal-title" id="standard-modalLabel">Add Student</h4>
+                                                            <h4 class="modal-title" id="standard-modalLabel">Add Admin</h4>
                                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                         </div>
                                                         
                                                         <form action="../../php/register-student.php" method="post">
+                                                            <div class="modal-body text-start mx-4">
+
+                                                                <input type="hidden" class="form-control" name="control_no">
+
+                                                                <!-- PERSONAL INFORMATION -->
+                                                                <div>
+                                                                    <p class="fw-bold text-primary mb-0">Personal Information</p>
+                                                                    <hr class="mt-2">
+                                                                    <div class="row">
+                                                                        <div class="col-md-4 col-sm-12">
+                                                                            <label class="form-label">First Name</label>
+                                                                            <input type="text" class="form-control" name="fname" placeholder="Not Specified" required>
+                                                                        </div>
+
+                                                                        <div class="col-md-4 col-sm-12">
+                                                                            <label class="form-label">Middle Name</label>
+                                                                            <input type="text" class="form-control" name="mname" placeholder="Not Specified">
+                                                                        </div>
+
+                                                                        <div class="col-md-4 col-sm-12">
+                                                                            <label class="form-label">Last Name</label>
+                                                                            <input type="text" class="form-control" name="lname" placeholder="Not Specified" required>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="row mt-3">
+                                                                        <div class="col-md-3 col-sm-12">
+                                                                            <label class="form-label">Gender</label>
+                                                                            <select class="form-select" name="gender" placeholder="Not Specified">
+                                                                                <option>Male</option>
+                                                                                <option>Female</option>
+                                                                            </select>
+                                                                        </div>
+
+                                                                        <div class="col-md-3 col-sm-12">
+                                                                            <label class="form-label">Civil Status</label>
+                                                                            <select class="form-select" name="civil_stat">
+                                                                                <option>Single</option>
+                                                                                <option>Married</option>
+                                                                                <option>Divorced</option>
+                                                                                <option>Widowed</option>
+                                                                            </select>
+                                                                        </div>
+
+                                                                        <div class="col-md-3 col-sm-12">
+                                                                            <label class="form-label">Nationality</label>
+                                                                            <input type="text" class="form-control" name="nationality"placeholder="Not Specified" required>
+                                                                        </div>
+
+                                                                        <div class="col-md-3 col-sm-12">
+                                                                            <label class="form-label">Birth Date</label>
+                                                                            <input type="date" class="form-control" name="bday" placeholder="Not Specified" required>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="row mt-3">
+                                                                        <div class="col-md-4 col-sm-12">
+                                                                            <label class="form-label">Birth Place</label>
+                                                                            <input type="text" class="form-control" name="bplace" laceholder="Not Specified">
+                                                                        </div>
+
+                                                                        <div class="col-md-4 col-sm-12">
+                                                                            <label class="form-label">Religion</label>
+                                                                            <select class="form-select" name="religion">
+                                                                                <option selected>Roman Catholic</option>
+                                                                                <option>Aglipayan</option>
+                                                                                <option>Evangelicals</option>
+                                                                                <option>Iglesia ni Cristo</option>
+                                                                                <option>Protestant</option>
+                                                                            </select>
+                                                                        </div>
+
+                                                                        <div class="col-md-4 col-sm-12">
+                                                                            <label class="form-label">Address</label>
+                                                                            <input type="text" class="form-control" name="address" placeholder="Not Specified">
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="row mt-3">
+                                                                        <div class="col-md-4 col-sm-12">
+                                                                            <label class="form-label">Contact No.</label>
+                                                                            <input type="text" class="form-control" name="contact" placeholder="Not Specified">
+                                                                        </div>
+
+                                                                        <div class="col-md-8 col-sm-12">
+                                                                            <label class="form-label">Email Address</label>
+                                                                            <input type="email" class="form-control" name="emaiadd" placeholder="Not Specified">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <!-- PERSONAL INFORMATION END -->
+
+                                                            </div>
+                                                            
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                                                                <button type="submit" name="register-admin" class="btn btn-primary">Submit</button>
+                                                            </div>
+                                                        </form>
+
+                                                    </div><!-- /.modal-content -->
+                                                </div><!-- /.modal-dialog -->
+                                            </div><!-- /.modal -->
+
+                                            <!--  Edit Modal -->
+                                            <div class="modal fade" id="editadmin" tabindex="-1" role="dialog" aria-hidden="true">
+                                                <div class="modal-dialog modal-lg">
+                                                    <div class="modal-content modal-dialog-scrollable">
+                                                        <div class="modal-header">
+                                                            <h4 class="modal-title" id="standard-modalLabel">Edit Admin</h4>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        
+                                                        <form action="../../php/update-admin.php" method="post">
                                                             <div class="modal-body text-start mx-4">
 
                                                                 <input type="hidden" class="form-control" name="control_no" id="control_no">
@@ -529,13 +643,13 @@
                                                                                 <option>Evangelicals</option>
                                                                                 <option>Iglesia ni Cristo</option>
                                                                                 <option>Protestant</option>
-                                                                                <option>Others</option>
+                                                                                
                                                                             </select>
                                                                         </div>
 
                                                                         <div class="col-md-4 col-sm-12">
                                                                             <label class="form-label">Address</label>
-                                                                            <input type="text" class="form-control" name="address" id="address" placeholder="Not Specified">
+                                                                            <input type="text" class="form-control" name="my_address" id="address" placeholder="Not Specified">
                                                                         </div>
                                                                     </div>
 
@@ -547,84 +661,196 @@
 
                                                                         <div class="col-md-8 col-sm-12">
                                                                             <label class="form-label">Email Address</label>
-                                                                            <input type="email" class="form-control" name="emaiadd" id="emaiadd" placeholder="Not Specified">
+                                                                            <input type="email" class="form-control" name="emailadd" id="emailadd" placeholder="Not Specified">
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                                 <!-- PERSONAL INFORMATION END -->
 
-                                                                <!-- SCHOOL INFORMATION -->
-                                                                <div>
-                                                                    <p class="fw-bold text-primary mt-4 mb-0">School Information</p>
-                                                                    <hr class="mt-2">
+                                                            </div>
+                                                            
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                                                                <button type="submit" name="update" class="btn btn-primary">Submit</button>
+                                                            </div>
+                                                        </form>
 
+                                                    </div><!-- /.modal-content -->
+                                                </div><!-- /.modal-dialog -->
+                                            </div><!-- /.modal -->
+
+                                            <!--  View Modal -->
+                                            <div class="modal fade" id="viewadmin" tabindex="-1" role="dialog" aria-hidden="true">
+                                                <div class="modal-dialog modal-lg">
+                                                    <div class="modal-content modal-dialog-scrollable">
+                                                        <div class="modal-header">
+                                                            <h4 class="modal-title" id="standard-modalLabel">View Admin</h4>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        
+                                                        <form action="#" method="post">
+                                                            <div class="modal-body text-start mx-4">
+
+                                                                <input type="hidden" class="form-control" name="control_no" id="control_no">
+
+                                                                <!-- PERSONAL INFORMATION -->
+                                                                <div>
+                                                                    <p class="fw-bold text-primary mb-0">Personal Information</p>
+                                                                    <hr class="mt-2">
                                                                     <div class="row">
-                                                                        <div class="col-md-6 col-sm-12">
-                                                                            <label class="form-label">Year Level</label>
-                                                                            <select class="form-select" name="grade_level">
-                                                                                <?php 
-                                                                                    $sql = mysqli_query($config, "SELECT * FROM year_level");
-                                                                                    while($grade = mysqli_fetch_array($sql)) {
-                                                                                ?>
-                                                                                <option value="<?php echo $grade['year_code'] ?>"><?php echo $grade['year_name'] ?></option>
-                                                                                <?php } ?>
+                                                                        <div class="col-md-4 col-sm-12">
+                                                                            <label class="form-label">First Name</label>
+                                                                            <input type="text" class="form-control" name="fname" id="vfname" placeholder="Not Specified" required>
+                                                                        </div>
+
+                                                                        <div class="col-md-4 col-sm-12">
+                                                                            <label class="form-label">Middle Name</label>
+                                                                            <input type="text" class="form-control" name="mname" id="vmname" placeholder="Not Specified">
+                                                                        </div>
+
+                                                                        <div class="col-md-4 col-sm-12">
+                                                                            <label class="form-label">Last Name</label>
+                                                                            <input type="text" class="form-control" name="lname" id="vlname" placeholder="Not Specified" required>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="row mt-3">
+                                                                        <div class="col-md-3 col-sm-12">
+                                                                            <label class="form-label">Gender</label>
+                                                                            <select class="form-select" name="gender" id="vgender" placeholder="Not Specified">
+                                                                                <option>Male</option>
+                                                                                <option>Female</option>
                                                                             </select>
                                                                         </div>
 
-                                                                        <div class="col-md-6 col-sm-12">
-                                                                            <label class="form-label">Section</label>
-                                                                            <select class="form-select" name="section">
-                                                                                <?php 
-                                                                                    $sql = mysqli_query($config, "SELECT * FROM section");
-                                                                                    while($section = mysqli_fetch_array($sql)) {
-                                                                                ?>
-                                                                                <option value="<?php echo $section['section_code'] ?>"><?php echo $section['section_name'] ?></option>
-                                                                                <?php } ?>
+                                                                        <div class="col-md-3 col-sm-12">
+                                                                            <label class="form-label">Civil Status</label>
+                                                                            <select class="form-select" name="civil_stat" id="vcivil_stat">
+                                                                                <option>Single</option>
+                                                                                <option>Married</option>
+                                                                                <option>Divorced</option>
+                                                                                <option>Widowed</option>
                                                                             </select>
                                                                         </div>
+
+                                                                        <div class="col-md-3 col-sm-12">
+                                                                            <label class="form-label">Nationality</label>
+                                                                            <input type="text" class="form-control" name="nationality" id="vnationality" placeholder="Not Specified" required>
+                                                                        </div>
+
+                                                                        <div class="col-md-3 col-sm-12">
+                                                                            <label class="form-label">Birth Date</label>
+                                                                            <input type="date" class="form-control" name="bday" id="vbday" placeholder="Not Specified" required>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="row mt-3">
+                                                                        <div class="col-md-4 col-sm-12">
+                                                                            <label class="form-label">Birth Place</label>
+                                                                            <input type="text" class="form-control" name="bplace" id="vbplace" placeholder="Not Specified">
+                                                                        </div>
+
+                                                                        <div class="col-md-4 col-sm-12">
+                                                                            <label class="form-label">Religion</label>
+                                                                            <select class="form-select" name="religion" id="vreligion">
+                                                                                <option selected>Roman Catholic</option>
+                                                                                <option>Aglipayan</option>
+                                                                                <option>Evangelicals</option>
+                                                                                <option>Iglesia ni Cristo</option>
+                                                                                <option>Protestant</option>
+                                                                                
+                                                                            </select>
+                                                                        </div>
+
+                                                                        <div class="col-md-4 col-sm-12">
+                                                                            <label class="form-label">Address</label>
+                                                                            <input type="text" class="form-control" name="my_address" id="vaddress" placeholder="Not Specified">
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="row mt-3">
+                                                                        <div class="col-md-4 col-sm-12">
+                                                                            <label class="form-label">Contact No.</label>
+                                                                            <input type="text" class="form-control" name="contact" id="vcontact" placeholder="Not Specified">
+                                                                        </div>
+
+                                                                        <div class="col-md-8 col-sm-12">
+                                                                            <label class="form-label">Email Address</label>
+                                                                            <input type="email" class="form-control" name="emailadd" id="vemailadd" placeholder="Not Specified">
+                                                                        </div>
                                                                     </div>
                                                                 </div>
-                                                                <!-- SCHOOL INFORMATION END -->
-
-                                                                <!-- FAMILY INFORMATION -->
-                                                                <div>
-                                                                    <p class="fw-bold mt-4 text-primary mb-0">Family Information</p>
-                                                                    <hr class="mt-2">
-
-                                                                    <div class="row">
-                                                                        <div class="col-md-6 col-sm-12">
-                                                                            <label class="form-label">Mother Full Name</label>
-                                                                            <input type="text" class="form-control" name="mother" id="mother" placeholder="Not Specified">
-                                                                        </div>
-
-                                                                        <div class="col-md-6 col-sm-12">
-                                                                            <label class="form-label">Father Full Name</label>
-                                                                            <input type="text" class="form-control" name="father" id="father" placeholder="Not Specified">
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <div class="row mt-2">
-                                                                        <div class="col-md-6 col-sm-12">
-                                                                            <label class="form-label">Guardian Full Name</label>
-                                                                            <input type="text" class="form-control" name="guardian" id="guardian" placeholder="Not Specified">
-                                                                        </div>
-
-                                                                        <div class="col-md-6 col-sm-12">
-                                                                            <label class="form-label">Emergency Contact No.</label>
-                                                                            <input type="number" class="form-control" name="emergency" id="emergency" placeholder="Not Specified">
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <!-- FAMILY INFORMATION END -->
+                                                                <!-- PERSONAL INFORMATION END -->
 
                                                             </div>
                                                             
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
-                                                                <button type="submit" name="register-admin" class="btn btn-primary">Submit</button>
                                                             </div>
                                                         </form>
 
+                                                    </div><!-- /.modal-content -->
+                                                </div><!-- /.modal-dialog -->
+                                            </div><!-- /.modal -->
+
+                                            <!-- Delete Modal -->
+                                            <div class="modal fade" id="deletemodal" tabindex="-1" role="dialog" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered">
+                                                    <div class="modal-content">
+
+                                                            <div class="modal-header">
+                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+
+                                                            <form action="../../php/delete-admin.php" method="post">
+                                                                <div class="modal-body">
+                                                                <input type="hidden" name="delete_number" id="delete_number">
+                                                                Do you want to delete this file?
+                                                            </div>
+
+                                                            <div class="modal-footer">
+                                                                <input type="button" class="btn btn-danger" data-bs-dismiss="modal" value="No">
+                                                                <input type="submit" name="delete" class="btn btn-success" value="Yes">
+                                                            </div>
+                                                
+                                                        </form>
+                                                    </div><!-- /.modal-content -->
+                                                </div><!-- /.modal-dialog -->
+                                            </div><!-- /.modal -->
+
+                                            <!-- Print Modal -->
+                                            <div class="modal fade" id="printmodal" tabindex="-1" role="dialog" aria-hidden="true">
+                                                <div class="modal-dialog modal-md modal-dialog-centered">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h4 class="modal-title" id="myLargeModalLabel">Print Document</h4>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body text-start px-4">
+
+                                                            <form action="../../php/print-document.php" method="post">
+
+                                                                <!-- Hidden Textbox -->
+                                                                <input type="hidden" name="select-no" id="select-no">
+
+                                                                <label class="form-label">Select Document to Print</label>
+                                                                <select class="form-select" name="document" id="document">
+                                                                    <option selected>Select Document</option>
+
+                                                                    <?php foreach ($document as $document) { ?>
+
+                                                                    <option value=<?php echo $document['document_no'] ?>><?php echo $document['document_name'] ?></option>
+                                                                    
+                                                                    <?php } ?>
+                                                                </select>
+
+                                                                <div class="text-end">
+                                                                    <button type="button" class="btn btn-primary waves-effect waves-light my-2"><i class="mdi mdi-pencil me-1"></i>Edit</button>
+                                                                    <button type="submit" name="print" id="print" class="btn btn-success waves-effect waves-light my-2"><i class="mdi mdi-printer me-1"></i>Print Document</button>
+                                                                </div>
+                                                            </form>
+
+                                                        </div>
                                                     </div><!-- /.modal-content -->
                                                 </div><!-- /.modal-dialog -->
                                             </div><!-- /.modal -->
@@ -647,12 +873,6 @@
                                                     <th class="text-center" hidden>Address</th>
                                                     <th class="text-center" hidden>Contact No.</th>
                                                     <th class="text-center" hidden>Email</th>
-                                                    <th class="text-center" hidden>Father</th>
-                                                    <th class="text-center" hidden>Mother</th>
-                                                    <th class="text-center" hidden>Guardian</th>
-                                                    <th class="text-center" hidden>Emergency</th>
-                                                    <th class="text-center" hidden>Year Level</th>
-                                                    <th class="text-center" hidden>Section</th>
 
                                                     <th class="text-center">Name</th>
                                                     <th class="text-center">Status</th>
@@ -680,22 +900,17 @@
                                                     <td class="p-3 text-center" hidden><?php echo $student['birth_date']; ?></td>
                                                     <td class="p-3 text-center" hidden><?php echo $student['birth_place']; ?></td>
                                                     <td class="p-3 text-center" hidden><?php echo $student['religion']; ?></td>
-                                                    <td class="p-3 text-center" hidden><?php echo $student['address']; ?></td>
+                                                    <td class="p-3 text-center" hidden><?php echo $student['my_address']; ?></td>
                                                     <td class="p-3 text-center" hidden><?php echo $student['contact_no']; ?></td>
                                                     <td class="p-3 text-center" hidden><?php echo $student['email_address']; ?></td>
-                                                    <td class="p-3 text-center" hidden><?php echo $student['father_name']; ?></td>
-                                                    <td class="p-3 text-center" hidden><?php echo $student['mother_name']; ?></td>
-                                                    <td class="p-3 text-center" hidden><?php echo $student['guardian_name']; ?></td>
-                                                    <td class="p-3 text-center" hidden><?php echo $student['guardian_number']; ?></td>
-                                                    <td class="p-3 text-center" hidden><?php echo $student['year_code']; ?></td>
-                                                    <td class="p-3 text-center" hidden><?php echo $student['section_code']; ?></td>
+                            
 
                                                     <td class="p-3 text-center"><?php echo $student['first_name']; echo " "; echo $student['last_name']; ?> </td>
                                                     <td class="p-3 text-center"><?php echo $student['acc_status']; ?></td>
 
                                                     <td class="p-3 text-center">
                                                         <div class="col-12">
-                                                            <a class="text-decoration-none text-primary me-2 edit-button" href="#" data-bs-toggle="modal" data-bs-target="#editinfo">
+                                                            <a class="text-decoration-none text-primary me-2 edit-button" href="#" data-bs-toggle="modal" data-bs-target="#editadmin">
                                                               <i class="mdi mdi-pencil-outline"></i>
                                                             </a>
 
@@ -926,13 +1141,17 @@
         <script src="assets/libs/pdfmake/build/vfs_fonts.js"></script>
         <!-- third party js ends -->
 
+        <script type="text/javascript" src="../../js/bootstrap.js"></script>
+        <script src='https://code.jquery.com/jquery-3.3.1.slim.min.js'></script>
+        <script src="js/bootstrap.js"></script>
+
         <!-- Datatables init -->
         <script src="assets/js/pages/datatables.init.js"></script>
 
         <!-- App js -->
         <script src="assets/js/app.min.js"></script>
 
-        <!-- Print Modal -->
+         <!-- Print Modal -->
         <script type="text/javascript">
           $(document).ready(function(){
             $('.print-button').on('click', function(){
@@ -957,7 +1176,7 @@
           $(document).ready(function(){
             $('.edit-button').on('click', function(){
 
-              $('#editinfo').modal('show');
+              $('#editadmin').modal('show');
 
               $tr = $(this).closest('tr');
 
@@ -979,15 +1198,7 @@
               $('#religion').val(data[10]);
               $('#address').val(data[11]);
               $('#contact').val(data[12]);
-              $('#emaiadd').val(data[13]);
-
-              $('#grade').val(data[18]);
-              $('#section').val(data[19]);
-
-              $('#mother').val(data[15]);
-              $('#father').val(data[14]);
-              $('#guardian').val(data[16]);
-              $('#emergency').val(data[17]);
+              $('#emailadd').val(data[13]);
             })
           });
         </script>

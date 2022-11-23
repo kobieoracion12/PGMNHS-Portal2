@@ -547,7 +547,7 @@
 
                                                                         <div class="col-md-8 col-sm-12">
                                                                             <label class="form-label">Email Address</label>
-                                                                            <input type="email" class="form-control" name="emaiadd" id="emaiadd" placeholder="Not Specified">
+                                                                            <input type="email" class="form-control" name="emailadd" id="emailadd" placeholder="Not Specified">
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -763,7 +763,7 @@
 
                                                                                         <div class="col-md-8 col-sm-12">
                                                                                             <label class="form-label">Email Address</label>
-                                                                                            <input type="email" class="form-control" name="emaiadd2" id="emaiadd2" placeholder="Not Specified">
+                                                                                            <input type="email" class="form-control" name="emailadd2" id="emailadd2" placeholder="Not Specified">
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
@@ -1262,7 +1262,7 @@
               $('#religion2').val(data[10]);
               $('#address2').val(data[11]);
               $('#contact2').val(data[12]);
-              $('#emaiadd2').val(data[13]);
+              $('#emailadd2').val(data[13]);
 
               $('#grade2').val(data[18]);
               $('#section2').val(data[19]);

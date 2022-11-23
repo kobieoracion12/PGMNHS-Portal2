@@ -10,8 +10,6 @@
         <meta charset="utf-8" />
         <title>Student Accounts - Pedro Guevarra Memorial National Highschool</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
-        <meta content="Coderthemes" name="author" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <!-- App favicon -->
         <link rel="shortcut icon" href="../../assets/img/pgmnhs-logo.ico">
@@ -464,7 +462,7 @@
                                                         <form action="../../php/register-student.php" method="post">
                                                             <div class="modal-body text-start mx-4">
 
-                                                                <input type="hidden" class="form-control" name="control_no" id="control_no">
+                                                                <input type="hidden" class="form-control" name="control_no">
 
                                                                 <!-- PERSONAL INFORMATION -->
                                                                 <div>
@@ -473,24 +471,24 @@
                                                                     <div class="row">
                                                                         <div class="col-md-4 col-sm-12">
                                                                             <label class="form-label">First Name</label>
-                                                                            <input type="text" class="form-control" name="fname" id="fname" placeholder="Not Specified" required>
+                                                                            <input type="text" class="form-control" name="fname" placeholder="Not Specified" required>
                                                                         </div>
 
                                                                         <div class="col-md-4 col-sm-12">
                                                                             <label class="form-label">Middle Name</label>
-                                                                            <input type="text" class="form-control" name="mname" id="mname" placeholder="Not Specified">
+                                                                            <input type="text" class="form-control" name="mname" placeholder="Not Specified">
                                                                         </div>
 
                                                                         <div class="col-md-4 col-sm-12">
                                                                             <label class="form-label">Last Name</label>
-                                                                            <input type="text" class="form-control" name="lname" id="lname" placeholder="Not Specified" required>
+                                                                            <input type="text" class="form-control" name="lname" placeholder="Not Specified" required>
                                                                         </div>
                                                                     </div>
 
                                                                     <div class="row mt-3">
                                                                         <div class="col-md-3 col-sm-12">
                                                                             <label class="form-label">Gender</label>
-                                                                            <select class="form-select" name="gender" id="gender" placeholder="Not Specified">
+                                                                            <select class="form-select" name="gender" placeholder="Not Specified">
                                                                                 <option>Male</option>
                                                                                 <option>Female</option>
                                                                             </select>
@@ -498,7 +496,7 @@
 
                                                                         <div class="col-md-3 col-sm-12">
                                                                             <label class="form-label">Civil Status</label>
-                                                                            <select class="form-select" name="civil_stat" id="civil_stat">
+                                                                            <select class="form-select" name="civil_stat">
                                                                                 <option>Single</option>
                                                                                 <option>Married</option>
                                                                                 <option>Divorced</option>
@@ -508,24 +506,24 @@
 
                                                                         <div class="col-md-3 col-sm-12">
                                                                             <label class="form-label">Nationality</label>
-                                                                            <input type="text" class="form-control" name="nationality" id="nationality" placeholder="Not Specified" required>
+                                                                            <input type="text" class="form-control" name="nationality"  placeholder="Not Specified" required>
                                                                         </div>
 
                                                                         <div class="col-md-3 col-sm-12">
                                                                             <label class="form-label">Birth Date</label>
-                                                                            <input type="date" class="form-control" name="bday" id="bday" placeholder="Not Specified" required>
+                                                                            <input type="date" class="form-control" name="bday" placeholder="Not Specified" required>
                                                                         </div>
                                                                     </div>
 
                                                                     <div class="row mt-3">
                                                                         <div class="col-md-4 col-sm-12">
                                                                             <label class="form-label">Birth Place</label>
-                                                                            <input type="text" class="form-control" name="bplace" id="bplace" placeholder="Not Specified">
+                                                                            <input type="text" class="form-control" name="bplace" placeholder="Not Specified">
                                                                         </div>
 
                                                                         <div class="col-md-4 col-sm-12">
                                                                             <label class="form-label">Religion</label>
-                                                                            <select class="form-select" name="religion" id="religion">
+                                                                            <select class="form-select" name="religion">
                                                                                 <option selected>Roman Catholic</option>
                                                                                 <option>Aglipayan</option>
                                                                                 <option>Evangelicals</option>
@@ -537,19 +535,19 @@
 
                                                                         <div class="col-md-4 col-sm-12">
                                                                             <label class="form-label">Address</label>
-                                                                            <input type="text" class="form-control" name="address" id="address" placeholder="Not Specified">
+                                                                            <input type="text" class="form-control" name="address" placeholder="Not Specified">
                                                                         </div>
                                                                     </div>
 
                                                                     <div class="row mt-3">
                                                                         <div class="col-md-4 col-sm-12">
                                                                             <label class="form-label">Contact No.</label>
-                                                                            <input type="text" class="form-control" name="contact" id="contact" placeholder="Not Specified">
+                                                                            <input type="text" class="form-control" name="contact" placeholder="Not Specified">
                                                                         </div>
 
                                                                         <div class="col-md-8 col-sm-12">
                                                                             <label class="form-label">Email Address</label>
-                                                                            <input type="email" class="form-control" name="emaiadd" id="emaiadd" placeholder="Not Specified">
+                                                                            <input type="email" class="form-control" name="emailadd"placeholder="Not Specified">
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -596,24 +594,24 @@
                                                                     <div class="row">
                                                                         <div class="col-md-6 col-sm-12">
                                                                             <label class="form-label">Mother Full Name</label>
-                                                                            <input type="text" class="form-control" name="mother" id="mother" placeholder="Not Specified">
+                                                                            <input type="text" class="form-control" name="mother" placeholder="Not Specified">
                                                                         </div>
 
                                                                         <div class="col-md-6 col-sm-12">
                                                                             <label class="form-label">Father Full Name</label>
-                                                                            <input type="text" class="form-control" name="father" id="father" placeholder="Not Specified">
+                                                                            <input type="text" class="form-control" name="father" placeholder="Not Specified">
                                                                         </div>
                                                                     </div>
 
                                                                     <div class="row mt-2">
                                                                         <div class="col-md-6 col-sm-12">
                                                                             <label class="form-label">Guardian Full Name</label>
-                                                                            <input type="text" class="form-control" name="guardian" id="guardian" placeholder="Not Specified">
+                                                                            <input type="text" class="form-control" name="guardian" placeholder="Not Specified">
                                                                         </div>
 
                                                                         <div class="col-md-6 col-sm-12">
                                                                             <label class="form-label">Emergency Contact No.</label>
-                                                                            <input type="number" class="form-control" name="emergency" id="emergency" placeholder="Not Specified">
+                                                                            <input type="number" class="form-control" name="emergency"placeholder="Not Specified">
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -623,7 +621,7 @@
                                                             
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
-                                                                <button type="submit" name="register" class="btn btn-primary">Submit</button>
+                                                                <button type="submit" name="register-student" class="btn btn-primary">Submit</button>
                                                             </div>
                                                         </form>
 
@@ -682,7 +680,7 @@
                                                     <td class="p-3 text-center" hidden><?php echo $student['birth_date']; ?></td>
                                                     <td class="p-3 text-center" hidden><?php echo $student['birth_place']; ?></td>
                                                     <td class="p-3 text-center" hidden><?php echo $student['religion']; ?></td>
-                                                    <td class="p-3 text-center" hidden><?php echo $student['address']; ?></td>
+                                                    <td class="p-3 text-center" hidden><?php echo $student['my_address']; ?></td>
                                                     <td class="p-3 text-center" hidden><?php echo $student['contact_no']; ?></td>
                                                     <td class="p-3 text-center" hidden><?php echo $student['email_address']; ?></td>
                                                     <td class="p-3 text-center" hidden><?php echo $student['father_name']; ?></td>
@@ -710,7 +708,7 @@
                                                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                                         </div>
                                                                         
-                                                                        <form action="../../php/update-admin.php" method="post">
+                                                                        <form action="../../php/update-student.php" method="post">
                                                                             <div class="modal-body text-start mx-4">
 
                                                                                 <input type="hidden" class="form-control" name="control_no" id="control_no">
@@ -798,7 +796,7 @@
 
                                                                                         <div class="col-md-8 col-sm-12">
                                                                                             <label class="form-label">Email Address</label>
-                                                                                            <input type="email" class="form-control" name="emaiadd" id="emaiadd" placeholder="Not Specified">
+                                                                                            <input type="email" class="form-control" name="emailadd" id="emailadd" placeholder="Not Specified">
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
@@ -843,12 +841,12 @@
                                                                                     <div class="row mt-2">
                                                                                         <div class="col-md-6 col-sm-12">
                                                                                             <label class="form-label">Guardian Full Name</label>
-                                                                                            <input type="text" class="form-control" name="guardian" id="guardian" placeholder="Not Specified">
+                                                                                            <input type="text" class="form-control" name="guardian_name" id="guardian_name" placeholder="Not Specified">
                                                                                         </div>
 
                                                                                         <div class="col-md-6 col-sm-12">
                                                                                             <label class="form-label">Emergency Contact No.</label>
-                                                                                            <input type="number" class="form-control" name="emergency" id="emergency" placeholder="Not Specified">
+                                                                                            <input type="number" class="form-control" name="guardian_number" id="guardian_number" placeholder="Not Specified">
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
@@ -879,7 +877,7 @@
                                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                                 </div>
 
-                                                                <form action="../../php/delete-admin.php" method="post">
+                                                                <form action="../../php/delete-student.php" method="post">
                                                                     <div class="modal-body">
                                                                     <input type="hidden" name="delete_number" id="delete_number">
                                                                     Do you want to delete this file?
@@ -1207,7 +1205,7 @@
               $('#religion').val(data[10]);
               $('#address').val(data[11]);
               $('#contact').val(data[12]);
-              $('#emaiadd').val(data[13]);
+              $('#emailadd').val(data[13]);
 
               $('#grade').val(data[18]);
               $('#section').val(data[19]);

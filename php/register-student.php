@@ -2,7 +2,7 @@
 
 require_once("database.php");
 
-if(isset($_POST['register'])) {
+if(isset($_POST['register-student'])) {
 	$first = $_POST['fname'];
 	$middle = $_POST['mname'];
 	$last = $_POST['lname'];
@@ -14,7 +14,7 @@ if(isset($_POST['register'])) {
 	$religion = $_POST['religion'];
 	$address = $_POST['address'];
 	$contact = $_POST['contact'];
-	$email = $_POST['emaiadd'];
+	$email = $_POST['emailadd'];
 	$father = $_POST['father'];
 	$mother = $_POST['mother'];
 	$guardian = $_POST['guardian'];
@@ -30,9 +30,9 @@ if(isset($_POST['register'])) {
 
 		$sql = mysqli_query($config, "SELECT MAX(control_no) FROM account_info");
                                                                         
-		while($last = mysqli_fetch_array($sql)) {
+		while($last1 = mysqli_fetch_array($sql)) {
 			$account = mysqli_insert_id($config);
-			$last_code = $last[0];
+			$last_code = $last1[0];
 
 			$control = $last_code + 1;
 			$password = password_hash($control, PASSWORD_DEFAULT);
@@ -86,26 +86,20 @@ if(isset($_POST['register-admin'])) {
 	$religion = $_POST['religion'];
 	$address = $_POST['address'];
 	$contact = $_POST['contact'];
-	$email = $_POST['emaiadd'];
-	$father = $_POST['father'];
-	$mother = $_POST['mother'];
-	$guardian = $_POST['guardian'];
-	$gnumber = $_POST['emergency'];
+	$email = $_POST['emailadd'];
 
-	$year = $_POST['grade_level'];
-	$section = $_POST['section'];
-	$privilege = "Student";
+	$privilege = "Admin";
 
 	// Insert Standard Information 
-	$insert = mysqli_query($config, "INSERT INTO account_info (first_name, middle_name, last_name, gender, civil_status, nationality, birth_date, birth_place, religion, my_address, contact_no, email_address, father_name, mother_name, guardian_name, guardian_number, acc_priv) VALUES ('$first', '$middle', '$last', '$gender', '$civil', '$nationality', '$bday', '$pob', '$religion', '$address', '$contact', '$email', '$father', '$mother', '$guardian', '$gnumber', '$privilege')");
+	$insert = mysqli_query($config, "INSERT INTO account_info (first_name, middle_name, last_name, gender, civil_status, nationality, birth_date, birth_place, religion, my_address, contact_no, email_address, acc_priv) VALUES ('$first', '$middle', '$last', '$gender', '$civil', '$nationality', '$bday', '$pob', '$religion', '$address', '$contact', '$email','$privilege')");
 	
 	if($insert) {
 
 		$sql = mysqli_query($config, "SELECT MAX(control_no) FROM account_info");
                                                                         
-		while($last = mysqli_fetch_array($sql)) {
+		while($last1 = mysqli_fetch_array($sql)) {
 			$account = mysqli_insert_id($config);
-			$last_code = $last[0];
+			$last_code = $last1[0];
 
 			$control = $last_code + 1;
 			$password = password_hash($control, PASSWORD_DEFAULT);
@@ -165,7 +159,7 @@ if(isset($_POST['faculty-student-register'])) {
 
 	$year = $_POST['grade_level'];
 	$section = $_POST['section'];
-	$privilege = "Student";
+	$privilege = "Faculty";
 
 	// Insert Standard Information 
 	$insert = mysqli_query($config, "INSERT INTO account_info (first_name, middle_name, last_name, gender, civil_status, nationality, birth_date, birth_place, religion, my_address, contact_no, email_address, father_name, mother_name, guardian_name, guardian_number, acc_priv) VALUES ('$first', '$middle', '$last', '$gender', '$civil', '$nationality', '$bday', '$pob', '$religion', '$address', '$contact', '$email', '$father', '$mother', '$guardian', '$gnumber', '$privilege')");
@@ -174,9 +168,9 @@ if(isset($_POST['faculty-student-register'])) {
 
 		$sql = mysqli_query($config, "SELECT MAX(control_no) FROM account_info");
                                                                         
-		while($last = mysqli_fetch_array($sql)) {
+		while($last1= mysqli_fetch_array($sql)) {
 			$account = mysqli_insert_id($config);
-			$last_code = $last[0];
+			$last_code = $last1[0];
 
 			$control = $last_code + 1;
 			$password = password_hash($control, PASSWORD_DEFAULT);
